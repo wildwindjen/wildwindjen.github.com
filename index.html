@@ -252,9 +252,17 @@
 <h2>發佈 octopress</h2>
 
 <ul>
-<li>預覽都沒問題，就是該放到 github 上囉。先確認一下你的 origin，在 octopress 目錄下：</li>
+<li>預覽都沒問題，就是該放到 github 上囉。直接發佈看看：</li>
 </ul>
 
+
+<pre>
+    rake deploy
+</pre>
+
+
+<p>
++ 假設你跟我一樣，因為某些緣故不能使用 SSH。先確認一下你的 origin，在 octopress/_deploy 目錄下輸入：</p>
 
 <pre>
     git remote -v
@@ -262,15 +270,35 @@
 
 
 <ul>
-<li>確認出現的 origin 是像這個樣子</li>
+<li>應該是會看到以下格式</li>
 </ul>
 
 
 <pre>
-origin  git@github.com:wildwindjen/wildwindjen.github.io (fetch)
-origin  git@github.com:wildwindjen/wildwindjen.github.io (push)
+    origin  git@github.com:wildwindjen/wildwindjen.github.io (fetch)
+    origin  git@github.com:wildwindjen/wildwindjen.github.io (push)
 </pre>
 
+
+<ul>
+<li>請輸入以下指令作修改，改走 HTTPS 的方式 deploy：</li>
+</ul>
+
+
+<pre>
+git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.git
+</pre>
+
+
+<ul>
+<li>重新 rake deploy 就好囉。</li>
+<li>因為之後會上傳 source ，所以我也在 octopress 確認一次 origin，這邊也是得修改成 HTTPS。</li>
+</ul>
+
+
+<h2>未驗證</h2>
+
+<p>寫文章至此，我猜想在做「rake setup_github_pages」步驟時，直接填入 https 格式，應該就沒有後面的麻煩了。之後有時間再踹踹看。</p>
 </div>
   
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-25T19:58:06+08:00</updated>
+  <updated>2013-04-26T00:20:09+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -12,6 +12,112 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[get back octopress]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/04/25/get-back-octopress/"/>
+    <updated>2013-04-25T23:58:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/04/25/get-back-octopress</id>
+    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+
+<pre>
+天道循環。有產出，就應該有回收。
+</pre>
+
+
+<h2>總結</h2>
+
+<p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
+
+<h2>備份</h2>
+
+<ul>
+<li>stage octopress 裡面的檔案</li>
+</ul>
+
+
+<pre>
+git add .
+</pre>
+
+
+<ul>
+<li>commit 檔案到本地檔案庫，並且填寫描述訊息。</li>
+</ul>
+
+
+<pre>
+git commit -m "備份 source"
+</pre>
+
+
+<ul>
+<li>從本地檔案庫推到遠端檔案庫，並且指名放在 source branch 裡面。</li>
+</ul>
+
+
+<pre>
+git push origin source
+</pre>
+
+
+<h2>取回</h2>
+
+<ul>
+<li>假設現在換了一台電腦(先把原本的 octopress 更名)</li>
+<li>先從 source branch 複製一份回來，放到 octopress 目錄裡。</li>
+</ul>
+
+
+<pre>
+git clone -b source git@github.com:wildwindjen/wildwindjen.github.com.git octopress
+</pre>
+
+
+<ul>
+<li>切換到 octopress 目錄裡面</li>
+</ul>
+
+
+<pre>
+cd octopress
+</pre>
+
+
+<ul>
+<li>從 master branch 複製一份回來，放到 _deploy 目錄裡。(之前 rake deploy 就是把資料推到 master 裡。)</li>
+</ul>
+
+
+<pre>
+git clone git@github.com:wildwindjen/wildwindjen.github.com.git _deploy 
+</pre>
+
+
+<ul>
+<li>重新安裝必要的環境及設定</li>
+</ul>
+
+
+<pre>
+gem install bundler
+bundle install
+rake install
+</pre>
+
+
+<ul>
+<li>重設編碼 (如果跟我一樣是在 windows 上面測試的話。)</li>
+</ul>
+
+
+<pre>
+set LC_ALL=zh_TW.UTF-8
+set LANG=zh_TW.UTF-8
+</pre>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[first octopress at github]]></title>

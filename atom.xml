@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-25T17:17:07+08:00</updated>
+  <updated>2013-04-25T17:19:06+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -225,7 +225,7 @@ git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.
 
 <ul>
 <li>重新 rake deploy 就好囉。</li>
-<li>因為之後會上傳 source ，所以我也在 octopress 確認一次 origin，這邊也是得修改成 HTTPS。</li>
+<li>因為之後會上傳 source ，所以我也在 octopress/ 下確認一次 origin，這邊也是得改走 HTTPS。</li>
 </ul>
 
 

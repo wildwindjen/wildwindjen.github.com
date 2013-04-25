@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://wildwindjen.github.io
+title: Wild Wind
+subtitle: Look down, look down. Don't look 'em in the eye....
+author: Wildwind Jen
 simple_search: http://google.com/search
-description:
+description: Change Log in My Mind.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in

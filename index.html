@@ -135,6 +135,43 @@
 </ul>
 
 
+<h2>設定 GitHub SSH Key (這一段是想走 SSH 的人要做的)</h2>
+
+<ul>
+<li>參考 https://help.github.com/articles/generating-ssh-keys</li>
+<li>打開 Git Bash</li>
+</ul>
+
+
+<pre>
+    cd ~/.ssh
+</pre>
+
+
+<p>如果沒有的話就自己建立一個 .ssh
++ 產生 ssh key</p>
+
+<pre>
+    ssh-keygen -t rsa -C "your_email@example.com"
+</pre>
+
+
+<ul>
+<li>輸入你想輸入的密碼 passphrase (比較安全，也可以留空)</li>
+<li>複製產生出來的 key，以下的語法我在 window 7 可以執行，但是 XP 不行。(所以直接去 C:\Documents and Settings\wildwindjen.ssh\id_rsa.pub 用編輯器開檔，全選、複製就可以了。)</li>
+</ul>
+
+
+<pre>
+    clip < ~/.ssh/id_rsa.pub
+</pre>
+
+
+<ul>
+<li>登入 GitHub > Account Setting > SSH Keys，點選 Add SSH Keys 按鈕，名字亂取，把剛剛複製的貼上就好。</li>
+</ul>
+
+
 <h2>安裝 Ruby</h2>
 
 <ul>
@@ -309,6 +346,29 @@ git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.
 <h2>未驗證</h2>
 
 <p>寫文章至此，我猜想在做「rake setup_github_pages」步驟時，直接填入 https 格式，應該就沒有後面的麻煩了。之後有時間再踹踹看。</p>
+
+<h2>其他經驗</h2>
+
+<h3>SSH 的 Debug 方式</h3>
+
+<p>過程中遇到一堆 SSH 的問題，直到遇見這個語法，才解除了我盲目的人生。</p>
+
+<pre>
+    ssh -vvv git@github.com
+</pre>
+
+
+<h3>SSH 的客製化設定檔</h3>
+
+<p>.ssh 下面可以自己新增一個檔名 config，這邊假設有需要把預設的 port 22 改換成 443，可以透過這一招。可惜這次沒機會表現。</p>
+
+<pre>
+    Host github.com
+    User wildwind.jen@gmail.com
+    Hostname ssh.github.com
+    Port 443
+</pre>
+
 </div>
   
   

@@ -218,36 +218,44 @@
 </pre>
 
 
-<p>
-+ 去 octopress/source/_posts 就可以看到副檔名 .markdown 的文章。
-+ 使用慣用的編輯器打開，使用 markdown 語法開始寫文章吧。
-+ 完成的話，要執行以下命令，讓 markdown 檔案轉換成 html：</p>
+<ul>
+<li>去 octopress/source/_posts 就可以看到副檔名 .markdown 的文章。</li>
+<li>使用慣用的編輯器打開，使用 markdown 語法開始寫文章吧。</li>
+<li>完成的話，要執行以下命令，讓 markdown 檔案轉換成 html：</li>
+</ul>
+
 
 <pre>
     rake generate
 </pre>
 
 
-<p>
-+ 想要在本機預覽:</p>
+<ul>
+<li>想要在本機預覽:</li>
+</ul>
+
 
 <pre>
     rake preview
 </pre>
 
 
-<p>
-+ 打開瀏覽器，輸入 [http://127.0.0.1:4000/]，就可以預覽結果。(要結束預覽回到命令模式請 ctrl+c)
-+ 如果你跟我一樣，有遇到亂碼問題(YAML Exception reading xxx.markdown: invalid byte sequence in CP950 &#8230;)，請：</p>
+<ul>
+<li>打開瀏覽器，輸入 [http://127.0.0.1:4000/]，就可以預覽結果。(要結束預覽回到命令模式請 ctrl+c)</li>
+<li>如果你跟我一樣，有遇到亂碼問題(YAML Exception reading xxx.markdown: invalid byte sequence in CP950 &#8230;)，請：
 
-<pre><code>+ 確認檔案編碼是不是使用 UTF-8 存檔。
-+ 輸入以下指令
-&lt;pre&gt;
-    set LC_ALL=zh_TW.UTF-8
-    set LANG=zh_TW.UTF-8
-&lt;/pre&gt;
-+ 再重新 rake generate 一次
-</code></pre>
+<ul>
+<li>確認檔案編碼是不是使用 UTF-8 存檔。</li>
+<li>輸入以下指令
+<pre>
+  set LC_ALL=zh_TW.UTF-8
+  set LANG=zh_TW.UTF-8
+</pre></li>
+<li>再重新 rake generate 一次</li>
+</ul>
+</li>
+</ul>
+
 
 <h2>發佈 octopress</h2>
 
@@ -261,8 +269,10 @@
 </pre>
 
 
-<p>
-+ 假設你跟我一樣，因為某些緣故不能使用 SSH。先確認一下你的 origin，在 octopress/_deploy 目錄下輸入：</p>
+<ul>
+<li>假設你跟我一樣，因為某些緣故不能使用 SSH。先確認一下你的 origin，在 octopress/_deploy 目錄下輸入：</li>
+</ul>
+
 
 <pre>
     git remote -v

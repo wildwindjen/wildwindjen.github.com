@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-26T14:26:48+08:00</updated>
+  <updated>2013-04-26T14:36:09+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -12,24 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[octopress makeup with plugins]]></title>
-    <link href="http://wildwindjen.github.io/blog/2013/04/26/octopress-makeup-with-plugins/"/>
-    <updated>2013-04-26T10:03:00+08:00</updated>
-    <id>http://wildwindjen.github.io/blog/2013/04/26/octopress-makeup-with-plugins</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
-
-<pre>
-為悅己者容。
-</pre>
-
-
-<h2>總結</h2>
-
-<p>因為是用來寫技術文件的，所以總得找看看有哪些 syntax highlighting 可以用。尋找的過程中，越來越喜歡 octopress，幾乎常用的東西都有 plugin，只要在設定檔做些基本設定就搞定了。</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[first octopress at github]]></title>

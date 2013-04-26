@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>get back octopress - Wild Wind</title>
+  <meta name="author" content="Wildwind Jen">
+
+  
+  <meta name="description" content="阿丞語錄 天道循環。有產出，就應該有回收。 總結 都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。 備份 stage octopress 裡面的檔案 git add . commit &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wildwindjen.github.io/blog/2013/04/25/get-back-octopress">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Wild Wind</a></h1>
+  
+    <h2>Look down, look down. Don't look 'em in the eye....</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:wildwindjen.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Get Back Octopress</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-25T23:58:00+08:00" pubdate data-updated="true">Apr 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>阿丞語錄</h2>
+
+<pre>
+天道循環。有產出，就應該有回收。
+</pre>
+
+
+<h2>總結</h2>
+
+<p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
+
+<h2>備份</h2>
+
+<ul>
+<li>stage octopress 裡面的檔案</li>
+</ul>
+
+
+<pre>
+git add .
+</pre>
+
+
+<ul>
+<li>commit 檔案到本地檔案庫，並且填寫描述訊息。</li>
+</ul>
+
+
+<pre>
+git commit -m "備份 source"
+</pre>
+
+
+<ul>
+<li>從本地檔案庫推到遠端檔案庫，並且指名放在 source branch 裡面。</li>
+</ul>
+
+
+<pre>
+git push origin source
+</pre>
+
+
+<h2>取回</h2>
+
+<ul>
+<li>假設現在換了一台電腦(先把原本的 octopress 更名)</li>
+<li>先從 source branch 複製一份回來，放到 octopress 目錄裡。</li>
+</ul>
+
+
+<pre>
+git clone -b source git@github.com:wildwindjen/wildwindjen.github.com.git octopress
+</pre>
+
+
+<ul>
+<li>切換到 octopress 目錄裡面</li>
+</ul>
+
+
+<pre>
+cd octopress
+</pre>
+
+
+<ul>
+<li>從 master branch 複製一份回來，放到 _deploy 目錄裡。(之前 rake deploy 就是把資料推到 master 裡。)</li>
+</ul>
+
+
+<pre>
+git clone git@github.com:wildwindjen/wildwindjen.github.com.git _deploy 
+</pre>
+
+
+<ul>
+<li>重新安裝必要的環境及設定</li>
+</ul>
+
+
+<pre>
+gem install bundler
+bundle install
+rake install
+</pre>
+
+
+<ul>
+<li>重設編碼 (如果跟我一樣是在 windows 上面測試的話。)</li>
+</ul>
+
+
+<pre>
+set LC_ALL=zh_TW.UTF-8
+set LANG=zh_TW.UTF-8
+</pre>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wildwind Jen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-25T23:58:00+08:00" pubdate data-updated="true">Apr 25<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wildwindjen.github.io/blog/2013/04/25/get-back-octopress/" data-via="" data-counturl="http://wildwindjen.github.io/blog/2013/04/25/get-back-octopress/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/04/25/first-octopress-at-github/" title="Previous Post: first octopress at github">&laquo; first octopress at github</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/25/get-back-octopress/">get back octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/25/first-octopress-at-github/">first octopress at github</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Wildwind Jen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

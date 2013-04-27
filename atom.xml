@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-27T18:34:12+08:00</updated>
+  <updated>2013-04-27T19:30:38+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -14,10 +14,41 @@
 
   
   <entry>
+    <title type="html"><![CDATA[customize octopress by config]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config/"/>
+    <updated>2013-04-27T18:49:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config</id>
+    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+
+<pre>
+為悅己者容。
+</pre>
+
+
+<h2>總結</h2>
+
+<p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
+
+<p>外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件，發現常用的東西要客製化也算簡單，真的深入一點可能就得要會 Ruby 打造術了吧。我不會 Ruby，暫時也還沒有計畫去研究，所以我想要先從內建的機制下手: _config.xml。再加上一些些基本 css 和圖片的調整，應該可以有個不太一樣的東西。</p>
+
+<p>功能部分，看了 _config.xml 的設定項目，發現還內建了好幾個 plugin。最開心的是有 syntax highlighting 的部分。這真的是想要做程式相關分享的一大福音啊。</p>
+
+<h2>Comments (討論串)</h2>
+
+<h3>預設的 Disqus</h3>
+
+<p>內建的討論串機制是使用 disqus，要設定真的超級簡單的。假設是沒有 Disqus 帳號的人:
++ 註冊帳號。
++ 去註冊信箱收信，並且啟動帳號。
++ 登入 Disqus。登入首頁左上方有個 「register a site」</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[get back octopress]]></title>
-    <link href="http://wildwindjen.github.io/blog/2013/04/25/get-back-octopress/"/>
-    <updated>2013-04-25T23:58:00+08:00</updated>
-    <id>http://wildwindjen.github.io/blog/2013/04/25/get-back-octopress</id>
+    <link href="http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress/"/>
+    <updated>2013-04-26T23:58:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress</id>
     <content type="html"><![CDATA[<h2>阿丞語錄</h2>
 
 <pre>
@@ -123,7 +154,7 @@ set LANG=zh_TW.UTF-8
   <entry>
     <title type="html"><![CDATA[first octopress at github]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github/"/>
-    <updated>2013-04-25T11:52:00+08:00</updated>
+    <updated>2013-04-25T12:30:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github</id>
     <content type="html"><![CDATA[<h2>阿丞語錄</h2>
 

@@ -1,13 +1,14 @@
 ---
 layout: post
 title: "get back octopress"
-date: 2013-04-25 23:58
+date: 2013-04-26 23:58
 comments: true
-categories: 
+categories: octopress
 ---
 ## 阿丞語錄
 <pre>
-天道循環。有產出，就應該有回收。
+天行健，君子以自戕不息。
+有產出，就應該有回收，維持循環的地獄。
 </pre>
 
 ## 總結

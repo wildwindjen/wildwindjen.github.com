@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-28T01:08:41+08:00</updated>
+  <updated>2013-04-28T01:12:32+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -48,9 +48,7 @@ date_format: "%Y-%m-%d %H:%M"
 </pre>
 
 
-<h2>Comments (留言討論)</h2>
-
-<h3>預設的 Disqus</h3>
+<h2>留言討論 - 預設的 Disqus</h2>
 
 <p>內建的討論串機制是使用 disqus，要設定真的超級簡單的。假設是沒有 Disqus 帳號的人:</p>
 
@@ -75,7 +73,7 @@ disqus_show_comment_count: true
 </ul>
 
 
-<h3>綁 Google 的留言</h3>
+<h2>留言討論 - 綁 Google 的留言</h2>
 
 <p>因為我跟 Disqus 沒那麼熟。雖然 Google Plus 好像也沒熟去哪裡，可是我至少有帳號。我是參考這一篇的: <a href="http://blog.justin.kelly.org.au/google-plus-octopress/" title="Google Plus Comments Link for Octopress">Google Plus Comments Link for Octopress</a>。以下是我的經驗整理：</p>
 
@@ -95,9 +93,9 @@ $post_link = window.location.pathname;
 </pre>
 
 
-<h3>綁 Google 的留言 - 終極版</h3>
+<h2>留言討論 - 綁 Google 的留言(終極版)</h2>
 
-<p>是的，這是最終我採取的做法。這個做法是踹上面那個解法過程中，發現的可能做法。請先看一下 <a href="http://dashburst.com/how-to-add-google-comments-to-any-webpage-or-blog-unofficially/" title="How to Add Google+ Comments to Any Webpage or Blog">How to Add Google+ Comments to Any Webpage or Blog</a>。以下是我自己的做法：</p>
+<p>是的，這是最終我採取的做法。好處是可以直接在下方留言，不用點連結。這個做法是踹上面那個解法過程中，發現的可能做法。請先看一下 <a href="http://dashburst.com/how-to-add-google-comments-to-any-webpage-or-blog-unofficially/" title="How to Add Google+ Comments to Any Webpage or Blog">How to Add Google+ Comments to Any Webpage or Blog</a>。以下是我自己的做法：</p>
 
 <ul>
 <li>修改 <code>source/_layouts/post.html</code> ，在 Disqus 後面補上一段程式碼：</li>

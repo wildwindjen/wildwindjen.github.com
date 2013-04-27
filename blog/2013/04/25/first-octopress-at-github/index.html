@@ -522,7 +522,7 @@ jQuery(document).ready(function() {
                 jQuery.each(data.items, function(i,item){
                     if(item.actor.id == $google_plus_id)
                     {
-                        jQuery('.entry-content').append( "<p>對於此篇有話想說？請來 <a href='" + item.object.url +"'>Google+ post</a>。</p>");
+                        jQuery('.entry-content').append( "<p>對於此篇有話想說？請來 <a href='" + item.object.url +"' target='_blank'>Google+ post</a>。</p>");
                         return false;
                     }
                 });

@@ -1,99 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>first octopress at github - Wild Wind</title>
-  <meta name="author" content="Wildwind Jen">
-
-  
-  <meta name="description" content="阿丞語錄 不經一試，不長一智。
-結果是甜美的，過程是母親的。 總結 也不知道在失心瘋什麼，沒碰過 Git，也沒碰過 Ruby，居然學人家搞 octopress。不管怎樣，就這樣一路跌跌撞撞，不懂什麼就補齊什麼。也拼拼湊湊出來一些東西。就順便把經驗整理一下。 在有 proxy 的環境下安裝(ex: &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><![CDATA[Category: octopress | Wild Wind]]></title>
+  <link href="http://wildwindjen.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://wildwindjen.github.io/"/>
+  <updated>2013-04-27T18:34:12+08:00</updated>
+  <id>http://wildwindjen.github.io/</id>
+  <author>
+    <name><![CDATA[Wildwind Jen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-  <link rel="canonical" href="http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github">
-  <link href="/favicon.ico" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <entry>
+    <title type="html"><![CDATA[get back octopress]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/04/25/get-back-octopress/"/>
+    <updated>2013-04-25T23:58:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/04/25/get-back-octopress</id>
+    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
 
-  
+<pre>
+天行健，君子以自戕不息。
+有產出，就應該有回收，維持循環的地獄。
+</pre>
 
-</head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Wild Wind</a></h1>
-  
-    <h2>Look down, look down. Don't look 'em in the eye....</h2>
-  
-</hgroup>
+<h2>總結</h2>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:wildwindjen.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
+<p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
+
+<h2>備份</h2>
+
+<ul>
+<li>stage octopress 裡面的檔案</li>
 </ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
+
+<pre>
+git add .
+</pre>
+
+
+<ul>
+<li>commit 檔案到本地檔案庫，並且填寫描述訊息。</li>
+</ul>
+
+
+<pre>
+git commit -m "備份 source"
+</pre>
+
+
+<ul>
+<li>從本地檔案庫推到遠端檔案庫，並且指名放在 source branch 裡面。</li>
+</ul>
+
+
+<pre>
+git push origin source
+</pre>
+
+
+<h2>取回</h2>
+
+<ul>
+<li>假設現在換了一台電腦(先把原本的 octopress 更名)</li>
+<li>先從 source branch 複製一份回來，放到 octopress 目錄裡。</li>
+</ul>
+
+
+<pre>
+git clone -b source git@github.com:wildwindjen/wildwindjen.github.com.git octopress
+</pre>
+
+
+<ul>
+<li>切換到 octopress 目錄裡面</li>
+</ul>
+
+
+<pre>
+cd octopress
+</pre>
+
+
+<ul>
+<li>從 master branch 複製一份回來，放到 _deploy 目錄裡。(之前 rake deploy 就是把資料推到 master 裡。)</li>
+</ul>
+
+
+<pre>
+git clone git@github.com:wildwindjen/wildwindjen.github.com.git _deploy 
+</pre>
+
+
+<ul>
+<li>重新安裝必要的環境及設定</li>
+</ul>
+
+
+<pre>
+gem install bundler
+bundle install
+rake install
+</pre>
+
+
+<ul>
+<li>重設編碼 (如果跟我一樣是在 windows 上面測試的話。)</li>
+</ul>
+
+
+<pre>
+set LC_ALL=zh_TW.UTF-8
+set LANG=zh_TW.UTF-8
+</pre>
+
+]]></content>
+  </entry>
   
-  <header>
-    
-      <h1 class="entry-title">First Octopress at Github</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-25T11:52:00+08:00" pubdate data-updated="true">Apr 25<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><h2>阿丞語錄</h2>
+  <entry>
+    <title type="html"><![CDATA[first octopress at github]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github/"/>
+    <updated>2013-04-25T11:52:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github</id>
+    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
 
 <pre>
 不經一試，不長一智。
@@ -277,7 +309,7 @@
 
 <ul>
 <li>打開瀏覽器，輸入 [http://127.0.0.1:4000/]，就可以預覽結果。(要結束預覽回到命令模式請 ctrl+c)</li>
-<li>如果你跟我一樣，有遇到亂碼問題(YAML Exception reading xxx.markdown: invalid byte sequence in CP950 &#8230;)，請：
+<li>如果你跟我一樣，有遇到亂碼問題(YAML Exception reading xxx.markdown: invalid byte sequence in CP950 ...)，請：
 
 <ul>
 <li>確認檔案編碼是不是使用 UTF-8 存檔。</li>
@@ -367,133 +399,7 @@ git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.
     Port 443
 </pre>
 
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
+]]></content>
+  </entry>
   
-
-<span class="byline author vcard">Posted by <span class="fn">Wildwind Jen</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-25T11:52:00+08:00" pubdate data-updated="true">Apr 25<span>th</span>, 2013</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github/" data-via="" data-counturl="http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github/" >Tweet</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/04/25/get-back-octopress/" title="Next Post: get back octopress">get back octopress &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/04/25/get-back-octopress/">get back octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/25/first-octopress-at-github/">first octopress at github</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-<section class="googleplus googleplus-hidden">
-  <h1>
-    <a href="https://plus.google.com/wildwind.jen@gmail.com?rel=author">
-      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
-      Google+
-    </a>
-  </h1>
-</section>
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Wildwind Jen -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>

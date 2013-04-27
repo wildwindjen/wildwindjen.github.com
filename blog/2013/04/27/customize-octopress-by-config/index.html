@@ -109,14 +109,32 @@
 
 <p>功能部分，看了 _config.xml 的設定項目，發現還內建了好幾個 plugin。最開心的是有 syntax highlighting 的部分。這真的是想要做程式相關分享的一大福音啊。</p>
 
-<h2>Comments (討論串)</h2>
+<h2>Comments (留言討論)</h2>
 
 <h3>預設的 Disqus</h3>
 
-<p>內建的討論串機制是使用 disqus，要設定真的超級簡單的。假設是沒有 Disqus 帳號的人:
-+ 註冊帳號。
-+ 去註冊信箱收信，並且啟動帳號。
-+ 登入 Disqus。登入首頁左上方有個 「register a site」</p>
+<p>內建的討論串機制是使用 disqus，要設定真的超級簡單的。假設是沒有 Disqus 帳號的人:</p>
+
+<ul>
+<li>註冊帳號。</li>
+<li>去註冊信箱收信，並且啟動帳號。</li>
+<li>登入 Disqus。點選「Dashboard」功能。</li>
+<li>登入首頁左上方有個 「register a site」的連結。</li>
+<li>填入 Site URL 和 Site Name 就會自動產生 short name 資訊。點選 continue 之後，隨便選就好，只是要產生你要放的 code。可是我們用不到。</li>
+<li>把 short name 填入 _config.xml 裡:</li>
+</ul>
+
+
+<pre>
+disqus_short_name: short name
+disqus_show_comment_count: true
+</pre>
+
+
+<ul>
+<li>是的，這樣就行了，只要執行 deploy 就可以看到下面有 disqus comments 囉。</li>
+</ul>
+
 </div>
 
 

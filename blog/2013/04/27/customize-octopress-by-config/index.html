@@ -168,7 +168,7 @@ $post_link = window.location.pathname;
 </pre>
 
 
-<h3>綁 Google 的留言</h3>
+<h3>綁 Google 的留言 - 終極版</h3>
 
 <p>是的，這是最終我採取的做法。這個做法是踹上面那個解法過程中，發現的可能做法。請先看一下 <a href="http://dashburst.com/how-to-add-google-comments-to-any-webpage-or-blog-unofficially/" title="How to Add Google+ Comments to Any Webpage or Blog">How to Add Google+ Comments to Any Webpage or Blog</a>。以下是我自己的做法：</p>
 
@@ -177,28 +177,53 @@ $post_link = window.location.pathname;
 </ul>
 
 
-<pre>
-
-
-<!-- Google Comments -->
-
-  <section>
-    <script src="https://apis.google.com/js/plusone.js">
-    </script>
-    <div class="g-comments"
-        data-href=window.location
-        data-width="789"
-        data-first_party_property="BLOGGER"
-        data-view_type="FILTERED_POSTMOD">
-    </div>
-  </section>
-
-<!-- Google Comments end -->
-</pre>
+<figure class='code'><figcaption><span>google comments html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{% if site.disqus_short_name and page.comments == true %}
+</span><span class='line'>    &lt;section>
+</span><span class='line'>      &lt;h1>Comments&lt;/h1>
+</span><span class='line'>      &lt;div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}&lt;/div>
+</span><span class='line'>    &lt;/section>
+</span><span class='line'>  {% endif %}
+</span><span class='line'>
+</span><span class='line'>  &lt;!-- Google Comments -->
+</span><span class='line'>  {% if site.googleplus_comments == true %}
+</span><span class='line'>    &lt;section>
+</span><span class='line'>      &lt;script src="https://apis.google.com/js/plusone.js">
+</span><span class='line'>      &lt;/script>
+</span><span class='line'>      &lt;div class="g-comments"
+</span><span class='line'>          data-href=window.location
+</span><span class='line'>          data-width="789"
+</span><span class='line'>          data-first_party_property="BLOGGER"
+</span><span class='line'>          data-view_type="FILTERED_POSTMOD">
+</span><span class='line'>      &lt;/div>
+</span><span class='line'>    &lt;/section>
+</span><span class='line'>  {% endif %}
+</span><span class='line'>  &lt;!-- Google Comments end --></span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
-<li>接著在 <code>_config.xml</code> 中加個參數。如果不想加這個參數，可以把上一段的 if 判斷拿掉，這樣就會一直都出現。只是職業病而已。</li>
+<li>接著在 <code>_config.xml</code> 中加個參數。如果不想加這個參數，可以把上一段的 if 判斷拿掉，這樣就會一直都出現。維持橡皮人的彈性只是職業病而已。</li>
 </ul>
 
 

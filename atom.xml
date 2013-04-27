@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-27T19:39:54+08:00</updated>
+  <updated>2013-04-27T19:57:13+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -33,6 +33,21 @@
 
 <p>功能部分，看了 _config.xml 的設定項目，發現還內建了好幾個 plugin。最開心的是有 syntax highlighting 的部分。這真的是想要做程式相關分享的一大福音啊。</p>
 
+<h2>日期格式</h2>
+
+<p>我對日期格式有一種莫名的偏執。</p>
+
+<ul>
+<li>參考 <a href="http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime" title="Ruby Doc datetime format">Ruby Doc</a></li>
+<li>打開 _config.xml 修改成:</li>
+</ul>
+
+
+<pre>
+date_format: "%Y-%m-%d %H:%M"
+</pre>
+
+
 <h2>Comments (留言討論)</h2>
 
 <h3>預設的 Disqus</h3>
@@ -59,6 +74,8 @@ disqus_show_comment_count: true
 <li>是的，這樣就行了，只要執行 deploy 就可以看到下面有 disqus comments 囉。</li>
 </ul>
 
+
+<h3>綁 Google 的留言</h3>
 ]]></content>
   </entry>
   

@@ -29,8 +29,6 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<script src="/javascripts/libs/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">jQuery.noConflict();</script>
   
 
 </head>
@@ -155,7 +153,7 @@ disqus_show_comment_count: true
 
 <h3>綁 Google 的留言</h3>
 
-<p>是的，這是我採用的方式。因為我跟 Disqus 沒那麼熟。雖然 Google Plus 好像也沒熟去哪裡，可是我至少有帳號。我是參考這一篇的: <a href="http://blog.justin.kelly.org.au/google-plus-octopress/" title="Google Plus Comments Link for Octopress">Google Plus Comments Link for Octopress</a>。以下是我的經驗整理：</p>
+<p>因為我跟 Disqus 沒那麼熟。雖然 Google Plus 好像也沒熟去哪裡，可是我至少有帳號。我是參考這一篇的: <a href="http://blog.justin.kelly.org.au/google-plus-octopress/" title="Google Plus Comments Link for Octopress">Google Plus Comments Link for Octopress</a>。以下是我的經驗整理：</p>
 
 <ul>
 <li>首先要設定 _config.xml 裡的 googleplus_user，這裡面的是 google plus id，純數字。這一關我有被騙到，一開始自以為聰明直接打 Google 帳號。不知道怎麼找自己 id 的人可以看 <a href="http://ansonalex.com/google-plus/how-do-i-find-my-google-plus-user-id-google/" title="How Do I Find My Google Plus User ID?">How Do I Find My Google Plus User ID?</a> 。</li>
@@ -171,6 +169,54 @@ disqus_show_comment_count: true
 //$post_link = encodeURI(jQuery(location).attr('href'));
 $post_link = window.location.pathname;
 </pre>
+
+
+<h3>綁 Google 的留言</h3>
+
+<p>是的，這是最終我採取的做法。這個做法是踹上面那個解法過程中，發現的可能做法。請先看一下 <a href="http://dashburst.com/how-to-add-google-comments-to-any-webpage-or-blog-unofficially/" title="How to Add Google+ Comments to Any Webpage or Blog">How to Add Google+ Comments to Any Webpage or Blog</a>。以下是我自己的做法：</p>
+
+<ul>
+<li>修改 <code>source/_layouts/post.html</code> ，在 Disqus 後面補上一段程式碼：</li>
+</ul>
+
+
+<pre>
+
+
+<!-- Google Comments -->
+
+  <section>
+    <script src="https://apis.google.com/js/plusone.js">
+    </script>
+    <div class="g-comments"
+        data-href=window.location
+        data-width="789"
+        data-first_party_property="BLOGGER"
+        data-view_type="FILTERED_POSTMOD">
+    </div>
+  </section>
+
+<!-- Google Comments end -->
+</pre>
+
+
+<ul>
+<li>接著在 <code>_config.xml</code> 中加個參數。如果不想加這個參數，可以把上一段的 if 判斷拿掉，這樣就會一直都出現。只是職業病而已。</li>
+</ul>
+
+
+<pre>
+# Facebook Like
+facebook_like: false
+
+# google comments, by wildwindjen
+googleplus_comments: true
+</pre>
+
+
+<ul>
+<li>這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。</li>
+</ul>
 
 </div>
   
@@ -699,9 +745,6 @@ git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.
     })();
   </script>
 
-
-
-<!-- wildwindjen octopress 新增 google comments, ref: http://blog.justin.kelly.org.au/google-plus-octopress/  -->
 
 
 

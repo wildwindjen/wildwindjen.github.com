@@ -97,3 +97,7 @@ googleplus_comments: true
 </pre>
 
 + 這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。
++ 如果你遇到了 unsafe javascript 的訊息，請改成跟我一樣的做法。
+<pre>
+	data-href = "http://wildwindjen.github.io" + window.location.pathname
+</pre>

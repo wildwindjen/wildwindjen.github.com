@@ -70,8 +70,9 @@ facebook_like: false
 googleplus_comments: true
 </pre>
 
-+ 這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。
 + 如果你留言送出時，遇到了 `Unsafe JavaScript attempt to access frame ... ` 的訊息，可以改成跟我一樣的作法。我的作法可以讓本機的 `preview` 也正常。這個問題讓我弄了大半天。原因只是 URL 有誤。可是訊息提示很容易誤導。我最後是在[唯一的線索](http://browsingthenet.blogspot.tw/2013/04/google-plus-comments-on-any-website.html "這邊")看到某篇回覆參透的。
 <pre>
 	data-href = "http://wildwindjen.github.io" + window.location.pathname
 </pre>
+
+這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。

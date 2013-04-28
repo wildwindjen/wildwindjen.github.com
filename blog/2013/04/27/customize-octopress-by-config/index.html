@@ -9,7 +9,7 @@
   <meta name="author" content="Wildwind Jen">
 
   
-  <meta name="description" content="阿丞語錄 為悅己者容。 總結 這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。 外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件， &hellip;">
+  <meta name="description" content="阿丞語錄 女為悅己者容。 總結 這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。 外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,7 +96,7 @@
 <div class="entry-content"><h2>阿丞語錄</h2>
 
 <pre>
-為悅己者容。
+女為悅己者容。
 </pre>
 
 
@@ -147,105 +147,6 @@ disqus_show_comment_count: true
 <li>是的，這樣就行了，只要執行 deploy 就可以看到下面有 disqus comments 囉。</li>
 </ul>
 
-
-<h2>留言討論 - 綁 Google 的留言</h2>
-
-<p>因為我跟 Disqus 沒那麼熟。雖然 Google Plus 好像也沒熟去哪裡，可是我至少有帳號。我是參考這一篇的: <a href="http://blog.justin.kelly.org.au/google-plus-octopress/" title="Google Plus Comments Link for Octopress">Google Plus Comments Link for Octopress</a>。以下是我的經驗整理：</p>
-
-<ul>
-<li>首先要設定 _config.xml 裡的 googleplus_user，這裡面的是 google plus id，純數字。這一關我有被騙到，一開始自以為聰明直接打 Google 帳號。不知道怎麼找自己 id 的人可以看 <a href="http://ansonalex.com/google-plus/how-do-i-find-my-google-plus-user-id-google/" title="How Do I Find My Google Plus User ID?">How Do I Find My Google Plus User ID?</a> 。</li>
-<li>因為會用到 Google API Key，所以先去 <a href="https://code.google.com/apis/console/" title="API Console - Google Code">API Console - Google Code</a>。然後參考 <a href="http://www.designchemical.com/blog/index.php/faq/create-your-own-google-api-key/" title="Create Your Own Google API Key">Create Your Own Google API Key</a> ，開啟你的 Google+ API 服務，讓他變成 ON 的狀態。</li>
-<li>切到 API Access，創建新的 Key(Create New Browser Key)，記住新的 key 值。</li>
-<li>接著就照著 <a href="http://blog.justin.kelly.org.au/google-plus-octopress/" title="Google Plus Comments Link for Octopress">Google Plus Comments Link for Octopress</a> 說的，修改 <code>source/_includes/custom/after_footer.html</code> 和 <code>source/_includes/custom/head.html</code> 兩個檔案。其中的 <code>{YOUR_GOOGLE_API_KEY}</code> 記得換成剛剛的 Google API Key。</li>
-<li>然後有個規則要特別注意的是，每發一篇新的文章，要自己先 +1 一下，而且得設定成<em>公開</em>，不然不會出現 comments 區塊。我被這一關卡超久的，因為我預設都是限定開放。後來發現 API 回傳的資料都是空，可是登入 Google Plus 又查得到，稍微發揮了點推理能力才解決。</li>
-<li>使用 preview 是看不到結果的，得 deploy 才行。除非&#8230;，跟我一樣，把 <code>after_footer.html</code> 做點修改：</li>
-</ul>
-
-
-<pre>
-//$post_link = encodeURI(jQuery(location).attr('href'));
-$post_link = window.location.pathname;
-</pre>
-
-
-<h2>留言討論 - 綁 Google 的留言(終極版)</h2>
-
-<p>是的，這是最終我採取的做法。好處是可以直接在下方留言，不用點連結。這個做法是踹上面那個解法過程中，發現的可能做法。請先看一下 <a href="http://dashburst.com/how-to-add-google-comments-to-any-webpage-or-blog-unofficially/" title="How to Add Google+ Comments to Any Webpage or Blog">How to Add Google+ Comments to Any Webpage or Blog</a>。以下是我自己的做法：</p>
-
-<ul>
-<li>修改 <code>source/_layouts/post.html</code> ，在 Disqus 後面補上一段程式碼：</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>google comments html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{% if site.disqus_short_name and page.comments == true %}
-</span><span class='line'>    &lt;section>
-</span><span class='line'>      &lt;h1>Comments&lt;/h1>
-</span><span class='line'>      &lt;div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}&lt;/div>
-</span><span class='line'>    &lt;/section>
-</span><span class='line'>  {% endif %}
-</span><span class='line'>
-</span><span class='line'>  &lt;!-- Google Comments -->
-</span><span class='line'>  {% if site.googleplus_comments == true %}
-</span><span class='line'>    &lt;section>
-</span><span class='line'>      &lt;script src="https://apis.google.com/js/plusone.js">
-</span><span class='line'>      &lt;/script>
-</span><span class='line'>      &lt;div class="g-comments"
-</span><span class='line'>          data-href=window.location
-</span><span class='line'>          data-width="789"
-</span><span class='line'>          data-first_party_property="BLOGGER"
-</span><span class='line'>          data-view_type="FILTERED_POSTMOD">
-</span><span class='line'>      &lt;/div>
-</span><span class='line'>    &lt;/section>
-</span><span class='line'>  {% endif %}
-</span><span class='line'>  &lt;!-- Google Comments end --></span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>接著在 <code>_config.xml</code> 中加個參數。如果不想加這個參數，可以把上一段的 if 判斷拿掉，這樣就會一直都出現。維持橡皮人的彈性只是職業病而已。</li>
-</ul>
-
-
-<pre>
-# Facebook Like
-facebook_like: false
-
-# google comments, by wildwindjen
-googleplus_comments: true
-</pre>
-
-
-<ul>
-<li>這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。</li>
-<li>如果你遇到了 unsafe javascript 的訊息，請改成跟我一樣的做法。</li>
-</ul>
-
-
-<pre>
-    data-href = "http://wildwindjen.github.io" + window.location.pathname
-</pre>
-
 </div>
 
 
@@ -271,6 +172,12 @@ googleplus_comments: true
 <time datetime="2013-04-27T18:49:00+08:00" pubdate data-updated="true">2013-04-27 18:49</time>
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
 
     </p>
     
@@ -290,12 +197,14 @@ googleplus_comments: true
         <a class="basic-alignment left" href="/blog/2013/04/26/get-back-octopress/" title="Previous Post: get back octopress">&laquo; get back octopress</a>
       
       
+        <a class="basic-alignment right" href="/blog/2013/04/28/customize-octopress-by-self/" title="Next Post: customize octopress by self">customize octopress by self &raquo;</a>
+      
     </p>
   </footer>
 </article>
 
 
-<!-- Google Comments -->
+<!-- Google Comments, by wildwindjen -->
 
   <section>
 	<div class="g-comments"
@@ -314,6 +223,10 @@ googleplus_comments: true
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/28/customize-octopress-by-self/">customize octopress by self</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/27/customize-octopress-by-config/">customize octopress by config</a>

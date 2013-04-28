@@ -2,27 +2,31 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github/</loc>
-        <lastmod>2013-04-28T09:04:42+08:00</lastmod>
+        <lastmod>2013-04-28T11:41:34+08:00</lastmod>
     </url>
     <url>
         <loc>http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress/</loc>
-        <lastmod>2013-04-28T09:04:42+08:00</lastmod>
+        <lastmod>2013-04-28T11:41:34+08:00</lastmod>
     </url>
     <url>
         <loc>http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config/</loc>
-        <lastmod>2013-04-28T09:04:42+08:00</lastmod>
+        <lastmod>2013-04-28T11:41:34+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self/</loc>
+        <lastmod>2013-04-28T11:41:34+08:00</lastmod>
     </url>
     <url>
         <loc>http://wildwindjen.github.io/about/</loc>
-        <lastmod>2013-04-25T23:51:44+08:00</lastmod>
+        <lastmod>2013-04-28T11:15:00+08:00</lastmod>
     </url>
     <url>
         <loc>http://wildwindjen.github.io/blog/archives/</loc>
-        <lastmod>2013-04-28T03:39:59+08:00</lastmod>
+        <lastmod>2013-04-28T11:11:02+08:00</lastmod>
     </url>
     <url>
         <loc>http://wildwindjen.github.io/</loc>
-        <lastmod>2013-04-28T03:39:59+08:00</lastmod>
+        <lastmod>2013-04-28T11:11:02+08:00</lastmod>
     </url>
     <url>
         <loc>http://wildwindjen.github.io/robots.txt</loc>

@@ -31,6 +31,19 @@ single: true
     <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
   </section>
 {% endif %}
+
+<!-- Google Comments, by wildwindjen -->
+{% if site.googleplus_comments == true %}
+  <section>
+	<div class="g-comments"
+		data-href = "http://wildwindjen.github.io" + window.location.pathname
+		data-width="789"
+		data-first_party_property="BLOGGER"
+		data-view_type="FILTERED_POSTMOD">
+	</div>
+  </section>
+{% endif %}
+<!-- Google Comments end -->
 </div>
 {% unless page.sidebar == false %}
 <aside class="sidebar">

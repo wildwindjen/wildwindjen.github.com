@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "first octopress at github"
-date: 2013-04-25 11:52
+date: 2013-04-25 12:30
 comments: true
-categories: 
+categories: octopress
 ---
 ## 阿丞語錄
 <pre>

@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Wild Wind</title>
+  <title>customize octopress by config - Wild Wind</title>
   <meta name="author" content="Wildwind Jen">
 
   
-  <meta name="description" content="Blog Archive 2013 customize octopress by self
-Apr 28 2013 posted in octopress customize octopress by config
-Apr 27 2013 posted in octopress get back &hellip;">
+  <meta name="description" content="阿丞語錄 女為悅己者容。 總結 這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。 外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ Apr 27 2013 posted in octopress get back &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wildwindjen.github.io/blog/archives">
+  <link rel="canonical" href="http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
@@ -68,79 +66,156 @@ Apr 27 2013 posted in octopress get back &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Customize Octopress by Config</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-27T18:49:00+08:00" pubdate data-updated="true">2013-04-27 18:49</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><h2>阿丞語錄</h2>
 
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/04/28/customize-octopress-by-self/">customize octopress by self</a></h1>
-<time datetime="2013-04-28T11:06:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>28</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
+<pre>
+女為悅己者容。
+</pre>
 
 
-</article>
+<h2>總結</h2>
+
+<p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
+
+<p>外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件，發現常用的東西要客製化也算簡單，真的深入一點可能就得要會 Ruby 打造術了吧。我不會 Ruby，暫時也還沒有計畫去研究，所以我想要先從內建的機制下手: _config.xml。再加上一些些基本 css 和圖片的調整，應該可以有個不太一樣的東西。</p>
+
+<p>功能部分，看了 _config.xml 的設定項目，發現還內建了好幾個 plugin。最開心的是有 syntax highlighting 的部分。這真的是想要做程式相關分享的一大福音啊。</p>
+
+<h2>日期格式</h2>
+
+<p>我對日期格式有一種莫名的偏執。</p>
+
+<ul>
+<li>參考 <a href="http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime" title="Ruby Doc datetime format">Ruby Doc</a></li>
+<li>打開 _config.xml 修改成:</li>
+</ul>
 
 
-
-<article>
-  
-<h1><a href="/blog/2013/04/27/customize-octopress-by-config/">customize octopress by config</a></h1>
-<time datetime="2013-04-27T18:49:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>27</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
+<pre>
+date_format: "%Y-%m-%d %H:%M"
+</pre>
 
 
-</article>
+<h2>留言討論 - 預設的 Disqus</h2>
+
+<p>內建的討論串機制是使用 disqus，要設定真的超級簡單的。假設是沒有 Disqus 帳號的人:</p>
+
+<ul>
+<li>註冊帳號。</li>
+<li>去註冊信箱收信，並且啟動帳號。</li>
+<li>登入 Disqus。點選「Dashboard」功能。</li>
+<li>登入首頁左上方有個 「register a site」的連結。</li>
+<li>填入 Site URL 和 Site Name 就會自動產生 short name 資訊。點選 continue 之後，隨便選就好，只是要產生你要放的 code。可是我們用不到。</li>
+<li>把 short name 填入 _config.xml 裡:</li>
+</ul>
 
 
-
-<article>
-  
-<h1><a href="/blog/2013/04/26/get-back-octopress/">get back octopress</a></h1>
-<time datetime="2013-04-26T23:58:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
+<pre>
+disqus_short_name: short name
+disqus_show_comment_count: true
+</pre>
 
 
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/04/25/first-octopress-at-github/">first octopress at github</a></h1>
-<time datetime="2013-04-25T12:30:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>25</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
-
-
-</article>
+<ul>
+<li>是的，這樣就行了，只要執行 deploy 就可以看到下面有 disqus comments 囉。</li>
+</ul>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Wildwind Jen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-27T18:49:00+08:00" pubdate data-updated="true">2013-04-27 18:49</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config/" data-via="" data-counturl="http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/04/26/get-back-octopress/" title="Previous Post: get back octopress">&laquo; get back octopress</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/04/28/customize-octopress-by-self/" title="Next Post: customize octopress by self">customize octopress by self &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
+
+<!-- Google Comments, by wildwindjen -->
+
+  <section>
+	<div class="g-comments"
+		data-href = "http://wildwindjen.github.io" + window.location.pathname
+		data-width="789"
+		data-first_party_property="BLOGGER"
+		data-view_type="FILTERED_POSTMOD">
+	</div>
+  </section>
+
+<!-- Google Comments end -->
 </div>
 
 <aside class="sidebar">

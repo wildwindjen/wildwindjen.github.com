@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-26T14:36:09+08:00</updated>
+  <updated>2013-04-29T16:43:14+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -14,9 +14,303 @@
 
   
   <entry>
+    <title type="html"><![CDATA[customize octopress by self]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self/"/>
+    <updated>2013-04-28T11:06:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self</id>
+    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+
+<pre>
+士為悅己者死。
+</pre>
+
+
+<h2>總結</h2>
+
+<p>有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。</p>
+
+<h2>留言討論 - 綁 Google 的留言</h2>
+
+<p>因為我跟 Disqus 沒那麼熟。雖然 Google Plus 好像也沒熟去哪裡，可是我至少有帳號。一開始我是參考這一篇的: <a href="http://blog.justin.kelly.org.au/google-plus-octopress/" title="Google Plus Comments Link for Octopress">Google Plus Comments Link for Octopress</a>。但這個作法只是出現連結，而且每篇產生後還得自己 +1。所以最後我沒採用。以下是我的經驗整理：</p>
+
+<ul>
+<li>首先要設定 _config.xml 裡的 googleplus_user，這裡面的是 google plus id，純數字。這一關我有被騙到，一開始自以為聰明直接打 Google 帳號。不知道怎麼找自己 id 的人可以看 <a href="http://ansonalex.com/google-plus/how-do-i-find-my-google-plus-user-id-google/" title="How Do I Find My Google Plus User ID?">How Do I Find My Google Plus User ID?</a> 。</li>
+<li>因為會用到 Google API Key，所以先去 <a href="https://code.google.com/apis/console/" title="API Console - Google Code">API Console - Google Code</a>。然後參考 <a href="http://www.designchemical.com/blog/index.php/faq/create-your-own-google-api-key/" title="Create Your Own Google API Key">Create Your Own Google API Key</a> ，開啟你的 Google+ API 服務，讓他變成 ON 的狀態。</li>
+<li>切到 API Access，創建新的 Key(Create New Browser Key)，記住新的 key 值。</li>
+<li>接著就照著 <a href="http://blog.justin.kelly.org.au/google-plus-octopress/" title="Google Plus Comments Link for Octopress">Google Plus Comments Link for Octopress</a> 說的，修改 <code>source/_includes/custom/after_footer.html</code> 和 <code>source/_includes/custom/head.html</code> 兩個檔案。其中的 <code>{YOUR_GOOGLE_API_KEY}</code> 記得換成剛剛的 Google API Key。</li>
+<li>然後有個規則要特別注意的是，每發一篇新的文章，要自己先 +1 一下，而且得設定成<em>公開</em>，不然不會出現 comments 區塊。我被這一關卡超久的，因為我預設都是限定開放。後來發現 API 回傳的資料都是空，可是登入 Google Plus 又查得到，稍微發揮了點推理能力才解決。</li>
+<li>使用 preview 是看不到結果的，得 deploy 才行。除非...，跟我一樣，把 <code>after_footer.html</code> 做點修改：</li>
+</ul>
+
+
+<pre>
+//$post_link = encodeURI(jQuery(location).attr('href'));
+$post_link = window.location.pathname;
+</pre>
+
+
+<h2>留言討論 - 綁 Google 的留言(終極版)</h2>
+
+<p>是的，這是最終我採取的做法。留言直接在下方出現，不用點連結，也不用每篇寫完後要自己先 +1。這個做法是踹上面那個解法過程中，發現的可能做法，然後自己在 octopress 上試出來的。請先看一下 <a href="http://dashburst.com/how-to-add-google-comments-to-any-webpage-or-blog-unofficially/" title="How to Add Google+ Comments to Any Webpage or Blog">How to Add Google+ Comments to Any Webpage or Blog</a>。以下是我自己的做法：</p>
+
+<ul>
+<li>一樣要設定 _config.xml 裡的 googleplus_user 。</li>
+<li><p>修改 <code>source/_layouts/post.html</code> ，在 Disqus 後面補上一段程式碼：
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>google comments html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{% if site.disqus_short_name and page.comments == true %}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>&lt;section&gt;
+</span><span class='line'>  &lt;h1&gt;Comments&lt;/h1&gt;
+</span><span class='line'>  &lt;div id="disqus_thread" aria-live="polite"&gt;{% include post/disqus_thread.html %}&lt;/div&gt;
+</span><span class='line'>&lt;/section&gt;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  {% endif %}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  &lt;!-- Google Comments, by wildwindjen -->
+</span><span class='line'>  {% if site.googleplus_comments == true %}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>&lt;section&gt;
+</span><span class='line'>  &lt;script src="https://apis.google.com/js/plusone.js"&gt;
+</span><span class='line'>  &lt;/script&gt;
+</span><span class='line'>  &lt;div class="g-comments"
+</span><span class='line'>      data-href=window.location
+</span><span class='line'>      data-width="789"
+</span><span class='line'>      data-first_party_property="BLOGGER"
+</span><span class='line'>      data-view_type="FILTERED_POSTMOD"&gt;
+</span><span class='line'>  &lt;/div&gt;
+</span><span class='line'>&lt;/section&gt;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  {% endif %}
+</span><span class='line'>  &lt;!-- Google Comments end --></span></code></pre></td></tr></table></div></figure></notextile></div></p></li>
+<li><p>接著在 <code>_config.xml</code> 中新增一個 <code>googleplus_comments</code> 參數。如果不想加這個參數，可以把上一段的 if 判斷拿掉，這樣就會一直都出現。維持橡皮人的彈性只是職業病而已。</p></li>
+</ul>
+
+
+<pre>
+# Facebook Like
+facebook_like: false
+
+# google comments, by wildwindjen
+googleplus_comments: true
+</pre>
+
+
+<ul>
+<li>如果你留言送出時，遇到了 <code>Unsafe JavaScript attempt to access frame ...</code> 的訊息，可以改成跟我一樣的作法。我的作法可以讓本機的 <code>preview</code> 也正常。這個問題讓我弄了大半天。原因只是 URL 有誤。可是訊息提示很容易誤導。我最後是在<a href="http://browsingthenet.blogspot.tw/2013/04/google-plus-comments-on-any-website.html" title="這邊">唯一的線索</a>看到某篇回覆參透的。</li>
+</ul>
+
+
+<pre>
+    data-href = "http://wildwindjen.github.io" + window.location.pathname
+</pre>
+
+
+<p>這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[customize octopress by config]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config/"/>
+    <updated>2013-04-27T18:49:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config</id>
+    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+
+<pre>
+女為悅己者容。
+</pre>
+
+
+<h2>總結</h2>
+
+<p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
+
+<p>外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件，發現常用的東西要客製化也算簡單，真的深入一點可能就得要會 Ruby 打造術了吧。我不會 Ruby，暫時也還沒有計畫去研究，所以我想要先從內建的機制下手: _config.xml。再加上一些些基本 css 和圖片的調整，應該可以有個不太一樣的東西。</p>
+
+<p>功能部分，看了 _config.xml 的設定項目，發現還內建了好幾個 plugin。最開心的是有 syntax highlighting 的部分。這真的是想要做程式相關分享的一大福音啊。</p>
+
+<h2>日期格式</h2>
+
+<p>我對日期格式有一種莫名的偏執。</p>
+
+<ul>
+<li>參考 <a href="http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime" title="Ruby Doc datetime format">Ruby Doc</a></li>
+<li>打開 _config.xml 修改成:</li>
+</ul>
+
+
+<pre>
+date_format: "%Y-%m-%d %H:%M"
+</pre>
+
+
+<h2>留言討論 - 預設的 Disqus</h2>
+
+<p>內建的討論串機制是使用 disqus，要設定真的超級簡單的。假設是沒有 Disqus 帳號的人:</p>
+
+<ul>
+<li>註冊帳號。</li>
+<li>去註冊信箱收信，並且啟動帳號。</li>
+<li>登入 Disqus。點選「Dashboard」功能。</li>
+<li>登入首頁左上方有個 「register a site」的連結。</li>
+<li>填入 Site URL 和 Site Name 就會自動產生 short name 資訊。點選 continue 之後，隨便選就好，只是要產生你要放的 code。可是我們用不到。</li>
+<li>把 short name 填入 _config.xml 裡:</li>
+</ul>
+
+
+<pre>
+disqus_short_name: short name
+disqus_show_comment_count: true
+</pre>
+
+
+<ul>
+<li>是的，這樣就行了，只要執行 deploy 就可以看到下面有 disqus comments 囉。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[get back octopress]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress/"/>
+    <updated>2013-04-26T23:58:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress</id>
+    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+
+<pre>
+天行健，君子以自戕不息。
+有產出，就應該有回收，維持循環的地獄。
+</pre>
+
+
+<h2>總結</h2>
+
+<p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
+
+<h2>備份</h2>
+
+<ul>
+<li>stage octopress 裡面的檔案</li>
+</ul>
+
+
+<pre>
+git add .
+</pre>
+
+
+<ul>
+<li>commit 檔案到本地檔案庫，並且填寫描述訊息。</li>
+</ul>
+
+
+<pre>
+git commit -m "備份 source"
+</pre>
+
+
+<ul>
+<li>從本地檔案庫推到遠端檔案庫，並且指名放在 source branch 裡面。</li>
+</ul>
+
+
+<pre>
+git push origin source
+</pre>
+
+
+<h2>取回</h2>
+
+<ul>
+<li>假設現在換了一台電腦(先把原本的 octopress 更名)</li>
+<li>先從 source branch 複製一份回來，放到 octopress 目錄裡。</li>
+</ul>
+
+
+<pre>
+git clone -b source git@github.com:wildwindjen/wildwindjen.github.com.git octopress
+</pre>
+
+
+<ul>
+<li>切換到 octopress 目錄裡面</li>
+</ul>
+
+
+<pre>
+cd octopress
+</pre>
+
+
+<ul>
+<li>從 master branch 複製一份回來，放到 _deploy 目錄裡。(之前 rake deploy 就是把資料推到 master 裡。)</li>
+</ul>
+
+
+<pre>
+git clone git@github.com:wildwindjen/wildwindjen.github.com.git _deploy 
+</pre>
+
+
+<ul>
+<li>重新安裝必要的環境及設定</li>
+</ul>
+
+
+<pre>
+gem install bundler
+bundle install
+rake install
+</pre>
+
+
+<ul>
+<li>重設編碼 (如果跟我一樣是在 windows 上面測試的話。)</li>
+</ul>
+
+
+<pre>
+set LC_ALL=zh_TW.UTF-8
+set LANG=zh_TW.UTF-8
+</pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[first octopress at github]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github/"/>
-    <updated>2013-04-25T11:52:00+08:00</updated>
+    <updated>2013-04-25T12:30:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github</id>
     <content type="html"><![CDATA[<h2>阿丞語錄</h2>
 

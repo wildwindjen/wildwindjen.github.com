@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Wild Wind</title>
+  <title>customize octopress by self - Wild Wind</title>
   <meta name="author" content="Wildwind Jen">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wildwindjen.github.io">
+  <link rel="canonical" href="http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
@@ -65,15 +65,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/04/28/customize-octopress-by-self/">Customize Octopress by Self</a></h1>
+      <h1 class="entry-title">Customize Octopress by Self</h1>
     
     
       <p class="meta">
@@ -96,7 +93,7 @@
   </header>
 
 
-  <div class="entry-content"><h2>阿丞語錄</h2>
+<div class="entry-content"><h2>阿丞語錄</h2>
 
 <pre>
 士為悅己者死。
@@ -208,111 +205,16 @@ googleplus_comments: true
 
 <p>這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/27/customize-octopress-by-config/">Customize Octopress by Config</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Wildwind Jen</span></span>
 
-<time datetime="2013-04-27T18:49:00+08:00" pubdate data-updated="true">2013-04-27 18:49</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>阿丞語錄</h2>
-
-<pre>
-女為悅己者容。
-</pre>
-
-
-<h2>總結</h2>
-
-<p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
-
-<p>外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件，發現常用的東西要客製化也算簡單，真的深入一點可能就得要會 Ruby 打造術了吧。我不會 Ruby，暫時也還沒有計畫去研究，所以我想要先從內建的機制下手: _config.xml。再加上一些些基本 css 和圖片的調整，應該可以有個不太一樣的東西。</p>
-
-<p>功能部分，看了 _config.xml 的設定項目，發現還內建了好幾個 plugin。最開心的是有 syntax highlighting 的部分。這真的是想要做程式相關分享的一大福音啊。</p>
-
-<h2>日期格式</h2>
-
-<p>我對日期格式有一種莫名的偏執。</p>
-
-<ul>
-<li>參考 <a href="http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime" title="Ruby Doc datetime format">Ruby Doc</a></li>
-<li>打開 _config.xml 修改成:</li>
-</ul>
-
-
-<pre>
-date_format: "%Y-%m-%d %H:%M"
-</pre>
-
-
-<h2>留言討論 - 預設的 Disqus</h2>
-
-<p>內建的討論串機制是使用 disqus，要設定真的超級簡單的。假設是沒有 Disqus 帳號的人:</p>
-
-<ul>
-<li>註冊帳號。</li>
-<li>去註冊信箱收信，並且啟動帳號。</li>
-<li>登入 Disqus。點選「Dashboard」功能。</li>
-<li>登入首頁左上方有個 「register a site」的連結。</li>
-<li>填入 Site URL 和 Site Name 就會自動產生 short name 資訊。點選 continue 之後，隨便選就好，只是要產生你要放的 code。可是我們用不到。</li>
-<li>把 short name 填入 _config.xml 裡:</li>
-</ul>
-
-
-<pre>
-disqus_short_name: short name
-disqus_show_comment_count: true
-</pre>
-
-
-<ul>
-<li>是的，這樣就行了，只要執行 deploy 就可以看到下面有 disqus comments 囉。</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/26/get-back-octopress/">Get Back Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -324,434 +226,53 @@ disqus_show_comment_count: true
   
 
 
-<time datetime="2013-04-26T23:58:00+08:00" pubdate data-updated="true">2013-04-26 23:58</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>阿丞語錄</h2>
-
-<pre>
-天行健，君子以自戕不息。
-有產出，就應該有回收，維持循環的地獄。
-</pre>
-
-
-<h2>總結</h2>
-
-<p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
-
-<h2>備份</h2>
-
-<ul>
-<li>stage octopress 裡面的檔案</li>
-</ul>
-
-
-<pre>
-git add .
-</pre>
-
-
-<ul>
-<li>commit 檔案到本地檔案庫，並且填寫描述訊息。</li>
-</ul>
-
-
-<pre>
-git commit -m "備份 source"
-</pre>
-
-
-<ul>
-<li>從本地檔案庫推到遠端檔案庫，並且指名放在 source branch 裡面。</li>
-</ul>
-
-
-<pre>
-git push origin source
-</pre>
-
-
-<h2>取回</h2>
-
-<ul>
-<li>假設現在換了一台電腦(先把原本的 octopress 更名)</li>
-<li>先從 source branch 複製一份回來，放到 octopress 目錄裡。</li>
-</ul>
-
-
-<pre>
-git clone -b source git@github.com:wildwindjen/wildwindjen.github.com.git octopress
-</pre>
-
-
-<ul>
-<li>切換到 octopress 目錄裡面</li>
-</ul>
-
-
-<pre>
-cd octopress
-</pre>
-
-
-<ul>
-<li>從 master branch 複製一份回來，放到 _deploy 目錄裡。(之前 rake deploy 就是把資料推到 master 裡。)</li>
-</ul>
-
-
-<pre>
-git clone git@github.com:wildwindjen/wildwindjen.github.com.git _deploy 
-</pre>
-
-
-<ul>
-<li>重新安裝必要的環境及設定</li>
-</ul>
-
-
-<pre>
-gem install bundler
-bundle install
-rake install
-</pre>
-
-
-<ul>
-<li>重設編碼 (如果跟我一樣是在 windows 上面測試的話。)</li>
-</ul>
-
-
-<pre>
-set LC_ALL=zh_TW.UTF-8
-set LANG=zh_TW.UTF-8
-</pre>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-04-28T11:06:00+08:00" pubdate data-updated="true">2013-04-28 11:06</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/25/first-octopress-at-github/">First Octopress at Github</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
 
 
-<time datetime="2013-04-25T12:30:00+08:00" pubdate data-updated="true">2013-04-25 12:30</time>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>阿丞語錄</h2>
-
-<pre>
-不經一試，不長一智。
-結果是甜美的，過程是母親的。
-</pre>
-
-
-<h2>總結</h2>
-
-<p>也不知道在失心瘋什麼，沒碰過 Git，也沒碰過 Ruby，居然學人家搞 octopress。不管怎樣，就這樣一路跌跌撞撞，不懂什麼就補齊什麼。也拼拼湊湊出來一些東西。就順便把經驗整理一下。</p>
-
-<p>在有 proxy 的環境下安裝(ex: 公司)，跟 github 有相關的操作，統一改用 HTTPS 會比較沒問題。在家的話，基本上隨便 google 參考都可以裝成功。因為之前找到的資料幾乎都是 SSH ，反而因為比較少 HTTPS 的方式。以下就直接拿 HTTPS 的建立方式作分享，因為這個方式在家也適用。</p>
-
-<h2>我的環境</h2>
-
-<ul>
-<li>OS: Window XP</li>
-<li>Git: Git-1.8.1.2-preview20130201</li>
-<li>Ruby: Ruby 1.93</li>
-</ul>
-
-
-<h2>GitHub</h2>
-
-<ul>
-<li>去 <a href="http://github.com" title="GitHub">GitHub</a></li>
-<li>沒帳號就申請帳號</li>
-<li>創建帳號後，登入，然後建立一個 Repository，名字叫做 your_github_id.github.com。 (例如我的就是 wildwindjen.github.com)</li>
-</ul>
-
-
-<h2>安裝 Git</h2>
-
-<ul>
-<li>下載 <a href="http://git-scm.com/" title="Git">Git</a></li>
-<li>直接執行安裝檔，中間除了我想讓 Path 找得到 git ，有改過這頁的設定(Run Git from the Windows Command Prompt)，其他步驟都是預設值。</li>
-</ul>
-
-
-<h2>設定 GitHub SSH Key (這一段是想走 SSH 的人要做的)</h2>
-
-<ul>
-<li>參考 <a href="https://help.github.com/articles/generating-ssh-keys" title="generating-ssh-keys">generating-ssh-keys</a></li>
-<li>打開 Git Bash</li>
-</ul>
-
-
-<pre>
-    cd ~/.ssh
-</pre>
-
-
-<p>如果沒有的話就自己建立一個 .ssh
-+ 產生 ssh key</p>
-
-<pre>
-    ssh-keygen -t rsa -C "your_email@example.com"
-</pre>
-
-
-<ul>
-<li>輸入你想輸入的密碼 passphrase (有寫比較安全，但也可以留空)</li>
-<li>複製產生出來的 key，以下的語法我在 window 7 可以執行，但是 XP 不行。(所以直接去 C:\Documents and Settings\wildwindjen.ssh\id_rsa.pub 用編輯器開檔，全選、複製就可以了。)</li>
-</ul>
-
-
-<pre>
-    clip < ~/.ssh/id_rsa.pub
-</pre>
-
-
-<ul>
-<li>登入 GitHub > Account Setting > SSH Keys，點選 Add SSH Keys 按鈕，名字亂取，把剛剛複製的貼上就好。</li>
-</ul>
-
-
-<h2>安裝 Ruby</h2>
-
-<ul>
-<li>參考這篇 <a href="http://itspg.github.io/blog/2012/02/29/octopress-on-windows-tutorial/" title="在windows上安裝octopress 新手教學 / 初學者指南">在windows上安裝octopress 新手教學 / 初學者指南</a></li>
-<li>下載 Ruby 和 DevKit</li>
-<li>安裝 Ruby ，一路上都是預設值。</li>
-<li>新增一個 devkit 目錄，解壓縮 DevKit 到這個目錄 devkit 裡面</li>
-<li>打開命令提示字元，切換目錄到 devkit，執行以下目錄，安裝開發用的工具：</li>
-</ul>
-
-
-<pre>
-    ruby dk.rb init
-    ruby dk.rb install
-</pre>
-
-
-<ul>
-<li>更新 gem。</li>
-</ul>
-
-
-<pre>
-    gem update --system
-</pre>
-
-
-<h2>安裝 octopress</h2>
-
-<ul>
-<li>切換到你想要放 octopress 的目錄</li>
-<li>執行以下命令，注意到我這邊是使用 https。</li>
-</ul>
-
-
-<pre>
-    git clone https://github.com/imathis/octopress.git octopress
-    cd octopress
-    gem install bundler
-    bundle install
-    rake install
-</pre>
-
-
-<h2>設定 octopress</h2>
-
-<ul>
-<li>先設定 octopress 要放上去的 Repository</li>
-</ul>
-
-
-<pre>
-    rake setup_github_pages
-</pre>
-
-
-<ul>
-<li>接著會問你要對應的 github 路徑是哪一個，輸入 your_github_id.github.com 路徑。例如我的是長這樣：</li>
-</ul>
-
-
-<pre>
-    git@github.com:wildwindjen/wildwindjen.github.io
-</pre>
-
-
-<ul>
-<li>接著就可以打開 octopress/_config.xml 作其他的個人化設定。</li>
-</ul>
-
-
-<h2>撰寫 octopress</h2>
-
-<ul>
-<li>先新增一篇文章：</li>
-</ul>
-
-
-<pre>
-    rake new_post["文章名稱"]
-</pre>
-
-
-<ul>
-<li>去 octopress/source/_posts 就可以看到副檔名 .markdown 的文章。</li>
-<li>使用慣用的編輯器打開，使用 markdown 語法開始寫文章吧。</li>
-<li>完成的話，要執行以下命令，讓 markdown 檔案轉換成 html：</li>
-</ul>
-
-
-<pre>
-    rake generate
-</pre>
-
-
-<ul>
-<li>想要在本機預覽:</li>
-</ul>
-
-
-<pre>
-    rake preview
-</pre>
-
-
-<ul>
-<li>打開瀏覽器，輸入 [http://127.0.0.1:4000/]，就可以預覽結果。(要結束預覽回到命令模式請 ctrl+c)</li>
-<li>如果你跟我一樣，有遇到亂碼問題(YAML Exception reading xxx.markdown: invalid byte sequence in CP950 &#8230;)，請：
-
-<ul>
-<li>確認檔案編碼是不是使用 UTF-8 存檔。</li>
-<li>輸入以下指令
-<pre>
-  set LC_ALL=zh_TW.UTF-8
-  set LANG=zh_TW.UTF-8
-</pre></li>
-<li>再重新 rake generate 一次</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>發佈 octopress</h2>
-
-<ul>
-<li>預覽都沒問題，就是該放到 github 上囉。直接發佈看看：</li>
-</ul>
-
-
-<pre>
-    rake deploy
-</pre>
-
-
-<ul>
-<li>假設你跟我一樣，因為某些緣故不能使用 SSH。先確認一下你的 origin，在 octopress/_deploy 目錄下輸入：</li>
-</ul>
-
-
-<pre>
-    git remote -v
-</pre>
-
-
-<ul>
-<li>應該是會看到以下格式</li>
-</ul>
-
-
-<pre>
-    origin  git@github.com:wildwindjen/wildwindjen.github.io (fetch)
-    origin  git@github.com:wildwindjen/wildwindjen.github.io (push)
-</pre>
-
-
-<ul>
-<li>請輸入以下指令作修改，改走 HTTPS 的方式 deploy：</li>
-</ul>
-
-
-<pre>
-git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.git
-</pre>
-
-
-<ul>
-<li>重新 rake deploy 就好囉。</li>
-<li>因為之後會上傳 source ，所以我也在 octopress/ 下確認一次 origin，這邊也是得改走 HTTPS。</li>
-</ul>
-
-
-<h2>未驗證</h2>
-
-<p>寫文章至此，我猜想在做「rake setup_github_pages」步驟時，直接填入 https 格式，應該就沒有後面的麻煩了。之後有時間再踹踹看。</p>
-
-<h2>其他經驗</h2>
-
-<h3>SSH 的 Debug 方式</h3>
-
-<p>過程中遇到一堆 SSH 的問題，直到遇見這個語法，才解除了我盲目的人生。</p>
-
-<pre>
-    ssh -vvv git@github.com
-</pre>
-
-
-<h3>SSH 的客製化設定檔</h3>
-
-<p>.ssh 目錄下面可以自己新增一個檔名 config 來做一些客製化的動作，例如：假設有需要把預設的 port 22 改換成 443，可以透過這一招。可惜這次沒機會表現。</p>
-
-<pre>
-    Host github.com
-    User wildwind.jen@gmail.com
-    Hostname ssh.github.com
-    Port 443
-</pre>
-
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self/" data-via="" data-counturl="http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
 </div>
-  
-  
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/04/27/customize-octopress-by-config/" title="Previous Post: customize octopress by config">&laquo; customize octopress by config</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+<!-- Google Comments, by wildwindjen -->
+
+  <section>
+	<div class="g-comments"
+		data-href = "http://wildwindjen.github.io" + window.location.pathname
+		data-width="789"
+		data-first_party_property="BLOGGER"
+		data-view_type="FILTERED_POSTMOD">
+	</div>
+  </section>
+
+<!-- Google Comments end -->
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -802,6 +323,7 @@ git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.
 
   
 </aside>
+
 
     </div>
   </div>

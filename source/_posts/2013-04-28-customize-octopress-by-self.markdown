@@ -3,7 +3,9 @@ layout: post
 title: "customize octopress by self"
 date: 2013-04-28 11:06
 comments: true
-categories: octopress
+categories: 
+- octopress
+
 ---
 ## 阿丞語錄
 <pre>

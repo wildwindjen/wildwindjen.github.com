@@ -79,3 +79,75 @@ categories:
 </pre>
 
 一碼勝千言，這邊要看點程式碼，會更清楚。
+{% codeblock People lang:java %}
+    public class People {
+        /**
+         * <pre>
+         * 喊叫
+         * </pre>
+         * @return
+         */
+        public String shout(){
+            return "吼～～";
+        }
+    }
+{% endcodeblock %}
+
+{% codeblock Male lang:java %}
+    public class Male extends People {
+        /**
+         * <pre>
+         * 喊叫
+         * </pre>
+         * @return
+         */
+        public String shout(){
+            return "凍咧！";
+        }
+    }
+{% endcodeblock %}
+
+{% codeblock Female lang:java %}
+    public class Female extends People {
+        /**
+         * <pre>
+         * 喊叫
+         * </pre>
+         * @return
+         */
+        public String shout(){
+            return "嗯～";
+        }
+    }
+{% endcodeblock %}
+
+{% codeblock PeoplePolyDemo lang:java %}
+    public class PeoplePolyDemo {
+
+        List list = new ArrayList();
+
+        public void addPeople(People people){
+            this.list.add(people);
+        }
+        
+        public void shoutTogether(){
+            Iterator it = list.iterator();
+            while(it.hasNext()){
+                People people = (People)it.next();
+                people.shout();
+                System.out.println();
+            }
+        }
+        
+        public static void main(String[] args) {
+            PeoplePolyDemo demo = new PeoplePolyDemo();
+
+            demo.addPeople(new Male());
+            demo.addPeople(new Femail());
+            
+            demo.shoutTogether();
+        }
+
+    }
+{% endcodeblock %}
+你會看到 shoutTogether 雖然是使用 People 類別執行 shout 動作。可是卻是叫出該物件性別真正的叫聲。這就是我說的`以抽象之名，行具體之實`。

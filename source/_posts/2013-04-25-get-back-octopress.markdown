@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "get back octopress"
+title: "Get Octopress Back"
 date: 2013-04-26 23:58
 comments: true
-categories: octopress
+categories: 
+- Octopress
 ---
-## 阿丞語錄
+## 總結
 <pre>
 天行健，君子以自戕不息。
 有產出，就應該有回收，維持循環的地獄。
 </pre>
 
-## 總結
 都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。
 
 ##備份

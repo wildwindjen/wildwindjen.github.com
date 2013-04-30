@@ -7,13 +7,11 @@ categories:
 - Hibernate
 - ORM
 ---
-## 阿丞語錄
+## 總結
 <pre>
-低原創性，非喜勿入。
+此篇低原創性，非喜誤入。
 </pre>
 
-
-## 總結
 因為某些原因，需要研究 Hibernate。所以參考 [Hibernate Gossip: 第一個 Hibernate](http://openhome.cc/Gossip/HibernateGossip/FirstHibernate.html "Hibernate Gossip: 第一個 Hibernate")，做些實驗跟記錄。應該會記好長~好長的一陣子吧...
 
 

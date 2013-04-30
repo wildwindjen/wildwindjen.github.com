@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "first octopress at github"
+title: "First Octopress at GitHub"
 date: 2013-04-25 12:30
 comments: true
-categories: octopress
+categories: 
+- Octopress
 ---
-## 阿丞語錄
+## 總結
 <pre>
 不經一試，不長一智。
 結果是甜美的，過程是母親的。
 </pre>
 
-## 總結
 也不知道在失心瘋什麼，沒碰過 Git，也沒碰過 Ruby，居然學人家搞 octopress。不管怎樣，就這樣一路跌跌撞撞，不懂什麼就補齊什麼。也拼拼湊湊出來一些東西。就順便把經驗整理一下。
 
 在有 proxy 的環境下安裝(ex: 公司)，跟 github 有相關的操作，統一改用 HTTPS 會比較沒問題。在家的話，基本上隨便 google 參考都可以裝成功。因為之前找到的資料幾乎都是 SSH ，反而因為比較少 HTTPS 的方式。以下就直接拿 HTTPS 的建立方式作分享，因為這個方式在家也適用。

@@ -1,19 +1,17 @@
 ---
 layout: post
-title: "customize octopress by self"
+title: "Customize Octopress by Self"
 date: 2013-04-28 11:06
 comments: true
 categories: 
-- octopress
+- Octopress
 
 ---
-## 阿丞語錄
+## 總結
 <pre>
 士為悅己者死。
 </pre>
 
-
-## 總結
 有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。
 
 

@@ -1,17 +1,16 @@
 ---
 layout: post
-title: "customize octopress by config"
+title: "Customize Octopress by Configuration"
 date: 2013-04-27 18:49
 comments: true
-categories: octopress
+categories: 
+- Octopress
 ---
-## 阿丞語錄
+## 總結
 <pre>
 女為悅己者容。
 </pre>
 
-
-## 總結
 這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。
 
 外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件，發現常用的東西要客製化也算簡單，真的深入一點可能就得要會 Ruby 打造術了吧。我不會 Ruby，暫時也還沒有計畫去研究，所以我想要先從內建的機制下手: _config.xml。再加上一些些基本 css 和圖片的調整，應該可以有個不太一樣的東西。

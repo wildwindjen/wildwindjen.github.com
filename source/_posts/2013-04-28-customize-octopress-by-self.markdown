@@ -35,7 +35,7 @@ $post_link = window.location.pathname;
 
 + 一樣要設定 _config.xml 裡的 googleplus_user 。
 + 修改 `source/_layouts/post.html` ，在 Disqus 後面補上一段程式碼：
-{% codeblock google comments html %}
+{% codeblock google plus comments %}
 	{% raw %}
 	{% if site.disqus_short_name and page.comments == true %}
 	  <section>
@@ -76,3 +76,30 @@ googleplus_comments: true
 </pre>
 
 這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。
+
+
+## Syntax Highlight
+想要使用程式碼美化功能，其實內建就有囉。參考[官網](http://octopress.org/ "官網")下方的 Plugins FTW 。有 [Cold Block](http://octopress.org/docs/plugins/codeblock "Cold Block") 和 [Include Code](http://octopress.org/docs/plugins/include-code "Include Code") 兩種。
+
+### Cold Block
+將你的程式碼內嵌在 blog 裡。
+
+{% codeblock Cold Block %}
+	{% raw %}
+	{% codeblock [標題] [lang:language] [url] [link text] %}
+	程式碼
+	{% endcodeblock %}
+	{% endraw %}
+{% endcodeblock %}
+
+### Include Code
+挑選程式碼檔案出來呈現。預設情況下，程式碼檔案要放在 `source/downloads/code` 裡面。如果你想要修改預設路徑，可以透過 _config.xml 的 `code_dir`。所以 `path/to/file` 是相對於 source/downloads/code 的路徑。
+
+{% codeblock Include Code %}
+	{% raw %}
+	{% include_code [標題] [lang:language] path/to/file %}
+	{% endraw %}
+{% endcodeblock %}
+
+### 安裝 Python
+為了使用 Plugin 功能，需要使用 Python。如果你使用了上述兩個語法，但是在 rake generate 的時候，報了跟我一樣找不到 python 目錄的錯。請你安裝 Python 2.7.x。我是安裝 2.7.4。然後新增系統變數即可。

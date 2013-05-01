@@ -232,6 +232,19 @@ googleplus_comments: true
 <h3>安裝 Python</h3>
 
 <p>為了使用 Plugin 功能，需要使用 Python。如果你使用了上述兩個語法，但是在 rake generate 的時候，報了跟我一樣找不到 python 目錄的錯。請你安裝 Python 2.7.x。我是安裝 2.7.4。然後新增系統變數即可。</p>
+
+<h2>外部連結另開</h2>
+
+<p>Markdown 語法產生出來的連結，沒有支援另開頁面，所以只好自己處理。作法很多，我自己的作法是在 <code>/source/_includes/custom/after_footer.html</code> 動手腳。打開檔案，在最下面加上：</p>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script type="text/javascript">
+</span><span class='line'>  $('a[href^="http://"]').attr("target", "_blank");
+</span><span class='line'>  &lt;/script></span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -333,6 +346,10 @@ googleplus_comments: true
         <a href="/blog/2013/04/26/get-back-octopress/">Get Octopress Back</a>
       </li>
     
+      <li class="post">
+        <a href="/blog/2013/04/25/first-octopress-at-github/">First Octopress at GitHub</a>
+      </li>
+    
   </ul>
 </section>
 <section>
@@ -401,6 +418,11 @@ googleplus_comments: true
 
 <!-- wildwindjen octopress 新增 google comments, ref: http://blog.justin.kelly.org.au/google-plus-octopress/  -->
 
+
+<script type="text/javascript">
+	$('a[href^="http://"]').attr("target", "_blank");
+	$('a[href^="https://"]').attr("target", "_blank");
+</script>
 
 
 </body>

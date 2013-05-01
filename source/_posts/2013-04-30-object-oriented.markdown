@@ -36,7 +36,7 @@ categories:
 ## 類別(Class)
 物件導向觀念裡的類別，簡單地說，就是分類出來的類型。就像是生物學裡的[生物分類法](https://zh.wikipedia.org/wiki/%E7%94%9F%E7%89%A9%E5%88%86%E9%A1%9E%E6%B3%95 "生物分類法")。屬於同一類型的東西，都有相同的特徵，相同的基礎能力。
 
-如果要說這個類別跟生物學的種類差異點在哪裡的話，生物學的種類是將已存在的東西做分類，而程式的類別則是你先定義出這個類別的特徵與標準，然後再製作出來。這個就像是工廠製造，先刻一個模子出來，然後再去生產成品。
+如果要說這個類別跟生物學的種類差異點在哪裡的話，生物學的種類是將已存在的東西做分類，而程式的類別則是你先定義出這個類別的特徵與標準，然後再製作出來。這個就像是工廠製造，先刻一個模子出來，然後再去生產成品。{% img center /images/wildwind/object_oriented/class.jpg 600 350 'class and objects' 'class and objects' %}
 
 所以，是的，你得先知道你想要的特徵跟分類定義，才能打造這個模子，你才能寫出這個類別。這代表，你得先圈畫出你想要解決的問題領域，然後從這個領域範圍裡蒐集所有的相關需求，最後從需求裡面作職責分工、分類。
 
@@ -86,7 +86,7 @@ categories:
 
 這就是我下的定義：`以抽象之名，行具體之實。`一碼勝千言，這邊來看點程式碼，會更清楚。
 
-{% codeblock People lang:java %}
+{% codeblock People.java lang:java %}
     public class People {
         /**
          * <pre>
@@ -100,7 +100,7 @@ categories:
     }
 {% endcodeblock %}
 
-{% codeblock Male lang:java %}
+{% codeblock Male.java lang:java %}
     public class Male extends People {
         /**
          * <pre>
@@ -114,7 +114,7 @@ categories:
     }
 {% endcodeblock %}
 
-{% codeblock Female lang:java %}
+{% codeblock Female.java lang:java %}
     public class Female extends People {
         /**
          * <pre>
@@ -128,7 +128,7 @@ categories:
     }
 {% endcodeblock %}
 
-{% codeblock PeoplePolyDemo lang:java %}
+{% codeblock PeoplePolyDemo.java lang:java %}
     public class PeoplePolyDemo {
 
         List list = new ArrayList();
@@ -157,7 +157,7 @@ categories:
 
     }
 {% endcodeblock %}
-你會看到 shoutTogether 雖然是使用 People 類別執行 shout 動作。可是卻是叫出該性別真正的叫聲。只要你是人，我就可以請你叫，如果你是男人你就會叫出男人的聲音，如果你是女人，就會用女人的叫法。這就是我說的`以抽象之名，行具體之實`。這邊的抽象不只限於類別，也包含介面。
+你會看到 shoutTogether 雖然是使用 People 類別執行 shout 動作。可是卻是叫出該性別真正的叫聲。只要你是人，我就可以請你叫，如果你是男人你就會叫出男人的聲音，如果你是女人，就會用女人的叫法。這就是我說的`以抽象之名，行具體之實`。身為使用者，只要管你是不是特定能力的基礎類別，至於物件怎麼執行，就看物件實際的狀況。這邊的抽象不只限於類別，也包含介面。
 
 
 ## Why 物件導向
@@ -169,3 +169,5 @@ categories:
 好吧，這樣太八股了，想要看上面這些優點，請自己去翻書吧。
 
 為什麼要用物件導向？這個問題要問你自己，要看你的需求，你想要物件導向的特性解決你專案常發的甚麼問題？這就是你的需求。經驗告訴我，物件導向的特質會提高創建成本，還有人員教育門檻比較高，但是會降低專案長期維護成本。所以如果專案很小且急，而且不需要維護，我應該不會考慮使用物件導向。
+
+各取所需。

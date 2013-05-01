@@ -103,3 +103,12 @@ googleplus_comments: true
 
 ### 安裝 Python
 為了使用 Plugin 功能，需要使用 Python。如果你使用了上述兩個語法，但是在 rake generate 的時候，報了跟我一樣找不到 python 目錄的錯。請你安裝 Python 2.7.x。我是安裝 2.7.4。然後新增系統變數即可。
+
+
+## 外部連結另開
+Markdown 語法產生出來的連結，沒有支援另開頁面，所以只好自己處理。作法很多，我自己的作法是在 `/source/_includes/custom/after_footer.html` 動手腳。打開檔案，在最下面加上：
+{% codeblock Cold Block %}
+	<script type="text/javascript">
+	$('a[href^="http://"]').attr("target", "_blank");
+	</script>
+{% endcodeblock %}

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: octopress | Wild Wind]]></title>
+  <title><![CDATA[Category: Octopress | Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-29T18:13:17+08:00</updated>
+  <updated>2013-05-01T18:45:01+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -14,18 +14,16 @@
 
   
   <entry>
-    <title type="html"><![CDATA[customize octopress by self]]></title>
+    <title type="html"><![CDATA[Customize Octopress by Self]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self/"/>
     <updated>2013-04-28T11:06:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
 士為悅己者死。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。</p>
 
@@ -56,7 +54,7 @@ $post_link = window.location.pathname;
 <ul>
 <li>一樣要設定 _config.xml 裡的 googleplus_user 。</li>
 <li><p>修改 <code>source/_layouts/post.html</code> ，在 Disqus 後面補上一段程式碼：
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>google comments html </span></figcaption>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>google plus comments </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -135,22 +133,76 @@ googleplus_comments: true
 
 
 <p>這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。</p>
+
+<h2>Syntax Highlight</h2>
+
+<p>想要使用程式碼美化功能，其實內建就有囉。參考<a href="http://octopress.org/" title="官網">官網</a>下方的 Plugins FTW 。有 <a href="http://octopress.org/docs/plugins/codeblock" title="Cold Block">Cold Block</a> 和 <a href="http://octopress.org/docs/plugins/include-code" title="Include Code">Include Code</a> 兩種。</p>
+
+<h3>Cold Block</h3>
+
+<p>將你的程式碼內嵌在 blog 裡。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>
+</span><span class='line'>{% codeblock [標題] [lang:language] [url] [link text] %}
+</span><span class='line'>程式碼
+</span><span class='line'>{% endcodeblock %}
+</span><span class='line'>
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Include Code</h3>
+
+<p>挑選程式碼檔案出來呈現。預設情況下，程式碼檔案要放在 <code>source/downloads/code</code> 裡面。如果你想要修改預設路徑，可以透過 _config.xml 的 <code>code_dir</code>。所以 <code>path/to/file</code> 是相對於 source/downloads/code 的路徑。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Include Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>
+</span><span class='line'>{% include_code [標題] [lang:language] path/to/file %}
+</span><span class='line'>
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>安裝 Python</h3>
+
+<p>為了使用 Plugin 功能，需要使用 Python。如果你使用了上述兩個語法，但是在 rake generate 的時候，報了跟我一樣找不到 python 目錄的錯。請你安裝 Python 2.7.x。我是安裝 2.7.4。然後新增系統變數即可。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[customize octopress by config]]></title>
+    <title type="html"><![CDATA[Customize Octopress by Configuration]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config/"/>
     <updated>2013-04-27T18:49:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
 女為悅己者容。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
 
@@ -201,19 +253,17 @@ disqus_show_comment_count: true
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[get back octopress]]></title>
+    <title type="html"><![CDATA[Get Octopress Back]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress/"/>
     <updated>2013-04-26T23:58:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
 天行健，君子以自戕不息。
 有產出，就應該有回收，維持循環的地獄。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
 
@@ -308,19 +358,17 @@ set LANG=zh_TW.UTF-8
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[first octopress at github]]></title>
+    <title type="html"><![CDATA[First Octopress at GitHub]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github/"/>
     <updated>2013-04-25T12:30:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
 不經一試，不長一智。
 結果是甜美的，過程是母親的。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>也不知道在失心瘋什麼，沒碰過 Git，也沒碰過 Ruby，居然學人家搞 octopress。不管怎樣，就這樣一路跌跌撞撞，不懂什麼就補齊什麼。也拼拼湊湊出來一些東西。就順便把經驗整理一下。</p>
 

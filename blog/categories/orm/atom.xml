@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ORM | Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/blog/categories/orm/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-29T18:13:17+08:00</updated>
+  <updated>2013-05-01T18:45:01+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -18,14 +18,12 @@
     <link href="http://wildwindjen.github.io/blog/2013/04/29/first-hibernate/"/>
     <updated>2013-04-29T17:43:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/29/first-hibernate</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
-低原創性，非喜勿入。
+此篇低原創性，非喜誤入。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>因為某些原因，需要研究 Hibernate。所以參考 <a href="http://openhome.cc/Gossip/HibernateGossip/FirstHibernate.html" title="Hibernate Gossip: 第一個 Hibernate">Hibernate Gossip: 第一個 Hibernate</a>，做些實驗跟記錄。應該會記好長~好長的一陣子吧...</p>
 

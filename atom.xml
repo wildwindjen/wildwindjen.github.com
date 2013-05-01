@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-04-29T18:13:17+08:00</updated>
+  <updated>2013-05-01T18:45:01+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -14,18 +14,267 @@
 
   
   <entry>
+    <title type="html"><![CDATA[物件導向]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/04/30/object-oriented/"/>
+    <updated>2013-04-30T14:36:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/04/30/object-oriented</id>
+    <content type="html"><![CDATA[<h2>總結</h2>
+
+<pre>
+「只重其義，不重其招，你忘記所有招式，就練成了！ 」「你記住了沒？」 --  張三豐。
+</pre>
+
+
+<p>這篇是因為我必須要在部門裡面作教育訓練，對於物件導向要怎麼上手，整理出來的心得。重點不在於教物件導向是什麼，而是分享經驗，讓想學物件導向的人，知道如何少繞一點路，減輕一點混亂。</p>
+
+<h2>必須先知道的事</h2>
+
+<ul>
+<li>物件導向，主角是觀念，是思維。專案開發過程都使用物件導向的思維去分析、設計、實作時，這就是導入物件導向。否則，就算使用了 Java、 Dot Net 世界上任何一種支援物件導向能力的語言，都不代表這個專案使用物件導向開發。</li>
+<li>需求、需求、需求。你的需求才是決定你採用什麼方式開發專案的唯一因素。</li>
+<li>除了繼承、封裝、多型這些物件導向的特性，應該更加注意<code>需求-&gt;各角色職責分工</code>。</li>
+</ul>
+
+
+<h2>跳躍門檻</h2>
+
+<p>從開始接觸物件導向到現在，覺得最大的門檻在於如何簡單說明類別與物件，在於多型如何一言以蔽之。一旦這兩個容易讓人混亂的概念容易被釐清，後面的路就好走多了(一路好走)。</p>
+
+<p>所以，要先懂得區分「抽象的概念」與「具體的成品」。</p>
+
+<p>拿安全帽來舉例，「法律規定，騎車要戴安全帽」和「你戴這一頂安全帽出門」，這兩個句子裡安全帽，意義上是不太一樣的。「法律規定，騎車要戴安全帽」的安全帽是一種統稱，泛指安全帽這<code>種類</code>的帽子，所以是一種抽象的概念。而「你戴這一頂安全帽出門」的安全帽，則是明確的指出一個實體，是一個具體的成品。</p>
+
+<p>如果你區分得出來我說的這兩種安全帽邏輯上的不同，我們就安心地進入物件導向的世界吧。</p>
+
+<h2>Java 裡的抽象和具體</h2>
+
+<p>在 Java 裡，我們使用類別(Class)或者介面(Interface)來定義抽象的概念，而依照類別產生出來的具體成品我們叫物件(Object)，依照介面打造而成的具體成品我們稱為實作(Implementation)。</p>
+
+<h2>類別(Class)</h2>
+
+<p>物件導向觀念裡的類別，簡單地說，就是分類出來的類型。就像是生物學裡的<a href="https://zh.wikipedia.org/wiki/%E7%94%9F%E7%89%A9%E5%88%86%E9%A1%9E%E6%B3%95" title="生物分類法">生物分類法</a>。屬於同一類型的東西，都有相同的特徵，相同的基礎能力。</p>
+
+<p>如果要說這個類別跟生物學的種類差異點在哪裡的話，生物學的種類是將已存在的東西做分類，而程式的類別則是你先定義出這個類別的特徵與標準，然後再製作出來。這個就像是工廠製造，先刻一個模子出來，然後再去生產成品。</p>
+
+<p>所以，是的，你得先知道你想要的特徵跟分類定義，才能打造這個模子，你才能寫出這個類別。這代表，你得先圈畫出你想要解決的問題領域，然後從這個領域範圍裡蒐集所有的相關需求，最後從需求裡面作職責分工、分類。</p>
+
+<p>程式的類別同時滿足了現實世界中人為分類跟生物分類的特性。人為分類滿足的就是先設計，再批次製造。生物分類重要的特性是演化，也就是程式中提到的繼承。</p>
+
+<h2>繼承(Inheritance)</h2>
+
+<p>物件導向觀念裡的類別跟真實世界的物種一樣，有遺傳的概念。在物件導向世界裡叫做繼承。不過跟這篇<a href="http://milikao.pixnet.net/blog/post/543716-%E7%B9%BC%E6%89%BF%E6%98%AF%E7%88%B6%E5%AD%90%E9%97%9C%E4%BF%82%EF%BC%9F%E6%89%8D%E6%80%AA%EF%BC%81-%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E5%88%9D%E5%AD%B8%E8%80%85%E6%87%89" title="繼承是父子關係？才怪！ 物件導向初學者應該要知道的事情(四)">繼承是父子關係？才怪！ 物件導向初學者應該要知道的事情(四)</a>作者一樣，我覺得遺傳的這個詞比較好。因為繼承是人為的，可以放棄繼承。但遺傳是天生的，後來衍生的種類是沒辦法放棄的。而物件導向的繼承你是不能放棄繼承的，一旦基礎類別(Base Class)有這個特徵，衍生類別(Derived Class )就必須有。這種特性比較像是遺傳。</p>
+
+<p>但是在這裡我們還是隨波逐流，使用繼承一詞。</p>
+
+<p>繼承是類別跟類別間的關係。衍生類別繼承了基礎類別，會有相同的特徵(feature)。接著子類別可以以這個為基礎，繼續擴充、發展自己的獨特特徵。衍生類別雖然不能放棄繼承，但是可以改造這個特徵。程式的世界叫做覆寫( Override)。舉例來說，你遺傳(extends)了你爸爸的單眼皮，你可以請專業醫美改造(override)成雙眼皮，但是你還是有眼皮(特徵)。又或者，人類遺傳了靈長類的特徵，但是又發展出「直立行走」、「語言」等特徵。</p>
+
+<p>在物件導向的世界裡，透過繼承，是實現重用性(reusability)的方式之一。讓已存在的功能或流程得以被重複使用，而不用重複開發。</p>
+
+<h2>物件(Object)</h2>
+
+<p>物件依照類別創造出來的具體東西。ex: 這一頂安全帽。</p>
+
+<h2>類別與物件</h2>
+
+<p>物件有獨特性，而類別有共通性。共同的特徵集中在類別定義上，而物件可以針對各自的狀況加以客製化。所以常常有人拿設計圖與實際的產品來比喻類別和物件間的關係。只要類別變更，創造出來的物件就也會跟著變。</p>
+
+<h2>請問這些東西怎麼用？</h2>
+
+<p><img class="center" src="http://wildwindjen.github.io/images/wildwind/object_oriented/usb.jpg" width="600" height="350" title="How use these devices" alt="How use these devices">
+為什麼你知道這是 USB 隨身碟？因為你辨識得出來這些東西共同的地方，是 USB 共用的界面 &#8211; 統一的規格。</p>
+
+<h2>介面(Interface)</h2>
+
+<p>用來規範程式必須滿足的功能或者界面。簡單地說，就是用來定義規格的玩意兒。ex: USB 的開發規格書。透過規格的定義，可以不用理會實作的細節，用的人只知道產品有支援某規格，就可以依照該規格定義的方法使用
+這個產品。</p>
+
+<h2>封裝(Encapsulation)</h2>
+
+<p>使用的人不用管這個東西如何製造(Process)、實作，只要知道怎麼用它(Input)，用了它會有什麼結果就好(Output)。我們只要知道將 USB 插上電腦就能讓我們存取 USB 裡的資料就好，至於各家的 USB 電路怎麼設計，我們不用知道。這樣隨身碟廠商想要更換內部電路設計(改變實作方式)，不用通知我們。我們之間沒有藕斷絲連，這就是所謂的降低耦合度(decoupling)。</p>
+
+<p>所以看得出來，介面主打的特性之一就是封裝。類別透過 private 屬性搭配 public getter/setter method，也能達到封裝的效果。</p>
+
+<h2>實作(implementation)</h2>
+
+<p>宣告遵守某個規格，並且開發/實作出(implements)該規格規範的功能。ex: 每一個實際的 USB 。都是 USB 規格的實作(成品)。</p>
+
+<h2>多型(polymorphism)</h2>
+
+<p>什麼叫多型？正所謂「多型不易，必自斃。」(哇咧供啥貨)。</p>
+
+<p>這就是我下的定義：<code>以抽象之名，行具體之實。</code>一碼勝千言，這邊來看點程式碼，會更清楚。</p>
+
+<figure class='code'><figcaption><span>People </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">People</span> <span class="o">{</span>
+</span><span class='line'>        <span class="cm">/**</span>
+</span><span class='line'><span class="cm">         * &lt;pre&gt;</span>
+</span><span class='line'><span class="cm">         * 喊叫</span>
+</span><span class='line'><span class="cm">         * &lt;/pre&gt;</span>
+</span><span class='line'><span class="cm">         * @return</span>
+</span><span class='line'><span class="cm">         */</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="n">String</span> <span class="nf">shout</span><span class="o">(){</span>
+</span><span class='line'>            <span class="k">return</span> <span class="s">&quot;吼～～&quot;</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Male </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Male</span> <span class="kd">extends</span> <span class="n">People</span> <span class="o">{</span>
+</span><span class='line'>        <span class="cm">/**</span>
+</span><span class='line'><span class="cm">         * &lt;pre&gt;</span>
+</span><span class='line'><span class="cm">         * 喊叫</span>
+</span><span class='line'><span class="cm">         * &lt;/pre&gt;</span>
+</span><span class='line'><span class="cm">         * @return</span>
+</span><span class='line'><span class="cm">         */</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="n">String</span> <span class="nf">shout</span><span class="o">(){</span>
+</span><span class='line'>            <span class="k">return</span> <span class="s">&quot;凍咧！&quot;</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Female </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Female</span> <span class="kd">extends</span> <span class="n">People</span> <span class="o">{</span>
+</span><span class='line'>        <span class="cm">/**</span>
+</span><span class='line'><span class="cm">         * &lt;pre&gt;</span>
+</span><span class='line'><span class="cm">         * 喊叫</span>
+</span><span class='line'><span class="cm">         * &lt;/pre&gt;</span>
+</span><span class='line'><span class="cm">         * @return</span>
+</span><span class='line'><span class="cm">         */</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="n">String</span> <span class="nf">shout</span><span class="o">(){</span>
+</span><span class='line'>            <span class="k">return</span> <span class="s">&quot;嗯～&quot;</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>PeoplePolyDemo </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PeoplePolyDemo</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addPeople</span><span class="o">(</span><span class="n">People</span> <span class="n">people</span><span class="o">){</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">people</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shoutTogether</span><span class="o">(){</span>
+</span><span class='line'>            <span class="n">Iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+</span><span class='line'>            <span class="k">while</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+</span><span class='line'>                <span class="n">People</span> <span class="n">people</span> <span class="o">=</span> <span class="o">(</span><span class="n">People</span><span class="o">)</span><span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span><span class='line'>                <span class="n">people</span><span class="o">.</span><span class="na">shout</span><span class="o">();</span>
+</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">PeoplePolyDemo</span> <span class="n">demo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PeoplePolyDemo</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">demo</span><span class="o">.</span><span class="na">addPeople</span><span class="o">(</span><span class="k">new</span> <span class="n">Male</span><span class="o">());</span>
+</span><span class='line'>            <span class="n">demo</span><span class="o">.</span><span class="na">addPeople</span><span class="o">(</span><span class="k">new</span> <span class="n">Femail</span><span class="o">());</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">demo</span><span class="o">.</span><span class="na">shoutTogether</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你會看到 shoutTogether 雖然是使用 People 類別執行 shout 動作。可是卻是叫出該性別真正的叫聲。只要你是人，我就可以請你叫，如果你是男人你就會叫出男人的聲音，如果你是女人，就會用女人的叫法。這就是我說的<code>以抽象之名，行具體之實</code>。這邊的抽象不只限於類別，也包含介面。</p>
+
+<h2>Why 物件導向</h2>
+
+<ul>
+<li>物件導向模擬了真實世界的特性，因為跟真實世界雷同，角色、職責分工，讓你容易理解、記憶。</li>
+<li>透過物種演化、合成，可以實現既有程式碼的重用性(reusability)。</li>
+<li>實踐封裝，讓各元件、角色彼此的合作，不再牽一髮而動全身。</li>
+<li>&#8230;</li>
+</ul>
+
+
+<p>好吧，這樣太八股了，想要看上面這些優點，請自己去翻書吧。</p>
+
+<p>為什麼要用物件導向？這個問題要問你自己，要看你的需求，你想要物件導向的特性解決你專案常發的甚麼問題？這就是你的需求。經驗告訴我，物件導向的特質會提高創建成本，還有人員教育門檻比較高，但是會降低專案長期維護成本。所以如果專案很小且急，而且不需要維護，我應該不會考慮使用物件導向。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[First Hibernate]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/29/first-hibernate/"/>
     <updated>2013-04-29T17:43:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/29/first-hibernate</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
-低原創性，非喜勿入。
+此篇低原創性，非喜誤入。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>因為某些原因，需要研究 Hibernate。所以參考 <a href="http://openhome.cc/Gossip/HibernateGossip/FirstHibernate.html" title="Hibernate Gossip: 第一個 Hibernate">Hibernate Gossip: 第一個 Hibernate</a>，做些實驗跟記錄。應該會記好長~好長的一陣子吧&#8230;</p>
 
@@ -135,18 +384,16 @@ java.lang.NoClassDefFoundError: javax/persistence/EntityListeners
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[customize octopress by self]]></title>
+    <title type="html"><![CDATA[Customize Octopress by Self]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self/"/>
     <updated>2013-04-28T11:06:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
 士為悅己者死。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。</p>
 
@@ -180,7 +427,7 @@ $post_link = window.location.pathname;
 </ul>
 
 
-<figure class='code'><figcaption><span>google comments html </span></figcaption>
+<figure class='code'><figcaption><span>google plus comments </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -250,22 +497,50 @@ googleplus_comments: true
 
 
 <p>這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。</p>
+
+<h2>Syntax Highlight</h2>
+
+<p>想要使用程式碼美化功能，其實內建就有囉。參考<a href="http://octopress.org/" title="官網">官網</a>下方的 Plugins FTW 。有 <a href="http://octopress.org/docs/plugins/codeblock" title="Cold Block">Cold Block</a> 和 <a href="http://octopress.org/docs/plugins/include-code" title="Include Code">Include Code</a> 兩種。</p>
+
+<h3>Cold Block</h3>
+
+<p>將你的程式碼內嵌在 blog 裡。</p>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{% codeblock [標題] [lang:language] [url] [link text] %}
+</span><span class='line'>  程式碼
+</span><span class='line'>  {% endcodeblock %}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Include Code</h3>
+
+<p>挑選程式碼檔案出來呈現。預設情況下，程式碼檔案要放在 <code>source/downloads/code</code> 裡面。如果你想要修改預設路徑，可以透過 _config.xml 的 <code>code_dir</code>。所以 <code>path/to/file</code> 是相對於 source/downloads/code 的路徑。</p>
+
+<figure class='code'><figcaption><span>Include Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{% include_code [標題] [lang:language] path/to/file %}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>安裝 Python</h3>
+
+<p>為了使用 Plugin 功能，需要使用 Python。如果你使用了上述兩個語法，但是在 rake generate 的時候，報了跟我一樣找不到 python 目錄的錯。請你安裝 Python 2.7.x。我是安裝 2.7.4。然後新增系統變數即可。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[customize octopress by config]]></title>
+    <title type="html"><![CDATA[Customize Octopress by Configuration]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config/"/>
     <updated>2013-04-27T18:49:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
 女為悅己者容。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
 
@@ -316,19 +591,17 @@ disqus_show_comment_count: true
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[get back octopress]]></title>
+    <title type="html"><![CDATA[Get Octopress Back]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress/"/>
     <updated>2013-04-26T23:58:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
 天行健，君子以自戕不息。
 有產出，就應該有回收，維持循環的地獄。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
 
@@ -423,19 +696,17 @@ set LANG=zh_TW.UTF-8
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[first octopress at github]]></title>
+    <title type="html"><![CDATA[First Octopress at GitHub]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github/"/>
     <updated>2013-04-25T12:30:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github</id>
-    <content type="html"><![CDATA[<h2>阿丞語錄</h2>
+    <content type="html"><![CDATA[<h2>總結</h2>
 
 <pre>
 不經一試，不長一智。
 結果是甜美的，過程是母親的。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>也不知道在失心瘋什麼，沒碰過 Git，也沒碰過 Ruby，居然學人家搞 octopress。不管怎樣，就這樣一路跌跌撞撞，不懂什麼就補齊什麼。也拼拼湊湊出來一些東西。就順便把經驗整理一下。</p>
 

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>customize octopress by self - Wild Wind</title>
+  <title>Customize Octopress by Self - Wild Wind</title>
   <meta name="author" content="Wildwind Jen">
 
   
-  <meta name="description" content="阿丞語錄 士為悅己者死。 總結 有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。 留言討論 - 綁 Google 的留言 因為我跟 Disqus 沒那麼熟。雖然 Google Plus 好像也沒熟去哪裡，可是我至少有帳號。一開始我是參考這一篇的 &hellip;">
+  <meta name="description" content="總結 士為悅己者死。 有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。 留言討論 - 綁 Google 的留言 因為我跟 Disqus 沒那麼熟。雖然 Google Plus 好像也沒熟去哪裡，可是我至少有帳號。一開始我是參考這一篇的: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,14 +93,12 @@
   </header>
 
 
-<div class="entry-content"><h2>阿丞語錄</h2>
+<div class="entry-content"><h2>總結</h2>
 
 <pre>
 士為悅己者死。
 </pre>
 
-
-<h2>總結</h2>
 
 <p>有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。</p>
 
@@ -134,7 +132,7 @@ $post_link = window.location.pathname;
 </ul>
 
 
-<figure class='code'><figcaption><span>google comments html </span></figcaption>
+<figure class='code'><figcaption><span>google plus comments </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -204,6 +202,36 @@ googleplus_comments: true
 
 
 <p>這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。</p>
+
+<h2>Syntax Highlight</h2>
+
+<p>想要使用程式碼美化功能，其實內建就有囉。參考<a href="http://octopress.org/" title="官網">官網</a>下方的 Plugins FTW 。有 <a href="http://octopress.org/docs/plugins/codeblock" title="Cold Block">Cold Block</a> 和 <a href="http://octopress.org/docs/plugins/include-code" title="Include Code">Include Code</a> 兩種。</p>
+
+<h3>Cold Block</h3>
+
+<p>將你的程式碼內嵌在 blog 裡。</p>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{% codeblock [標題] [lang:language] [url] [link text] %}
+</span><span class='line'>  程式碼
+</span><span class='line'>  {% endcodeblock %}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Include Code</h3>
+
+<p>挑選程式碼檔案出來呈現。預設情況下，程式碼檔案要放在 <code>source/downloads/code</code> 裡面。如果你想要修改預設路徑，可以透過 _config.xml 的 <code>code_dir</code>。所以 <code>path/to/file</code> 是相對於 source/downloads/code 的路徑。</p>
+
+<figure class='code'><figcaption><span>Include Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{% include_code [標題] [lang:language] path/to/file %}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>安裝 Python</h3>
+
+<p>為了使用 Plugin 功能，需要使用 Python。如果你使用了上述兩個語法，但是在 rake generate 的時候，報了跟我一樣找不到 python 目錄的錯。請你安裝 Python 2.7.x。我是安裝 2.7.4。然後新增系統變數即可。</p>
 </div>
 
 
@@ -231,7 +259,7 @@ googleplus_comments: true
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
   
 </span>
 
@@ -251,7 +279,7 @@ googleplus_comments: true
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/04/27/customize-octopress-by-config/" title="Previous Post: customize octopress by config">&laquo; customize octopress by config</a>
+        <a class="basic-alignment left" href="/blog/2013/04/27/customize-octopress-by-config/" title="Previous Post: Customize Octopress by Configuration">&laquo; Customize Octopress by Configuration</a>
       
       
         <a class="basic-alignment right" href="/blog/2013/04/29/first-hibernate/" title="Next Post: First Hibernate">First Hibernate &raquo;</a>
@@ -279,30 +307,30 @@ googleplus_comments: true
   
     <section>
   <h1>阿丞</h1>
-  <p>今天心晴。</p>
+  <p>貪多嚼不爛，我還在嚼。</p>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/30/object-oriented/">物件導向</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/29/first-hibernate/">First Hibernate</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/28/customize-octopress-by-self/">customize octopress by self</a>
+        <a href="/blog/2013/04/28/customize-octopress-by-self/">Customize Octopress by Self</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/27/customize-octopress-by-config/">customize octopress by config</a>
+        <a href="/blog/2013/04/27/customize-octopress-by-config/">Customize Octopress by Configuration</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/26/get-back-octopress/">get back octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/25/first-octopress-at-github/">first octopress at github</a>
+        <a href="/blog/2013/04/26/get-back-octopress/">Get Octopress Back</a>
       </li>
     
   </ul>
@@ -311,8 +339,10 @@ googleplus_comments: true
   <h1>Recent Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>Java (1)</a></li>
 <li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
 
   </ul>
 </section>

@@ -100,8 +100,8 @@ categories:
     }
 {% endcodeblock %}
 
-{% codeblock Male.java lang:java %}
-    public class Male extends People {
+{% codeblock Man.java lang:java %}
+    public class Man extends People {
         /**
          * <pre>
          * 喊叫
@@ -114,8 +114,8 @@ categories:
     }
 {% endcodeblock %}
 
-{% codeblock Female.java lang:java %}
-    public class Female extends People {
+{% codeblock Woman.java lang:java %}
+    public class Woman extends People {
         /**
          * <pre>
          * 喊叫
@@ -149,15 +149,15 @@ categories:
         public static void main(String[] args) {
             PeoplePolyDemo demo = new PeoplePolyDemo();
 
-            demo.addPeople(new Male());
-            demo.addPeople(new Femail());
+            demo.addPeople(new Man());
+            demo.addPeople(new Woman());
             
             demo.shoutTogether();
         }
 
     }
 {% endcodeblock %}
-你會看到 shoutTogether 雖然是使用 People 類別執行 shout 動作。可是卻是叫出該性別真正的叫聲。只要你是人，我就可以請你叫，如果你是男人你就會叫出男人的聲音，如果你是女人，就會用女人的叫法。這就是我說的`以抽象之名，行具體之實`。身為使用者，只要管你是不是特定能力的基礎類別，至於物件怎麼執行，就看物件實際的狀況。這邊的抽象不只限於類別，也包含介面。
+你會看到 shoutTogether 雖然是使用 People 類別執行 shout 動作。可是卻是叫出該性別真正的叫聲。只要你是人，我就可以請你叫，如果你是男人你就會叫出男人的聲音，如果你是女人，就會用女人的叫法。這就是我說的`以抽象之名，行具體之實`。身為使用者(站在使用者的角度來看)，只要管你是不是具有特定能力的基礎類別，至於物件怎麼執行，就看物件實際的狀況。這邊的抽象不只限於類別，也包含介面。
 
 
 ## Why 物件導向

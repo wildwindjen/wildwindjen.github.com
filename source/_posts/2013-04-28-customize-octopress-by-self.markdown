@@ -86,9 +86,9 @@ googleplus_comments: true
 
 {% codeblock Cold Block %}
 	{% raw %}
-	{% codeblock [標題] [lang:language] [url] [link text] %}
+{% codeblock [標題] [lang:language] [url] [link text] %}
 	程式碼
-	{% endcodeblock %}
+{% endcodeblock %}
 	{% endraw %}
 {% endcodeblock %}
 
@@ -108,7 +108,7 @@ googleplus_comments: true
 ## 外部連結另開
 Markdown 語法產生出來的連結，沒有支援另開頁面，所以只好自己處理。作法很多，我自己的作法是在 `/source/_includes/custom/after_footer.html` 動手腳。打開檔案，在最下面加上：
 {% codeblock Cold Block %}
-	<script type="text/javascript">
+<script type="text/javascript">
 	$('a[href^="http://"]').attr("target", "_blank");
-	</script>
+</script>
 {% endcodeblock %}

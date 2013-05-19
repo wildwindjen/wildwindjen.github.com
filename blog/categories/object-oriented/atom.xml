@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Object-Oriented | Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/blog/categories/object-oriented/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-05-01T22:16:42+08:00</updated>
+  <updated>2013-05-19T23:27:25+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -25,7 +25,7 @@
 </pre>
 
 
-<p>這篇是因為我必須要在部門裡面作教育訓練，對於物件導向要怎麼上手，整理出來的心得。重點不在於教物件導向是什麼，而是分享經驗，讓想學物件導向的人，知道如何少繞一點路，減輕一點混亂。</p>
+<p>這篇是因為我必須要在部門裡面作教育訓練，對於物件導向要怎麼上手，整理出來的心得。重點不在於教物件導向是什麼，而是分享經驗，讓想學物件導向的人，知道如何少繞一點路，減輕一點混亂。如果你是那種搞不懂類別和物件的區別、對多型還是霧颯颯的，你可以參考看看。</p>
 
 <h2>必須先知道的事</h2>
 
@@ -46,9 +46,9 @@
 
 <p>如果你區分得出來我說的這兩種安全帽邏輯上的不同，我們就安心地進入物件導向的世界吧。</p>
 
-<h2>Java 裡的抽象和具體</h2>
+<h2>Java 裡的抽象概念和具體成品</h2>
 
-<p>在 Java 裡，我們使用類別(Class)或者介面(Interface)來定義抽象的概念，而依照類別產生出來的具體成品我們叫物件(Object)，依照介面打造而成的具體成品我們稱為實作(Implementation)。</p>
+<p>在 Java 裡，類別(Class)和介面(Interface)來定義抽象概念的機制，而依照類別產生出來的具體成品我們叫物件(Object)，依照介面定義，撰寫實際程式碼而成的具體成品我們稱為實作(Implementation)。</p>
 
 <h2>類別(Class)</h2>
 
@@ -56,9 +56,9 @@
 
 <p>如果要說這個類別跟生物學的種類差異點在哪裡的話，生物學的種類是將已存在的東西做分類，而程式的類別則是你先定義出這個類別的特徵與標準，然後再製作出來。這個就像是工廠製造，先刻一個模子出來，然後再去生產成品。<img class="center" src="/images/wildwind/object_oriented/class.jpg" width="600" height="350" title="class and objects" alt="class and objects"></p>
 
-<p>所以，是的，你得先知道你想要的特徵跟分類定義，才能打造這個模子，你才能寫出這個類別。這代表，你得先圈畫出你想要解決的問題領域，然後從這個領域範圍裡蒐集所有的相關需求，最後從需求裡面作職責分工、分類。</p>
+<p>所以，是的，你得先知道你想創造類別的特徵跟分類定義，才能打造這個模子，你才能寫出這個類別。這代表，你得先圈畫出你想要解決的問題領域，然後從這個領域範圍裡蒐集所有的相關需求，最後從需求裡面作職責分工、分類。</p>
 
-<p>程式的類別同時滿足了現實世界中人為分類跟生物分類的特性。人為分類滿足的就是先設計，再批次製造。生物分類重要的特性是演化，也就是程式中提到的繼承。</p>
+<p>程式的類別，就是讓程式設計師可以「創造」一種分類，同時滿足了現實世界中人為分類跟生物分類的特性。人為分類滿足的就是先設計，再批次製造。生物分類重要的特性是演化，也就是程式中提到的繼承。</p>
 
 <h2>繼承(Inheritance)</h2>
 
@@ -66,7 +66,7 @@
 
 <p>但是在這裡我們還是隨波逐流，使用繼承一詞。</p>
 
-<p>繼承是類別跟類別間的關係。衍生類別繼承了基礎類別，會有相同的特徵(feature)。接著子類別可以以這個為基礎，繼續擴充、發展自己的獨特特徵。衍生類別雖然不能放棄繼承，但是可以改造這個特徵。程式的世界叫做覆寫( Override)。舉例來說，你遺傳(extends)了你爸爸的單眼皮，你可以請專業醫美改造(override)成雙眼皮，但是你還是有眼皮(特徵)。又或者，人類遺傳了靈長類的特徵，但是又發展出「直立行走」、「語言」等特徵。</p>
+<p>繼承是類別跟類別間的關係。衍生類別繼承了基礎類別，會有相同的特徵(feature)。接著衍生類別可以以這個為基礎，繼續擴充、發展自己的獨特特徵。衍生類別雖然不能放棄繼承，但是可以改造這個特徵。程式的世界叫做覆寫( Override)。舉例來說，你遺傳(extends)了你爸爸的單眼皮，你可以請專業醫美改造(override)成雙眼皮，但是你還是有眼皮(特徵)。又或者另外一個例子，人類遺傳了靈長類的特徵，但是又改變了走路方式，變成「直立行走」。</p>
 
 <p>在物件導向的世界裡，透過繼承，是實現重用性(reusability)的方式之一。讓已存在的功能或流程得以被重複使用，而不用重複開發。</p>
 
@@ -88,15 +88,19 @@
 <p>用來規範程式必須滿足的功能或者界面。簡單地說，就是用來定義規格的玩意兒。ex: USB 的開發規格書。透過規格的定義，可以不用理會實作的細節，用的人只知道產品有支援某規格，就可以依照該規格定義的方法使用
 這個產品。</p>
 
-<h2>封裝(Encapsulation)</h2>
+<h2>封裝性(Encapsulation)</h2>
+
+<p>封裝是一種特性，意思是隱藏細節。給使用者該知道的、該碰的，其餘他們不需要接觸的，一律隱藏(封)起來。</p>
 
 <p>使用的人不用管這個東西如何製造(Process)、實作，只要知道怎麼用它(Input)，用了它會有什麼結果就好(Output)。我們只要知道將 USB 插上電腦就能讓我們存取 USB 裡的資料就好，至於各家的 USB 電路怎麼設計，我們不用知道。這樣隨身碟廠商想要更換內部電路設計(改變實作方式)，不用通知我們。我們之間沒有藕斷絲連，這就是所謂的降低耦合度(decoupling)。</p>
 
-<p>所以看得出來，介面主打的特性之一就是封裝。類別透過 private 屬性搭配 public getter/setter method，也能達到封裝的效果。</p>
+<p>與其說這是物件導向的特性，不如說這是設計應該有良好的特性。</p>
+
+<p>介面主打的特性之一就是封裝，透過規格的制定，使用的人知道他該知道的 I/O，開發者也知道他該滿足哪些 I/O，這樣就好了。透過類別的存取控制，你也可以設計出封裝性。</p>
 
 <h2>實作(implementation)</h2>
 
-<p>宣告遵守某個規格，並且開發/實作出(implements)該規格規範的功能。ex: 每一個實際的 USB 。都是 USB 規格的實作(成品)。</p>
+<p>宣告遵守某個規格，並且開發/實作出(implements)該規格規範的功能。ex: 每一個實際的 USB 裝置。都是 USB 規格的實作(成品)。</p>
 
 <h2>多型(polymorphism)</h2>
 
@@ -139,7 +143,7 @@
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Male.java </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Man.java </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -158,7 +162,7 @@
 <span class='line-number'>16</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Male</span> <span class="kd">extends</span> <span class="n">People</span> <span class="o">{</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Man</span> <span class="kd">extends</span> <span class="n">People</span> <span class="o">{</span>
 </span><span class='line'>    <span class="cm">/**</span>
 </span><span class='line'><span class="cm">     * &amp;lt;pre&amp;gt;</span>
 </span><span class='line'><span class="cm">     * 喊叫</span>
@@ -174,7 +178,7 @@
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Female.java </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Woman.java </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -193,7 +197,7 @@
 <span class='line-number'>16</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Female</span> <span class="kd">extends</span> <span class="n">People</span> <span class="o">{</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Woman</span> <span class="kd">extends</span> <span class="n">People</span> <span class="o">{</span>
 </span><span class='line'>    <span class="cm">/**</span>
 </span><span class='line'><span class="cm">     * &amp;lt;pre&amp;gt;</span>
 </span><span class='line'><span class="cm">     * 喊叫</span>
@@ -264,8 +268,8 @@
 </span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>        <span class="n">PeoplePolyDemo</span> <span class="n">demo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PeoplePolyDemo</span><span class="o">();</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="n">demo</span><span class="o">.</span><span class="na">addPeople</span><span class="o">(</span><span class="k">new</span> <span class="n">Male</span><span class="o">());</span>
-</span><span class='line'>        <span class="n">demo</span><span class="o">.</span><span class="na">addPeople</span><span class="o">(</span><span class="k">new</span> <span class="n">Femail</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">demo</span><span class="o">.</span><span class="na">addPeople</span><span class="o">(</span><span class="k">new</span> <span class="n">Man</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">demo</span><span class="o">.</span><span class="na">addPeople</span><span class="o">(</span><span class="k">new</span> <span class="n">Woman</span><span class="o">());</span>
 </span><span class='line'>
 </span><span class='line'>        <span class="n">demo</span><span class="o">.</span><span class="na">shoutTogether</span><span class="o">();</span>
 </span><span class='line'>    <span class="o">}</span>
@@ -275,7 +279,7 @@
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-你會看到 shoutTogether 雖然是使用 People 類別執行 shout 動作。可是卻是叫出該性別真正的叫聲。只要你是人，我就可以請你叫，如果你是男人你就會叫出男人的聲音，如果你是女人，就會用女人的叫法。這就是我說的<code>以抽象之名，行具體之實</code>。身為使用者，只要管你是不是特定能力的基礎類別，至於物件怎麼執行，就看物件實際的狀況。這邊的抽象不只限於類別，也包含介面。</p>
+執行程式碼之後，你會看到 shoutTogether 雖然是使用 People 類別執行 shout 動作。可是卻是叫出該性別真正的叫聲。只要你是人，我就可以請你叫，至於發出什麼叫聲，就看你實際是男是女。站在使用者的角度來看，呼叫的都是同一個類別；站在結果來看，卻是各自的實際類別做動作。這就是我說的<code>以抽象之名，行具體之實</code>。Java 裡的抽象，不只是類別，使用抽象一樣可以達到多型。</p>
 
 <h2>Why 物件導向</h2>
 

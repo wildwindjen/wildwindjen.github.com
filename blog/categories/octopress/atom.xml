@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-05-01T22:16:42+08:00</updated>
+  <updated>2013-05-19T23:27:25+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -153,13 +153,25 @@ googleplus_comments: true
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>
-</span><span class='line'>{% codeblock [標題] [lang:language] [url] [link text] %}
-</span><span class='line'>程式碼
-</span><span class='line'>{% endcodeblock %}
+</span><span class='line'>&lt;/code>&lt;/pre>
 </span><span class='line'>
+</span><span class='line'>&lt;p>{% codeblock [標題] [lang:language] [url] [link text] %}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>程式碼
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>{% endcodeblock %}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>
 </span><span class='line'>&lt;/code>&lt;/pre>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -204,10 +216,10 @@ googleplus_comments: true
 <span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>&lt;script type="text/javascript"&gt;
-</span><span class='line'>$('a[href^="http://"]').attr("target", "_blank");
-</span><span class='line'>&lt;/script&gt;
-</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>&lt;script type="text/javascript">
+</span><span class='line'>    $('a[href^="http://"]').attr("target", "_blank");
+</span><span class='line'>&lt;/script>
+</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>

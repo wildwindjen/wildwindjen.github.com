@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-05-19T23:31:19+08:00</updated>
+  <updated>2013-06-07T14:59:43+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -973,7 +973,7 @@ git clone git@github.com:wildwindjen/wildwindjen.github.com.git _deploy
 
 
 <pre>
-gem install bundler
+gem install bundler --source http://rubygems.org
 bundle install
 rake install
 </pre>

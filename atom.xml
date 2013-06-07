@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-06-07T15:06:31+08:00</updated>
+  <updated>2013-06-07T15:09:07+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -994,7 +994,7 @@ set LANG=zh_TW.UTF-8
 
 <ul>
 <li>安裝 Git</li>
-<li>安裝 GitHubSetup (解決 ssh 設定議題)</li>
+<li>安裝 GitHubSetup (解決 ssh 設定，之後上傳的帳密請使用 github 登入用的信箱及密碼)</li>
 <li>安裝 Ruby</li>
 <li>安裝 DevKit</li>
 <li>先不走 ssl 機制</li>

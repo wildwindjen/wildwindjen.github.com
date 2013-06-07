@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-06-07T15:10:11+08:00</updated>
+  <updated>2013-06-07T15:11:51+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -395,6 +395,7 @@ set LANG=zh_TW.UTF-8
 <li>安裝 GitHubSetup (解決 ssh 設定，之後上傳的帳密請使用 github 登入用的帳密)</li>
 <li>安裝 Ruby</li>
 <li>安裝 DevKit</li>
+<li>安裝 Python</li>
 <li>先不走 ssl 機制</li>
 </ul>
 
@@ -410,7 +411,7 @@ git config --global http.sslVerify false
 
 
 <pre>
-git clone -b source git@github.com:wildwindjen/wildwindjen.github.com.git octopress
+git clone -b source  https://github.com/wildwindjen/wildwindjen.github.com.git octopress
 </pre>
 
 

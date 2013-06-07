@@ -1184,6 +1184,65 @@ git clone git@github.com:wildwindjen/wildwindjen.github.com.git _deploy
 
 
 <pre>
+gem install bundler
+bundle install
+rake install
+</pre>
+
+
+<ul>
+<li>重設編碼 (如果跟我一樣是在 windows 上面測試的話。)</li>
+</ul>
+
+
+<pre>
+set LC_ALL=zh_TW.UTF-8
+set LANG=zh_TW.UTF-8
+</pre>
+
+
+<h2>取回(在不是很自由的環境下)</h2>
+
+<ul>
+<li>安裝 Git</li>
+<li>安裝 GitHubSetup (解決 ssh 設定議題)</li>
+<li>安裝 Ruby</li>
+<li>安裝 DevKit</li>
+<li>先不走 ssl 機制</li>
+</ul>
+
+
+<pre>
+git config --global http.sslVerify false
+</pre>
+
+
+<ul>
+<li>取回 source</li>
+</ul>
+
+
+<pre>
+git clone -b source git@github.com:wildwindjen/wildwindjen.github.com.git octopress
+</pre>
+
+
+<ul>
+<li>切換到 octopress 目錄裡面</li>
+</ul>
+
+
+<pre>
+cd octopress
+</pre>
+
+
+<ul>
+<li>重新安裝必要的環境及設定</li>
+</ul>
+
+
+<pre>
 gem install bundler --source http://rubygems.org
 bundle install
 rake install

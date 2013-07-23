@@ -53,3 +53,33 @@ rake install
 set LC_ALL=zh_TW.UTF-8
 set LANG=zh_TW.UTF-8
 </pre>
+
+##取回(在不是很自由的環境下)
++ 安裝 Git
++ 安裝 GitHubSetup (解決 ssh 設定，之後上傳的帳密請使用 github 登入用的帳密)
++ 安裝 Ruby
++ 安裝 DevKit
++ 安裝 Python
++ 先不走 ssl 機制
+<pre>
+git config --global http.sslVerify false
+</pre>
++ 取回 source
+<pre>
+git clone -b source  https://github.com/wildwindjen/wildwindjen.github.com.git octopress
+</pre>
++ 切換到 octopress 目錄裡面
+<pre>
+cd octopress
+</pre>
++ 重新安裝必要的環境及設定
+<pre>
+gem install bundler --source http://rubygems.org
+bundle install
+rake install
+</pre>
++ 重設編碼 (如果跟我一樣是在 windows 上面測試的話。)
+<pre>
+set LC_ALL=zh_TW.UTF-8
+set LANG=zh_TW.UTF-8
+</pre>

@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Wild Wind</title>
+  <meta name="author" content="Wildwind Jen">
+
+  
+  <meta name="description" content="總結 此篇低原創性，非喜誤入。 因為某些原因，需要研究 Hibernate。所以參考 Hibernate Gossip: 第一個 Hibernate，做些實驗跟記錄。應該會記好長~好長的一陣子吧&#8230; 下載 Hibernate 3.6.10 解壓縮
+copy 出 hibernate3. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wildwindjen.github.io/blog/page/3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Wild Wind</a></h1>
+  
+    <h2>Look down, look down. Don't look 'em in the eye....</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:wildwindjen.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/29/first-hibernate/">First Hibernate</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-29T17:43:00+08:00" pubdate data-updated="true">2013-04-29 17:43</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>總結</h2>
+
+<pre>
+此篇低原創性，非喜誤入。
+</pre>
+
+
+<p>因為某些原因，需要研究 Hibernate。所以參考 <a href="http://openhome.cc/Gossip/HibernateGossip/FirstHibernate.html" title="Hibernate Gossip: 第一個 Hibernate">Hibernate Gossip: 第一個 Hibernate</a>，做些實驗跟記錄。應該會記好長~好長的一陣子吧&#8230;</p>
+
+<h2>下載 Hibernate 3.6.10</h2>
+
+<ul>
+<li>解壓縮</li>
+<li>copy 出 hibernate3.jar</li>
+<li>copy 出 lib/required/*.jar</li>
+<li>copy 出 lib/jpa/*.jar ，話說這個是必要的，為什麼不是放在 required 裡啊？沒加進來出現下面的錯：</li>
+</ul>
+
+
+<pre>
+java.lang.NoClassDefFoundError: javax/persistence/EntityListeners
+</pre>
+
+
+<h2>建立表格</h2>
+
+<ul>
+<li>注意 id 要 auto_increment，不然晚點會報無法寫入的錯： <code>Field 'id' doesn't have a default value</code></li>
+</ul>
+
+
+<pre>
+    Exception in thread "main" org.hibernate.exception.GenericJDBCException: could not insert: [hbm.User]
+        at org.hibernate.exception.SQLStateConverter.handledNonSpecificException(SQLStateConverter.java:140)
+        at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:128)
+        at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+        at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:63)
+        at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2346)
+        at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2853)
+        at org.hibernate.action.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:71)
+        at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:273)
+        at org.hibernate.event.def.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:320)
+        at org.hibernate.event.def.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:203)
+        at org.hibernate.event.def.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:129)
+        at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.saveWithGeneratedOrRequestedId(DefaultSaveOrUpdateEventListener.java:210)
+        at org.hibernate.event.def.DefaultSaveEventListener.saveWithGeneratedOrRequestedId(DefaultSaveEventListener.java:56)
+        at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.entityIsTransient(DefaultSaveOrUpdateEventListener.java:195)
+        at org.hibernate.event.def.DefaultSaveEventListener.performSaveOrUpdate(DefaultSaveEventListener.java:50)
+        at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.onSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:93)
+        at org.hibernate.impl.SessionImpl.fireSave(SessionImpl.java:713)
+        at org.hibernate.impl.SessionImpl.save(SessionImpl.java:701)
+        at org.hibernate.impl.SessionImpl.save(SessionImpl.java:697)
+        at hbm.HibernateDemo.main(HibernateDemo.java:17)
+    Caused by: java.sql.SQLException: Field 'id' doesn't have a default value
+        at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1073)
+        at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3609)
+        at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3541)
+        at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2002)
+        at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2163)
+        at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2624)
+        at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2127)
+        at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2427)
+        at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2345)
+        at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2330)
+        at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:93)
+        at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:56)
+        ... 16 more
+</pre>
+
+
+<h2>開發</h2>
+
+<ul>
+<li>新增 Java Project</li>
+<li>把剛剛 copy 出了 jar 加進 Build Path</li>
+<li>新增的兩個 xml 在 src/ 下。不然會報找不到這個錯： <code>/hibernate.cfg.xml not found</code></li>
+</ul>
+
+
+<pre>
+    Exception in thread "main" java.lang.ExceptionInInitializerError
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:13)
+        at hbm.HibernateDemo.main(HibernateDemo.java:13)
+    Caused by: org.hibernate.HibernateException: /hibernate.cfg.xml not found
+        at org.hibernate.util.ConfigHelper.getResourceAsStream(ConfigHelper.java:170)
+        at org.hibernate.cfg.Configuration.getConfigurationInputStream(Configuration.java:2176)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2157)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2137)
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:10)
+        ... 1 more
+</pre>
+
+
+<p>或者 <code>User.hbm.xml not found</code></p>
+
+<pre>
+    Exception in thread "main" java.lang.ExceptionInInitializerError
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:13)
+        at hbm.HibernateDemo.main(HibernateDemo.java:13)
+    Caused by: org.hibernate.MappingNotFoundException: resource: User.hbm.xml not found
+        at org.hibernate.cfg.Configuration.addResource(Configuration.java:799)
+        at org.hibernate.cfg.Configuration.parseMappingElement(Configuration.java:2344)
+        at org.hibernate.cfg.Configuration.parseSessionFactory(Configuration.java:2310)
+        at org.hibernate.cfg.Configuration.doConfigure(Configuration.java:2290)
+        at org.hibernate.cfg.Configuration.doConfigure(Configuration.java:2243)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2158)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2137)
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:10)
+        ... 1 more
+</pre>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>A little something about me.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/16/maven-install/">馬糞(Maven)初體驗</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/30/object-oriented/">物件導向</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/29/first-hibernate/">First Hibernate</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/28/customize-octopress-by-self/">Customize Octopress by Self</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/27/customize-octopress-by-config/">Customize Octopress by Configuration</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/26/get-back-octopress/">Get Octopress Back</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Recent Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>Java (1)</a></li>
+<li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
+<li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+
+  </ul>
+</section>
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/100969928606487922294?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Wildwind Jen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

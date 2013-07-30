@@ -9,8 +9,7 @@
   <meta name="author" content="Wildwind Jen">
 
   
-  <meta name="description" content="總結 天行健，君子以自戕不息。
-有產出，就應該有回收，維持循環的地獄。 都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。 備份 stage octopress 裡面的檔案 git add . &hellip;">
+  <meta name="description" content="總結 女為悅己者容。 這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。 外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,7 +71,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/04/26/get-back-octopress/">Get Octopress Back</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/04/27/customize-octopress-by-config/">Customize Octopress by Configuration</a></h1>
     
     
       <p class="meta">
@@ -88,7 +87,7 @@
   
 
 
-<time datetime="2013-04-26T23:58:00+08:00" pubdate data-updated="true">2013-04-26 23:58</time>
+<time datetime="2013-04-27T18:49:00+08:00" pubdate data-updated="true">2013-04-27 18:49</time>
         
       </p>
     
@@ -98,159 +97,54 @@
   <div class="entry-content"><h2>總結</h2>
 
 <pre>
-天行健，君子以自戕不息。
-有產出，就應該有回收，維持循環的地獄。
+女為悅己者容。
 </pre>
 
 
-<p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
+<p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
 
-<h2>備份</h2>
+<p>外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件，發現常用的東西要客製化也算簡單，真的深入一點可能就得要會 Ruby 打造術了吧。我不會 Ruby，暫時也還沒有計畫去研究，所以我想要先從內建的機制下手: _config.xml。再加上一些些基本 css 和圖片的調整，應該可以有個不太一樣的東西。</p>
+
+<p>功能部分，看了 _config.xml 的設定項目，發現還內建了好幾個 plugin。最開心的是有 syntax highlighting 的部分。這真的是想要做程式相關分享的一大福音啊。</p>
+
+<h2>日期格式</h2>
+
+<p>我對日期格式有一種莫名的偏執。</p>
 
 <ul>
-<li>stage octopress 裡面的檔案</li>
+<li>參考 <a href="http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime" title="Ruby Doc datetime format">Ruby Doc</a></li>
+<li>打開 _config.xml 修改成:</li>
 </ul>
 
 
 <pre>
-git add .
+date_format: "%Y-%m-%d %H:%M"
 </pre>
 
 
+<h2>留言討論 - 預設的 Disqus</h2>
+
+<p>內建的討論串機制是使用 disqus，要設定真的超級簡單的。假設是沒有 Disqus 帳號的人:</p>
+
 <ul>
-<li>commit 檔案到本地檔案庫，並且填寫描述訊息。</li>
+<li>註冊帳號。</li>
+<li>去註冊信箱收信，並且啟動帳號。</li>
+<li>登入 Disqus。點選「Dashboard」功能。</li>
+<li>登入首頁左上方有個 「register a site」的連結。</li>
+<li>填入 Site URL 和 Site Name 就會自動產生 short name 資訊。點選 continue 之後，隨便選就好，只是要產生你要放的 code。可是我們用不到。</li>
+<li>把 short name 填入 _config.xml 裡:</li>
 </ul>
 
 
 <pre>
-git commit -m "備份 source"
+disqus_short_name: short name
+disqus_show_comment_count: true
 </pre>
 
 
 <ul>
-<li>從本地檔案庫推到遠端檔案庫，並且指名放在 source branch 裡面。</li>
+<li>是的，這樣就行了，只要執行 deploy 就可以看到下面有 disqus comments 囉。</li>
 </ul>
-
-
-<pre>
-git push origin source
-</pre>
-
-
-<h2>取回</h2>
-
-<ul>
-<li>假設現在換了一台電腦(先把原本的 octopress 更名)</li>
-<li>先從 source branch 複製一份回來，放到 octopress 目錄裡。</li>
-</ul>
-
-
-<pre>
-git clone -b source git@github.com:wildwindjen/wildwindjen.github.com.git octopress
-</pre>
-
-
-<ul>
-<li>切換到 octopress 目錄裡面</li>
-</ul>
-
-
-<pre>
-cd octopress
-</pre>
-
-
-<ul>
-<li>從 master branch 複製一份回來，放到 _deploy 目錄裡。(之前 rake deploy 就是把資料推到 master 裡。)</li>
-</ul>
-
-
-<pre>
-git clone git@github.com:wildwindjen/wildwindjen.github.com.git _deploy 
-</pre>
-
-
-<ul>
-<li>重新安裝必要的環境及設定</li>
-</ul>
-
-
-<pre>
-gem install bundler
-bundle install
-rake install
-</pre>
-
-
-<ul>
-<li>重設編碼 (如果跟我一樣是在 windows 上面測試的話。)</li>
-</ul>
-
-
-<pre>
-set LC_ALL=zh_TW.UTF-8
-set LANG=zh_TW.UTF-8
-</pre>
-
-
-<h2>取回(在不是很自由的環境下)</h2>
-
-<ul>
-<li>安裝 Git</li>
-<li>安裝 GitHubSetup (解決 ssh 設定，之後上傳的帳密請使用 github 登入用的帳密)</li>
-<li>安裝 Ruby</li>
-<li>安裝 DevKit</li>
-<li>安裝 Python</li>
-<li>先不走 ssl 機制</li>
-</ul>
-
-
-<pre>
-git config --global http.sslVerify false
-</pre>
-
-
-<ul>
-<li>取回 source</li>
-</ul>
-
-
-<pre>
-git clone -b source  https://github.com/wildwindjen/wildwindjen.github.com.git octopress
-</pre>
-
-
-<ul>
-<li>切換到 octopress 目錄裡面</li>
-</ul>
-
-
-<pre>
-cd octopress
-</pre>
-
-
-<ul>
-<li>重新安裝必要的環境及設定</li>
-</ul>
-
-
-<pre>
-gem install bundler --source http://rubygems.org
-bundle install
-rake install
-</pre>
-
-
-<ul>
-<li>重設編碼 (如果跟我一樣是在 windows 上面測試的話。)</li>
-</ul>
-
-
-<pre>
-set LC_ALL=zh_TW.UTF-8
-set LANG=zh_TW.UTF-8
-</pre>
 
 </div>
   
@@ -280,6 +174,10 @@ set LANG=zh_TW.UTF-8
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/30/migrate-tomcat-webapp-to-maven-qa/">Migrate Tomcat Webapp to Maven QA</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/16/maven-install/">馬糞(Maven)初體驗</a>
       </li>
     
@@ -299,17 +197,15 @@ set LANG=zh_TW.UTF-8
         <a href="/blog/2013/04/27/customize-octopress-by-config/">Customize Octopress by Configuration</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/04/26/get-back-octopress/">Get Octopress Back</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Recent Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
+    <li class='category'><a href='/blog/categories/build-tool/'>Build Tool (2)</a></li>
+<li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
 <li class='category'><a href='/blog/categories/java/'>Java (1)</a></li>
+<li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
 <li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
 <li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>

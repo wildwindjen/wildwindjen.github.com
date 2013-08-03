@@ -1,3 +1,42 @@
 {% comment %}
   Add content to be output at the bottom of each page. (You might use this for analytics scripts, for example)
 {% endcomment %}
+<!-- wildwindjen octopress 新增 google comments, ref: http://blog.justin.kelly.org.au/google-plus-octopress/  -->
+{% if page.comments == true and site.googleplus_comments_link == true %}
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function() {
+    //$post_title = $('header .entry-title').text();
+    //$post_domain = document.domain;
+    if( jQuery('article').hasClass('hentry') )
+    {
+        //$post_link = encodeURI(jQuery(location).attr('href'));
+		$post_link = window.location.pathname;
+        $gp_url = jQuery('.googleplus h1 a').attr('href');
+        $google_plus_id = $gp_url.split('/')[3].split('?')[0] ;
+
+        $google_query_url = "https://www.googleapis.com/plus/v1/activities?query=" +
+                            $post_link +
+                            "&maxResults=20&orderBy=best&fields=id%2Citems(actor(displayName%2Cid%2Curl)" +
+                            "%2Cid%2Cobject(attachments(id%2Curl)%2Curl))%2Ctitle&key=AIzaSyC3hMvbqSXNZC_2tWSCmneQ9oPpPRFrj3E";
+
+        jQuery.getJSON($google_query_url,
+            function(data) {
+                jQuery.each(data.items, function(i,item){
+                    if(item.actor.id == $google_plus_id)
+                    {
+                        //jQuery('.entry-content').append( "<p>對於此篇有話想說？請來 <a href='" + item.object.url +"' target='_blank'>Google+ post</a>。</p>");
+						jQuery('footer p.meta').first().append( "<span class='byline author vcard'> * 對於此篇有話想說？請來 <a href='" + item.object.url +"' target='_blank'>Google+ post</a>。</span>");
+                        return false;
+                    }
+                });
+            });
+    };
+});
+</script>
+{% endif %}
+
+<script type="text/javascript">
+	$('a[href^="http://"]').attr("target", "_blank");
+	$('a[href^="https://"]').attr("target", "_blank");
+</script>

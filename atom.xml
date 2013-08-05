@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-07-30T10:25:10+08:00</updated>
+  <updated>2013-08-05T10:07:41+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -14,16 +14,447 @@
 
   
   <entry>
+    <title type="html"><![CDATA[First Maven Accomplishment]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/08/05/first-maven-accomplishment/"/>
+    <updated>2013-08-05T09:30:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/08/05/first-maven-accomplishment</id>
+    <content type="html"><![CDATA[<h2>總結</h2>
+
+<blockquote><p>我是個現實主義者，我喜歡目前自己所從事的一切，並對此始終深信不疑。 &#8211; 巴菲特。</p></blockquote>
+
+<p>從做中學累積經驗真的很快，但是沒記下來，就等於沒有。這段期間歷經了幾個問題：</p>
+
+<ol>
+<li>編碼議題 (properties)</li>
+<li>如何建立本地函示庫 (repository)</li>
+<li>特定函式庫只想要支援 compile 階段，但是 package、deploy 不包含。(scope)</li>
+<li>FCKeditor 不想要用它依賴的 slf4j-api 版本。(exclusions)</li>
+<li>依照佈署環境產生不同的設定檔。(profiles)</li>
+</ol>
+
+
+<p>有些問題之前已經在 <a href="http://wildwindjen.github.io/blog/2013/07/30/migrate-tomcat-webapp-to-maven-qa/">Migrate Tomcat Webapp to Maven QA</a> 分享過了，所以直接看成品囉。</p>
+
+<h2>成品</h2>
+
+<figure class='code'><figcaption><span>google plus comments </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+</span><span class='line'>  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+</span><span class='line'>  &lt;modelVersion>4.0.0&lt;/modelVersion>
+</span><span class='line'>  &lt;groupId>wild.wind&lt;/groupId>
+</span><span class='line'>  &lt;artifactId>WildTest&lt;/artifactId>
+</span><span class='line'>  &lt;packaging>war&lt;/packaging>
+</span><span class='line'>  &lt;version>1.0-SNAPSHOT&lt;/version>
+</span><span class='line'>  &lt;name>WildTest Maven Webapp&lt;/name>
+</span><span class='line'>  &lt;url>http://maven.apache.org&lt;/url>
+</span><span class='line'>  &lt;!-- -->
+</span><span class='line'>  &lt;properties>
+</span><span class='line'>      &lt;project.build.sourceEncoding>UTF-8&lt;/project.build.sourceEncoding>
+</span><span class='line'>      &lt;project.reporting.outputEncoding>UTF-8&lt;/project.reporting.outputEncoding>
+</span><span class='line'>  &lt;/properties>
+</span><span class='line'>
+</span><span class='line'>  &lt;repositories>
+</span><span class='line'>      &lt;!-- 建立 Local 函示庫 -->
+</span><span class='line'>      &lt;repository>
+</span><span class='line'>          &lt;id>ProjectRepo&lt;/id>
+</span><span class='line'>          &lt;name>ProjectRepo&lt;/name>
+</span><span class='line'>          &lt;url>file:///${project.basedir}/libs&lt;/url>
+</span><span class='line'>      &lt;/repository>
+</span><span class='line'>  &lt;/repositories>
+</span><span class='line'>
+</span><span class='line'>  &lt;dependencies>
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>junit&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>junit&lt;/artifactId>
+</span><span class='line'>          &lt;version>3.8.1&lt;/version>
+</span><span class='line'>          &lt;scope>test&lt;/scope>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;!-- servlet, tomcat 本身應該要有，所以指定 provided -->
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>javax.servlet&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>servlet-api&lt;/artifactId>
+</span><span class='line'>          &lt;version>2.5&lt;/version>
+</span><span class='line'>          &lt;scope>provided&lt;/scope>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;!-- jsp, tomcat 本身應該要有，所以指定 provided -->
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>javax.servlet&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>jsp-api&lt;/artifactId>
+</span><span class='line'>          &lt;version>2.0&lt;/version>
+</span><span class='line'>          &lt;scope>provided&lt;/scope>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;!-- MySQL JDBC, 模擬佈署環境 tomcat 自己放，所以指定 provided -->
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>mysql&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>mysql-connector-java&lt;/artifactId>
+</span><span class='line'>          &lt;version>5.2.18&lt;/version>
+</span><span class='line'>          &lt;scope>provided&lt;/scope>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;!-- Oracle JDBC, 模擬佈署環境 tomcat 自己放，所以指定 provided -->
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>oracle&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>ojdbc14&lt;/artifactId>
+</span><span class='line'>          &lt;version>1.0&lt;/version>
+</span><span class='line'>          &lt;scope>provided&lt;/scope>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;!-- Struts -->
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>struts&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>struts&lt;/artifactId>
+</span><span class='line'>          &lt;version>1.2.0&lt;/version>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;!-- FCKeditor, 改用比較新的 slf4j-api -->
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>net.fckeditor&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>java-core&lt;/artifactId>
+</span><span class='line'>          &lt;version>2.0&lt;/version>
+</span><span class='line'>          &lt;exclusions>
+</span><span class='line'>              &lt;exclusion>
+</span><span class='line'>                  &lt;groupId>org.slf4j&lt;/groupId>
+</span><span class='line'>                  &lt;artifactId>slf4j-api&lt;/artifactId>
+</span><span class='line'>              &lt;/exclusion>
+</span><span class='line'>          &lt;/exclusions>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>      
+</span><span class='line'>      &lt;!-- slf -->
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>org.slf4j&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>slf4j-api&lt;/artifactId>
+</span><span class='line'>          &lt;version>1.5.8&lt;/version>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>org.slf4j&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>slf4j-simple&lt;/artifactId>
+</span><span class='line'>          &lt;version>1.5.8&lt;/version>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;!-- 去 Local 函示庫找 Jar 檔 -->
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>wild&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>wind&lt;/artifactId>
+</span><span class='line'>          &lt;version>1.0&lt;/version>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>wild&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>wild&lt;/artifactId>
+</span><span class='line'>          &lt;version>1.0&lt;/version>
+</span><span class='line'>          &lt;classifier>encode&lt;/classifier>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>
+</span><span class='line'>      &lt;dependency>
+</span><span class='line'>          &lt;groupId>wild&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>wild&lt;/artifactId>
+</span><span class='line'>          &lt;version>1.0&lt;/version>
+</span><span class='line'>          &lt;classifier>decode&lt;/classifier>
+</span><span class='line'>      &lt;/dependency>
+</span><span class='line'>  &lt;/dependencies>
+</span><span class='line'>  
+</span><span class='line'>  &lt;profiles>
+</span><span class='line'>      &lt;!-- 本機開發設定檔 -->
+</span><span class='line'>      &lt;profile>
+</span><span class='line'>          &lt;id>dev_local&lt;/id>
+</span><span class='line'>          &lt;activation> &lt;!-- 預設使用此設定檔 -->
+</span><span class='line'>              &lt;activeByDefault>true&lt;/activeByDefault>
+</span><span class='line'>          &lt;/activation>
+</span><span class='line'>          &lt;build>
+</span><span class='line'>              &lt;plugins>
+</span><span class='line'>                  &lt;plugin>
+</span><span class='line'>                      &lt;groupId>org.apache.maven.plugins&lt;/groupId>
+</span><span class='line'>                      &lt;artifactId>maven-war-plugin&lt;/artifactId>
+</span><span class='line'>                      &lt;version>2.2&lt;/version>
+</span><span class='line'>                      &lt;configuration>
+</span><span class='line'>                          &lt;webResources>
+</span><span class='line'>                              &lt;resource>
+</span><span class='line'>                                  &lt;directory>src/main/webconf/dev_local&lt;/directory>
+</span><span class='line'>                                  &lt;targetPath>WEB-INF&lt;/targetPath>
+</span><span class='line'>                              &lt;/resource>
+</span><span class='line'>                          &lt;/webResources>
+</span><span class='line'>                      &lt;/configuration>
+</span><span class='line'>                  &lt;/plugin>
+</span><span class='line'>              &lt;/plugins>
+</span><span class='line'>          &lt;/build>
+</span><span class='line'>      &lt;/profile>
+</span><span class='line'>      
+</span><span class='line'>      &lt;!-- 線上設定檔 -->
+</span><span class='line'>      &lt;profile>
+</span><span class='line'>          &lt;id>prod&lt;/id>
+</span><span class='line'>          &lt;build>
+</span><span class='line'>              &lt;plugins>
+</span><span class='line'>                  &lt;plugin>
+</span><span class='line'>                      &lt;groupId>org.apache.maven.plugins&lt;/groupId>
+</span><span class='line'>                      &lt;artifactId>maven-war-plugin&lt;/artifactId>
+</span><span class='line'>                      &lt;version>2.4&lt;/version>
+</span><span class='line'>                      &lt;configuration>
+</span><span class='line'>                          &lt;webResources>
+</span><span class='line'>                              &lt;resource>
+</span><span class='line'>                                  &lt;directory>src/main/webconf/prod&lt;/directory>
+</span><span class='line'>                                  &lt;targetPath>WEB-INF&lt;/targetPath>
+</span><span class='line'>                              &lt;/resource>
+</span><span class='line'>                          &lt;/webResources>
+</span><span class='line'>                      &lt;/configuration>
+</span><span class='line'>                  &lt;/plugin>
+</span><span class='line'>              &lt;/plugins>
+</span><span class='line'>          &lt;/build>
+</span><span class='line'>      &lt;/profile>
+</span><span class='line'>  &lt;/profiles>
+</span><span class='line'>
+</span><span class='line'>  &lt;build>
+</span><span class='line'>      &lt;finalName>WildTest&lt;/finalName>
+</span><span class='line'>  &lt;/build>
+</span><span class='line'>&lt;/project></span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Do The Right Thing]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/08/03/do-the-right-thing/"/>
+    <updated>2013-08-03T22:10:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/08/03/do-the-right-thing</id>
+    <content type="html"><![CDATA[<h2>我對洪案的看法</h2>
+
+<p>沒有真相。是的，質疑很多、爆料很多，但是沒人可以打包票說這些就是事實。這段期間多多少少會關注一下這方面的消息，從媒體、社群，甚至是軍旅版的爆掛。</p>
+
+<p>這些八卦消息，其實大多數根本未經證實，其中很多訊息只是單純揣測，甚至有不少負面消息與本案無關，但是從社群網路、BBS 討論回文，會發現人群已經有人未審先判，幫部分人士定罪了。</p>
+
+<blockquote><p>你腦中只出現一個解釋，卻不知還有另一個解釋的可能性存在。</p></blockquote>
+
+<p>在【快思慢想】的【驟下結論的機制】這個章節，有這幾段文字：</p>
+
+<blockquote><p>人們依已知的訊息建構出合理故事的連貫性，增強了他們的信心。這跟故事的一致性有關，跟完整性無關。</p></blockquote>
+
+<p>也跟這些訊息是否為事實無關。</p>
+
+<p>有著相同情緒的人，各自提出自己但是雷同的推理版本，加強了情節的一致性。所以部分的人相信了，這個推斷但是未經證實的版本。「魔頭」、「幫兇」、「冷血」，是真的嗎？有沒有可能是每個人犯一堆小錯，所以堆疊出這個大錯？</p>
+
+<p>你可能會說，雖然是推斷，但是很有可能。</p>
+
+<p>我從不否認可能性，但是再多的可能都是未經證實。只是如果這些推測版本，真的不是事實，當有一天，真相真的出現在眼前的時候，你的心，還有空間容得下嗎？</p>
+
+<p>無論如何，心中必須畫下一條線，清楚哪些是確定的、哪些未確定的，才能冷靜思考，不被情緒左右，不被大腦操弄。</p>
+
+<p>勿枉。勿縱。這不只是軍方該持有的標準，也是你我該追求的目標。</p>
+
+<h2>上街頭的理由</h2>
+
+<p>那為什麼我今天要上街頭？因為我覺得這個過度封閉的系統，真的需要改革。</p>
+
+<blockquote><p>只看到一方證據的受試者，比看到兩造證據的受試者，對自己的判斷更具信心。</p></blockquote>
+
+<p>今天我看到的，就是這樣的情境。為什麼這麼多人相信自己的推測？因為沒有對等、對立的訊息量，來證實或推翻這些揣測。為什麼沒有該出現的訊息？今晚的貼紙很中肯：</p>
+
+<p><img class="center" src="http://wildwindjen.github.io/images/wildwind/do_the_right_thing/reason.jpg" width="600" height="350" title="reason" alt="reason"></p>
+
+<p>為什麼要積極追查真相這麼難？為什麼一個受害者家屬服喪期間，可以作的事比一個組織還多？為什麼一個受害者家屬展現出來的，還比較頭腦清醒且理智？</p>
+
+<p>這麼龐大的組織，擁有這麼大的權力、這麼多的資源，卻如此鈍化，幾乎沒有什麼作為。如果不是推理版本所謂的「黑暗」，那除了「疏懶」，真的找不出其他的解釋。造成今日這種局面，我只能說國防部活該。</p>
+
+<p>以我所知道的事實，我所看到的部分，我上街頭的理由，是針對這個扭曲的制度、不透明的組織文化，而不是那群人。</p>
+
+<p>這次活動的訴求很中肯，而且真的冷靜理性和平：</p>
+
+<p><img class="center" src="http://wildwindjen.github.io/images/wildwind/do_the_right_thing/ask.jpg" width="600" height="350" title="ask" alt="ask"></p>
+
+<h2>其實我不熱血</h2>
+
+<p>這次出去，身邊的人說我熱血。其實我不認為我熱血，既沒衝勁，也很平和。</p>
+
+<p>我只是認知到不能漠視這個土地的事情，這個年紀了，要有這個國家當家世代的自覺。那群老的陸陸續續會退下來，我們這個世代的早就該學著接棒。其實早就不是個小孩子，之前都渾渾噩噩的，但是 30 歲了，不能再對這塊土地漠不關心。如果我們這個世代還是像小孩一樣對這個社會冷淡、對這個國家一無所知，只會人云亦云，未來會如何？</p>
+
+<p>我不是熱血，我只是在學習承擔責任而已。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Migrate Tomcat Webapp to Maven QA]]></title>
     <link href="http://wildwindjen.github.io/blog/2013/07/30/migrate-tomcat-webapp-to-maven-qa/"/>
     <updated>2013-07-30T09:22:00+08:00</updated>
     <id>http://wildwindjen.github.io/blog/2013/07/30/migrate-tomcat-webapp-to-maven-qa</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-我有預感，這只是個開始。-- 毛利小五郎。
-</pre>
-
+<blockquote><p>我有預感，這只是個開始。&#8211; 毛利小五郎。</p></blockquote>
 
 <p>工作上做了點嘗試，把剛接手的專案，試著導入 Maven 。因為想要針對一團亂的外部函式庫做管理。而馬糞，是我第一個想到的。倉促之下，只能先做問題集的整理。</p>
 
@@ -182,10 +613,7 @@
     <id>http://wildwindjen.github.io/blog/2013/05/16/maven-install</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-當個新時代的糞青。
-</pre>
-
+<blockquote><p>當個新時代的糞青。</p></blockquote>
 
 <p>知道馬糞這個東西很久了，最近突然想起來，開始來玩看看。當然，會突然想起他，是因為想要拿來管理一些手上的專案。Maven 是一個軟體專案管理工具，除了軟體建構(Building)、測試、打包、佈署以外，還包含套件依賴性解決以及軟體分享的特性，定位其實跟 ANT 等 Building Tool 不太一樣。</p>
 
@@ -460,10 +888,7 @@ mvn compiler:help
     <id>http://wildwindjen.github.io/blog/2013/04/30/object-oriented</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-「只重其義，不重其招，你忘記所有招式，就練成了！ 」「你記住了沒？」 --  張三豐。
-</pre>
-
+<blockquote><p>「只重其義，不重其招，你忘記所有招式，就練成了！ 」「你記住了沒？」 &#8211;  張三豐。</p></blockquote>
 
 <p>這篇是因為我必須要在部門裡面作教育訓練，對於物件導向要怎麼上手，整理出來的心得。重點不在於教物件導向是什麼，而是分享經驗，讓想學物件導向的人，知道如何少繞一點路，減輕一點混亂。如果你是那種搞不懂類別和物件的區別、對多型還是霧颯颯的，你可以參考看看。</p>
 
@@ -836,10 +1261,7 @@ java.lang.NoClassDefFoundError: javax/persistence/EntityListeners
     <id>http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-士為悅己者死。
-</pre>
-
+<blockquote><p>士為悅己者死。</p></blockquote>
 
 <p>有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。</p>
 
@@ -996,10 +1418,7 @@ googleplus_comments: true
     <id>http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-女為悅己者容。
-</pre>
-
+<blockquote><p>女為悅己者容。</p></blockquote>
 
 <p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
 
@@ -1056,11 +1475,9 @@ disqus_show_comment_count: true
     <id>http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-天行健，君子以自戕不息。
-有產出，就應該有回收，維持循環的地獄。
-</pre>
+<blockquote><p>天行健，君子以自戕不息。</p>
 
+<p>有產出，就應該有回收，維持循環的地獄。</p></blockquote>
 
 <p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
 
@@ -1221,11 +1638,9 @@ set LANG=zh_TW.UTF-8
     <id>http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-不經一試，不長一智。
-結果是甜美的，過程是母親的。
-</pre>
+<blockquote><p>不經一試，不長一智。</p>
 
+<p>結果是甜美的，過程是母親的。</p></blockquote>
 
 <p>也不知道在失心瘋什麼，沒碰過 Git，也沒碰過 Ruby，居然學人家搞 octopress。不管怎樣，就這樣一路跌跌撞撞，不懂什麼就補齊什麼。也拼拼湊湊出來一些東西。就順便把經驗整理一下。</p>
 

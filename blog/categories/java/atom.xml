@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-07-30T10:25:10+08:00</updated>
+  <updated>2013-08-05T10:07:41+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -20,10 +20,7 @@
     <id>http://wildwindjen.github.io/blog/2013/04/30/object-oriented</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-「只重其義，不重其招，你忘記所有招式，就練成了！ 」「你記住了沒？」 --  張三豐。
-</pre>
-
+<blockquote><p>「只重其義，不重其招，你忘記所有招式，就練成了！ 」「你記住了沒？」 --  張三豐。</p></blockquote>
 
 <p>這篇是因為我必須要在部門裡面作教育訓練，對於物件導向要怎麼上手，整理出來的心得。重點不在於教物件導向是什麼，而是分享經驗，讓想學物件導向的人，知道如何少繞一點路，減輕一點混亂。如果你是那種搞不懂類別和物件的區別、對多型還是霧颯颯的，你可以參考看看。</p>
 

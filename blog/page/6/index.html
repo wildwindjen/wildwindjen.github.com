@@ -1,270 +1,281 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Wild Wind</title>
-  <meta name="author" content="Wildwind Jen">
+	<!-- 
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	-->
+	<meta charset="utf-8">
+	<title>Look down, look down. Don't look 'em in the eye....  | Wild Wind</title>
 
-  
-  <meta name="description" content="總結 女為悅己者容。 這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。 外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件， &hellip;">
-  
+<meta name="author" content="Wildwind Jen"> 
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Change Log in My Mind."> <meta name="keywords" content="">
 
-  
-  <link rel="canonical" href="http://wildwindjen.github.io/blog/page/6">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+	<link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+	<script src="/javascripts/libs/jquery.min.js"></script>
+	<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js"></script>
 
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+	
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Wild Wind</a></h1>
-  
-    <h2>Look down, look down. Don't look 'em in the eye....</h2>
-  
-</hgroup>
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Wild Wind</a></h1>
+<h4>Look down, look down. Don't look 'em in the eye....</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">最新發表</a></li>
+	<li><a href="/archives">所有文章</a></li>
+	<li><a href="/about">關於阿丞</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">最新發表</a></li>
+	<li><a href="/archives">所有文章</a></li>
+	<li><a href="/about">關於阿丞</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:wildwindjen.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:wildwindjen.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/27/customize-octopress-by-config/">Customize Octopress by Configuration</a></h1>
-    
-    
-      <p class="meta">
-        
+	<div id="content" class="inner">
 
 
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-27T18:49:00+08:00" pubdate data-updated="true">2013-04-27 18:49</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>總結</h2>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/04/29/first-hibernate/">
+		
+			First Hibernate</a>
+	</h2>
+	<div class="entry-content">
+		<h2>總結</h2>
 
 <pre>
-女為悅己者容。
+此篇低原創性，非喜誤入。
 </pre>
 
 
-<p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
+<p>因為某些原因，需要研究 Hibernate。所以參考 <a href="http://openhome.cc/Gossip/HibernateGossip/FirstHibernate.html" title="Hibernate Gossip: 第一個 Hibernate">Hibernate Gossip: 第一個 Hibernate</a>，做些實驗跟記錄。應該會記好長~好長的一陣子吧&#8230;</p>
 
-<p>外表部分，其實早在安裝 octopress 之前看過一輪網路上的參考，就知道預設版型都一樣，不像 wordpress，還有得挑。所以想要有點個人特色，就得靠自己樣樣來。不過看了官方文件，發現常用的東西要客製化也算簡單，真的深入一點可能就得要會 Ruby 打造術了吧。我不會 Ruby，暫時也還沒有計畫去研究，所以我想要先從內建的機制下手: _config.xml。再加上一些些基本 css 和圖片的調整，應該可以有個不太一樣的東西。</p>
-
-<p>功能部分，看了 _config.xml 的設定項目，發現還內建了好幾個 plugin。最開心的是有 syntax highlighting 的部分。這真的是想要做程式相關分享的一大福音啊。</p>
-
-<h2>日期格式</h2>
-
-<p>我對日期格式有一種莫名的偏執。</p>
+<h2>下載 Hibernate 3.6.10</h2>
 
 <ul>
-<li>參考 <a href="http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime" title="Ruby Doc datetime format">Ruby Doc</a></li>
-<li>打開 _config.xml 修改成:</li>
+<li>解壓縮</li>
+<li>copy 出 hibernate3.jar</li>
+<li>copy 出 lib/required/*.jar</li>
+<li>copy 出 lib/jpa/*.jar ，話說這個是必要的，為什麼不是放在 required 裡啊？沒加進來出現下面的錯：</li>
 </ul>
 
 
 <pre>
-date_format: "%Y-%m-%d %H:%M"
+java.lang.NoClassDefFoundError: javax/persistence/EntityListeners
 </pre>
 
 
-<h2>留言討論 - 預設的 Disqus</h2>
-
-<p>內建的討論串機制是使用 disqus，要設定真的超級簡單的。假設是沒有 Disqus 帳號的人:</p>
+<h2>建立表格</h2>
 
 <ul>
-<li>註冊帳號。</li>
-<li>去註冊信箱收信，並且啟動帳號。</li>
-<li>登入 Disqus。點選「Dashboard」功能。</li>
-<li>登入首頁左上方有個 「register a site」的連結。</li>
-<li>填入 Site URL 和 Site Name 就會自動產生 short name 資訊。點選 continue 之後，隨便選就好，只是要產生你要放的 code。可是我們用不到。</li>
-<li>把 short name 填入 _config.xml 裡:</li>
+<li>注意 id 要 auto_increment，不然晚點會報無法寫入的錯： <code>Field 'id' doesn't have a default value</code></li>
 </ul>
 
 
 <pre>
-disqus_short_name: short name
-disqus_show_comment_count: true
+    Exception in thread "main" org.hibernate.exception.GenericJDBCException: could not insert: [hbm.User]
+        at org.hibernate.exception.SQLStateConverter.handledNonSpecificException(SQLStateConverter.java:140)
+        at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:128)
+        at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+        at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:63)
+        at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2346)
+        at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2853)
+        at org.hibernate.action.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:71)
+        at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:273)
+        at org.hibernate.event.def.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:320)
+        at org.hibernate.event.def.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:203)
+        at org.hibernate.event.def.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:129)
+        at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.saveWithGeneratedOrRequestedId(DefaultSaveOrUpdateEventListener.java:210)
+        at org.hibernate.event.def.DefaultSaveEventListener.saveWithGeneratedOrRequestedId(DefaultSaveEventListener.java:56)
+        at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.entityIsTransient(DefaultSaveOrUpdateEventListener.java:195)
+        at org.hibernate.event.def.DefaultSaveEventListener.performSaveOrUpdate(DefaultSaveEventListener.java:50)
+        at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.onSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:93)
+        at org.hibernate.impl.SessionImpl.fireSave(SessionImpl.java:713)
+        at org.hibernate.impl.SessionImpl.save(SessionImpl.java:701)
+        at org.hibernate.impl.SessionImpl.save(SessionImpl.java:697)
+        at hbm.HibernateDemo.main(HibernateDemo.java:17)
+    Caused by: java.sql.SQLException: Field 'id' doesn't have a default value
+        at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1073)
+        at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3609)
+        at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3541)
+        at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2002)
+        at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2163)
+        at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2624)
+        at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2127)
+        at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2427)
+        at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2345)
+        at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2330)
+        at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:93)
+        at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:56)
+        ... 16 more
 </pre>
 
 
+<h2>開發</h2>
+
 <ul>
-<li>是的，這樣就行了，只要執行 deploy 就可以看到下面有 disqus comments 囉。</li>
+<li>新增 Java Project</li>
+<li>把剛剛 copy 出了 jar 加進 Build Path</li>
+<li>新增的兩個 xml 在 src/ 下。不然會報找不到這個錯： <code>/hibernate.cfg.xml not found</code></li>
 </ul>
+
+
+<pre>
+    Exception in thread "main" java.lang.ExceptionInInitializerError
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:13)
+        at hbm.HibernateDemo.main(HibernateDemo.java:13)
+    Caused by: org.hibernate.HibernateException: /hibernate.cfg.xml not found
+        at org.hibernate.util.ConfigHelper.getResourceAsStream(ConfigHelper.java:170)
+        at org.hibernate.cfg.Configuration.getConfigurationInputStream(Configuration.java:2176)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2157)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2137)
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:10)
+        ... 1 more
+</pre>
+
+
+<p>或者 <code>User.hbm.xml not found</code></p>
+
+<pre>
+    Exception in thread "main" java.lang.ExceptionInInitializerError
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:13)
+        at hbm.HibernateDemo.main(HibernateDemo.java:13)
+    Caused by: org.hibernate.MappingNotFoundException: resource: User.hbm.xml not found
+        at org.hibernate.cfg.Configuration.addResource(Configuration.java:799)
+        at org.hibernate.cfg.Configuration.parseMappingElement(Configuration.java:2344)
+        at org.hibernate.cfg.Configuration.parseSessionFactory(Configuration.java:2310)
+        at org.hibernate.cfg.Configuration.doConfigure(Configuration.java:2290)
+        at org.hibernate.cfg.Configuration.doConfigure(Configuration.java:2243)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2158)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2137)
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:10)
+        ... 1 more
+</pre>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-29T17:43:00+08:00" pubdate data-updated="true">2013-04-29 17:43</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/hibernate/'>Hibernate</a>, <a class='category' href='/blog/categories/orm/'>ORM</a>
+
 
 </div>
-  
-  
+	
+</div></article>
 
+<nav id="pagenavi">
+    
+        <a href="/blog/page/5/" class="prev">Prev</a>
+    
+    
+        <a href="/blog/page/7/" class="next">Next</a>
+    
+    <div class="center"><a href="/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2013
 
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/7/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/blog/page/5/">Newer &rarr;</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>About Me</h1>
-  <p>A little something about me.</p>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/07/30/migrate-tomcat-webapp-to-maven-qa/">Migrate Tomcat Webapp to Maven QA</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/16/maven-install/">馬糞(Maven)初體驗</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/30/object-oriented/">物件導向</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/29/first-hibernate/">First Hibernate</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/28/customize-octopress-by-self/">Customize Octopress by Self</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/27/customize-octopress-by-config/">Customize Octopress by Configuration</a>
-      </li>
-    
-  </ul>
-</section>
-<section>
-  <h1>Recent Categories</h1>
-  <ul id="categories">
-    <li class='category'><a href='/blog/categories/build-tool/'>Build Tool (2)</a></li>
-<li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
-<li class='category'><a href='/blog/categories/java/'>Java (1)</a></li>
-<li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
-<li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
-<li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+    Wildwind Jen
 
-  </ul>
-</section>
-
-
-<section class="googleplus googleplus-hidden">
-  <h1>
-    <a href="https://plus.google.com/100969928606487922294?rel=author">
-      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
-      Google+
-    </a>
-  </h1>
-</section>
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Wildwind Jen -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
+<br>
+Powered by Octopress.
 </footer>
-  
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
 
 
 
 
 
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
+<!-- wildwindjen octopress 新增 google comments, ref: http://blog.justin.kelly.org.au/google-plus-octopress/  -->
 
 </body>
 </html>

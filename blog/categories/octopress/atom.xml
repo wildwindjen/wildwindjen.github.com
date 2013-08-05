@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-07-30T10:25:10+08:00</updated>
+  <updated>2013-08-05T10:07:41+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -20,10 +20,7 @@
     <id>http://wildwindjen.github.io/blog/2013/04/28/customize-octopress-by-self</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-士為悅己者死。
-</pre>
-
+<blockquote><p>士為悅己者死。</p></blockquote>
 
 <p>有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。</p>
 
@@ -232,10 +229,7 @@ googleplus_comments: true
     <id>http://wildwindjen.github.io/blog/2013/04/27/customize-octopress-by-config</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-女為悅己者容。
-</pre>
-
+<blockquote><p>女為悅己者容。</p></blockquote>
 
 <p>這一部份是記錄研究如何客製化成我想要的樣子。先搞定功能的部分。</p>
 
@@ -292,11 +286,9 @@ disqus_show_comment_count: true
     <id>http://wildwindjen.github.io/blog/2013/04/26/get-back-octopress</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-天行健，君子以自戕不息。
-有產出，就應該有回收，維持循環的地獄。
-</pre>
+<blockquote><p>天行健，君子以自戕不息。</p>
 
+<p>有產出，就應該有回收，維持循環的地獄。</p></blockquote>
 
 <p>都放上去 GitHub 了，總得演練怎麼拿回來。下面補充上一篇沒有提到的備份(octopress 官網建議的方式)，並且示範怎麼把備份的東西重新拿回來。</p>
 
@@ -457,11 +449,9 @@ set LANG=zh_TW.UTF-8
     <id>http://wildwindjen.github.io/blog/2013/04/25/first-octopress-at-github</id>
     <content type="html"><![CDATA[<h2>總結</h2>
 
-<pre>
-不經一試，不長一智。
-結果是甜美的，過程是母親的。
-</pre>
+<blockquote><p>不經一試，不長一智。</p>
 
+<p>結果是甜美的，過程是母親的。</p></blockquote>
 
 <p>也不知道在失心瘋什麼，沒碰過 Git，也沒碰過 Ruby，居然學人家搞 octopress。不管怎樣，就這樣一路跌跌撞撞，不懂什麼就補齊什麼。也拼拼湊湊出來一些東西。就順便把經驗整理一下。</p>
 

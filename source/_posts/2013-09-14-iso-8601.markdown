@@ -1,0 +1,77 @@
+---
+layout: post
+title: "ISO 8601"
+date: 2013-09-14 22:22
+comments: true
+categories: 
+- Java
+- DateTime
+- DataType
+---
+## 事出
+前陣子，工作上遇到一個 Java 定義的 Web Service API，其中一個欄位對方是使用 Calendar 定義出來的日期格式欄位。結果使用 Soup UI 怎麼餵常用的日期格式都不對。直到使用了 ISO 8601 日期格式：
+`2013-09-14T21:32:08.000+0800`。代表的是當地時間 2013-09-14 21:32:08，當地位處於時區 +08:00。
+
+直接去查詢 [XML 使用的 DataType][xml_datatype]，其實就會看見「使用 ISO 8601 表示日期時間」的字樣。接著再去看看維基上 [ISO 8601][iso8601]的介紹，其實就不用花太多時間走冤枉路了。
+
+當初則是直接 Java gen code，然後去看底層才知道要餵這個格式。雖然有試著查這個格式叫什麼名字，只是未果。反而是今天研究 JavaScript 才直到這個格式叫 ISO 8601。只能說冥冥之中，老天待我不薄。
+
+
+## ISO 8601
+`2013-09-14T00:00:00.000+0800` (當地時間) 或者 `2013-09-14T00:00:00.000Z` (UTC 時間)
+
+這個格式唯一好奇的是 T 和 Z。原來在 ISO 8601 裡， T 叫做 `time designator`，用來指明要開始表示時間了，所以 T 後面就是接時間。
+
+Z 叫做 `zone designator`，用來代表使用 [UTC(Coordinated Universal Time)][utc] 表示，UTC 時間 `2013-09-14T00:00:00.000Z` 意義等同 `2013-09-14T00:00:00.000+0000`。因為軍事上 Z 使用 UTC，發音 zulu ，所以又稱為 zulu time。當地時間裡的 +hhmm 代表時間快 UTC hh時mm分，如果是 -hhmm，就是慢 UTC hh時mm分。意謂著 `2013-09-14T00:00:00.000Z` 和 `2013-09-14T00:08:00.000+0800` 實際上才是同一個時間點。
+
+ISO 8601 規格裡提到，使用 local time 表示時，zone designator 應該留白。不過我 gen code 出來的看到的格式卻是 `2013-09-14T00:08:00.000+0800Z`，這倒是個謎，不知道會以誰為主。另一個謎就是爲什麼 UTC 縮寫跟原本單字順序不合？
+
+
+## ISO 8601 format String with Java
+以下嘗試使用 Java 取得 ISO 8601 格式的字串，第一個從網路抄過來的。我自己是比較喜歡第三個和第四個。沒辦法，用 DateFormat 用習慣了。不過 JDK 6 (含)以前要完美地轉換大概沒辦法達成，因為底層其實支援的是 RFC 822 ，而不是 ISO 8601，要到 JDK 7 才開始支援。所以網路有人推薦使用 Joda 這個函式庫來處理，因為日期議題比想像中得複雜許多。
+
+{% codeblock google plus comments %}
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
+
+public class ISO8601Demo {
+	public static Date d = new Date();
+	public static String getISO8601Format1() { return String.format("%tFT%<tRZ", d); }
+	public static String getISO8601Format2() { return String.format("%tFT%<tH:%<tM:%<tS.%<tLZ", d); }
+	public static String getISO8601Format3() { 
+	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'");
+	    return df.format(d);
+	}
+	public static String getISO8601Format4() { 
+	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SZ");
+	    return df.format(d);
+	}
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		System.out.println(d);
+		System.out.println(ISO8601Demo.getISO8601Format1());
+		System.out.println(ISO8601Demo.getISO8601Format2());
+		System.out.println(ISO8601Demo.getISO8601Format3());
+		System.out.println(ISO8601Demo.getISO8601Format4());
+	}
+}
+{% endcodeblock %}
+
+
+## 其他參考
+
+* [Java String Format](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax)
+* [Java-Two 2013 Joda Slide](http://jay-fva.blogspot.tw/2010/02/24gmtutc.html)
+* [時區的概念](http://jay-fva.blogspot.tw/2010/02/24gmtutc.html)
+* [Java ISO 8601 的複雜](http://stackoverflow.com/questions/2201925/converting-iso8601-compliant-string-to-java-util-date)
+
+[iso8601]: http://zh.wikipedia.org/wiki/ISO_8601  "ISO 8601"
+[xml_datatype]: http://www.w3.org/TR/xmlschema-2/#dateTime "XML DataType"
+[utc]: http://zh.wikipedia.org/zh-hant/%E5%8D%8F%E8%B0%83%E4%B8%96%E7%95%8C%E6%97%B6 "UTC"
+

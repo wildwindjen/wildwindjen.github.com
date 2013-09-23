@@ -65,7 +65,9 @@ github_skip_forks: true
 
 # Twitter
 twitter_user: wildwindjen
-twitter_tweet_button: false
+twitter_tweet_button: true
+twitter_tweet_count: 6
+twitter_show_replies: 1
 
 # Google +1
 google_plus_one: true

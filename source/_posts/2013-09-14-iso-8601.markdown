@@ -9,7 +9,7 @@ categories:
 - DataType
 ---
 ## 事出
-前陣子，工作上遇到一個 Java 定義的 Web Service API，其中一個欄位對方是使用 Calendar 定義出來的日期格式欄位。結果使用 Soup UI 怎麼餵常用的日期格式都不對。直到使用了 ISO 8601 日期格式：
+前陣子，工作上遇到一個 Java 定義的 Web Service API，其中一個欄位對方是使用 Calendar 定義出來的日期格式欄位。結果使用 Soup UI 怎麼餵常見的日期格式都不對。直到使用了 ISO 8601 日期格式：
 `2013-09-14T21:32:08.000+0800`。代表的是當地時間 2013-09-14 21:32:08，當地位處於時區 +08:00。
 
 直接去查詢 [XML 使用的 DataType][xml_datatype]，其實就會看見「使用 ISO 8601 表示日期時間」的字樣。接著再去看看維基上 [ISO 8601][iso8601]的介紹，其實就不用花太多時間走冤枉路了。
@@ -22,9 +22,9 @@ categories:
 
 這個格式唯一好奇的是 T 和 Z。原來在 ISO 8601 裡， T 叫做 `time designator`，用來指明要開始表示時間了，所以 T 後面就是接時間。
 
-Z 叫做 `zone designator`，用來代表使用 [UTC(Coordinated Universal Time)][utc] 表示，UTC 時間 `2013-09-14T00:00:00.000Z` 意義等同 `2013-09-14T00:00:00.000+0000`。因為軍事上 Z 使用 UTC，發音 zulu ，所以又稱為 zulu time。當地時間裡的 +hhmm 代表時間快 UTC hh時mm分，如果是 -hhmm，就是慢 UTC hh時mm分。意謂著 `2013-09-14T00:00:00.000Z` 和 `2013-09-14T00:08:00.000+0800` 實際上才是同一個時間點。
+Z 叫做 `zone designator`，代表使用 [UTC(Coordinated Universal Time)][utc] 表示。UTC 時間 `2013-09-14T00:00:00.000Z` 意義等同 `2013-09-14T00:00:00.000+0000`。因為軍事上使用 Z 表示 UTC，發音 zulu ，所以又稱為 zulu time。當地時間裡的 +hhmm 代表時間快 UTC hh時mm分，如果是 -hhmm，就是慢 UTC hh時mm分。意謂著 `2013-09-14T00:00:00.000Z` 和 `2013-09-14T00:08:00.000+0800` 實際上才是同一個時間點。
 
-ISO 8601 規格裡提到，使用 local time 表示時，zone designator 應該留白。不過我 gen code 出來的看到的格式卻是 `2013-09-14T00:08:00.000+0800Z`，這倒是個謎，不知道會以誰為主。另一個謎就是爲什麼 UTC 縮寫跟原本單字順序不合？
+ISO 8601 規格裡提到，使用 local time 表示時，zone designator 應該留白。有一個謎，就是爲什麼 UTC 縮寫跟原本單字順序不合？
 
 
 ## ISO 8601 format String with Java

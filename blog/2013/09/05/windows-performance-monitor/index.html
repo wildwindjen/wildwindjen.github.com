@@ -1,0 +1,265 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<!-- 
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	-->
+	<meta charset="utf-8">
+	<title>Windows Performance Monitor  | Wild Wind</title>
+
+<meta name="author" content="Wildwind Jen"> 
+
+<meta name="description" content="Change Log in My Mind."> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+	<script src="/javascripts/libs/jquery.min.js"></script>
+	<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Wild Wind</a></h1>
+<h4>Look down, look down. Don't look 'em in the eye....</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">最新發表</a></li>
+	<li><a href="/archives">所有文章</a></li>
+	<li><a href="/about">關於阿丞</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">最新發表</a></li>
+	<li><a href="/archives">所有文章</a></li>
+	<li><a href="/about">關於阿丞</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:wildwindjen.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Windows Performance Monitor</h2>
+	<div class="entry-content"><h2>總結</h2>
+
+<blockquote><p>I&#8217;m Watching You。</p></blockquote>
+
+<p>當想要監控系統的效能時，總是需要一些工具。目前使用的主要還是 Windows。針對 Windows 的資源監控工具作點紀錄。</p>
+
+<h2>Windows Performance Monitor</h2>
+
+<ol>
+<li>啟動 perfmon (或 perfmon.msc)</li>
+<li>點選效能監視器</li>
+<li>右鍵【新增計數器】</li>
+</ol>
+
+
+<h2>typeperf</h2>
+
+<p>perfmon 對應到 typeperf 的指令</p>
+
+<p>我把他分兩類：有例項和沒有例項。</p>
+
+<p>有例項：
+typeperf &#8220;\物件(例項)\計數器&#8221;
+例如：</p>
+
+<pre>
+typeperf "\Processor Information(_Total)\% Idle Time"
+</pre>
+
+
+<p>沒有例項：
+typeperf &#8220;\物件\計數器&#8221;
+例如：</p>
+
+<pre>
+typeperf "\TCPv6\Connection Failures"
+</pre>
+
+
+<h3>typeperf 相關參數</h3>
+
+<p>typeperf -h 可以看到還有一個完整路徑的寫法：</p>
+
+<figure class='code'><figcaption><span>typeperf </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>計數器是效能計數器的完整名稱，格式為
+</span><span class='line'>"\\&lt;Computer>\&lt;Object>(&lt;Instance>)\&lt;Counter>"  ，
+</span><span class='line'>例如 "\\Server1\Processor(0)\% User Time"。</span></code></pre></td></tr></table></div></figure>
+
+
+<p>用來查詢所有的計數器：</p>
+
+<pre>
+typeperf -q
+</pre>
+
+
+<p></p>
+
+<p>用來查詢該物件所有的計數器：</p>
+
+<pre>
+typeperf -q 物件
+</pre>
+
+
+<p>用來查詢該物件所有的例項與計數器組合：</p>
+
+<pre>
+typeperf -qx 物件
+</pre>
+
+
+<p>例項使用星號(*)，代表監控全部例項：</p>
+
+<pre>
+typeperf "\Processor Information(*)\% Idle Time"
+</pre>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-05T21:55:00+08:00" pubdate data-updated="true">2013-09-05 21:55</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/performance/'>Performance</a>
+
+
+</div>
+	
+	<br />
+	<b>== 所有分類 ==</b>
+	<li class='category'><a href='/blog/categories/build-tool/'>Build Tool (3)</a></li>
+<li class='category'><a href='/blog/categories/datatype/'>DataType (1)</a></li>
+<li class='category'><a href='/blog/categories/datetime/'>DateTime (1)</a></li>
+<li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
+<li class='category'><a href='/blog/categories/javascript/'>JavaScript (2)</a></li>
+<li class='category'><a href='/blog/categories/life/'>Life (1)</a></li>
+<li class='category'><a href='/blog/categories/maven/'>Maven (3)</a></li>
+<li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
+<li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/performance/'>Performance (1)</a></li>
+
+
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<!-- Google Comments, by wildwindjen -->
+
+<!-- Google Comments end --></div>
+	<footer id="footer" class="inner">Copyright &copy; 2013
+
+    Wildwind Jen
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+<!-- wildwindjen octopress 新增 google comments, ref: http://blog.justin.kelly.org.au/google-plus-octopress/  -->
+
+</body>
+</html>

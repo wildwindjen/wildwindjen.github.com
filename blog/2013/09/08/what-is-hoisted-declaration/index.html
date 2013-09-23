@@ -1,0 +1,311 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<!-- 
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	-->
+	<meta charset="utf-8">
+	<title>what is hoisted declaration  | Wild Wind</title>
+
+<meta name="author" content="Wildwind Jen"> 
+
+<meta name="description" content="Change Log in My Mind."> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+	<script src="/javascripts/libs/jquery.min.js"></script>
+	<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Wild Wind</a></h1>
+<h4>Look down, look down. Don't look 'em in the eye....</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">最新發表</a></li>
+	<li><a href="/archives">所有文章</a></li>
+	<li><a href="/about">關於阿丞</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">最新發表</a></li>
+	<li><a href="/archives">所有文章</a></li>
+	<li><a href="/about">關於阿丞</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:wildwindjen.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">What Is Hoisted Declaration</h2>
+	<div class="entry-content"><h2>Variable Hoisted</h2>
+
+<p>猜猜看以下的程式，答案是什麼？</p>
+
+<figure class='code'><figcaption><span>variable hoisted sample 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var a = 1;
+</span><span class='line'>function t(){
+</span><span class='line'>  console.log(a);
+</span><span class='line'>  var a = 2;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>t();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>事實上他等同以下程式，JavaScript 底層把宣告的動作自動往上提(hoisted)了。</p>
+
+<figure class='code'><figcaption><span>variable hoisted sample 2 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var a = 1;
+</span><span class='line'>function t(){
+</span><span class='line'>  var a;          // declaration hoisted!!
+</span><span class='line'>  console.log(a);
+</span><span class='line'>  var a = 2;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>t();</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Function Hoisted</h2>
+
+<h3>兩種函式定義</h3>
+
+<p>要說明 Function Hoisted 之前，我們拿兩種定義方式來比較： function definition 和 function declaration。</p>
+
+<figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var f = function(){ 
+</span><span class='line'>  return 1;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以及</p>
+
+<figure class='code'><figcaption><span>function declaration </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function f(){ 
+</span><span class='line'>  return 1;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>兩種函式的 Hoist 比較</h3>
+
+<p>以下結果是 <code>TypeError: undefined is not a function</code>。確實 var b 往上提了，可是函式主體沒有，所以呼叫了 undefined 當函式。</p>
+
+<figure class='code'><figcaption><span>function hoisted sample 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){
+</span><span class='line'>      console.log('w1');
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>function a(){
+</span><span class='line'>  b();
+</span><span class='line'>  var b = function(){
+</span><span class='line'>      console.log('w2');
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>a();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果是使用 function declaration，則結果可以正常執行，執行的 b() 會是 w2。因為除了內部的 function b 宣告以外，連函式主體，都往上提了。</p>
+
+<figure class='code'><figcaption><span>function hoisted sample 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){
+</span><span class='line'>      console.log('w1');
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>function a(){
+</span><span class='line'>  b();
+</span><span class='line'>  function b(){
+</span><span class='line'>      console.log('w2');
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>a();</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-08T22:13:00+08:00" pubdate data-updated="true">2013-09-08 22:13</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+
+
+</div>
+	
+	<br />
+	<b>== 所有分類 ==</b>
+	<li class='category'><a href='/blog/categories/build-tool/'>Build Tool (3)</a></li>
+<li class='category'><a href='/blog/categories/datatype/'>DataType (1)</a></li>
+<li class='category'><a href='/blog/categories/datetime/'>DateTime (1)</a></li>
+<li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
+<li class='category'><a href='/blog/categories/javascript/'>JavaScript (2)</a></li>
+<li class='category'><a href='/blog/categories/life/'>Life (1)</a></li>
+<li class='category'><a href='/blog/categories/maven/'>Maven (3)</a></li>
+<li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
+<li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/performance/'>Performance (1)</a></li>
+
+
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<!-- Google Comments, by wildwindjen -->
+
+<!-- Google Comments end --></div>
+	<footer id="footer" class="inner">Copyright &copy; 2013
+
+    Wildwind Jen
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+<!-- wildwindjen octopress 新增 google comments, ref: http://blog.justin.kelly.org.au/google-plus-octopress/  -->
+
+</body>
+</html>

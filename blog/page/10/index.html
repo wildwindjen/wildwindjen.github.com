@@ -101,279 +101,120 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/04/25/first-octopress-at-github/">
+		<a href="/blog/2013/04/29/first-hibernate/">
 		
-			First Octopress at GitHub</a>
+			First Hibernate</a>
 	</h2>
 	<div class="entry-content">
 		<h2>總結</h2>
 
-<blockquote><p>不經一試，不長一智。</p>
-
-<p>結果是甜美的，過程是母親的。</p></blockquote>
-
-<p>也不知道在失心瘋什麼，沒碰過 Git，也沒碰過 Ruby，居然學人家搞 octopress。不管怎樣，就這樣一路跌跌撞撞，不懂什麼就補齊什麼。也拼拼湊湊出來一些東西。就順便把經驗整理一下。</p>
-
-<p>在有 proxy 的環境下安裝(ex: 公司)，跟 github 有相關的操作，統一改用 HTTPS 會比較沒問題。在家的話，基本上隨便 google 參考都可以裝成功。因為之前找到的資料幾乎都是 SSH ，反而因為比較少 HTTPS 的方式。以下就直接拿 HTTPS 的建立方式作分享，因為這個方式在家也適用。</p>
-
-<h2>我的環境</h2>
-
-<ul>
-<li>OS: Window XP</li>
-<li>Git: Git-1.8.1.2-preview20130201</li>
-<li>Ruby: Ruby 1.93</li>
-</ul>
-
-
-<h2>GitHub</h2>
-
-<ul>
-<li>去 <a href="http://github.com" title="GitHub">GitHub</a></li>
-<li>沒帳號就申請帳號</li>
-<li>創建帳號後，登入，然後建立一個 Repository，名字叫做 your_github_id.github.com。 (例如我的就是 wildwindjen.github.com)</li>
-</ul>
-
-
-<h2>安裝 Git</h2>
-
-<ul>
-<li>下載 <a href="http://git-scm.com/" title="Git">Git</a></li>
-<li>直接執行安裝檔，中間除了我想讓 Path 找得到 git ，有改過這頁的設定(Run Git from the Windows Command Prompt)，其他步驟都是預設值。</li>
-</ul>
-
-
-<h2>設定 GitHub SSH Key (這一段是想走 SSH 的人要做的)</h2>
-
-<ul>
-<li>參考 <a href="https://help.github.com/articles/generating-ssh-keys" title="generating-ssh-keys">generating-ssh-keys</a></li>
-<li>打開 Git Bash</li>
-</ul>
-
-
 <pre>
-    cd ~/.ssh
+此篇低原創性，非喜誤入。
 </pre>
 
 
-<p>如果沒有的話就自己建立一個 .ssh
-+ 產生 ssh key</p>
+<p>因為某些原因，需要研究 Hibernate。所以參考 <a href="http://openhome.cc/Gossip/HibernateGossip/FirstHibernate.html" title="Hibernate Gossip: 第一個 Hibernate">Hibernate Gossip: 第一個 Hibernate</a>，做些實驗跟記錄。應該會記好長~好長的一陣子吧&#8230;</p>
+
+<h2>下載 Hibernate 3.6.10</h2>
+
+<ul>
+<li>解壓縮</li>
+<li>copy 出 hibernate3.jar</li>
+<li>copy 出 lib/required/*.jar</li>
+<li>copy 出 lib/jpa/*.jar ，話說這個是必要的，為什麼不是放在 required 裡啊？沒加進來出現下面的錯：</li>
+</ul>
+
 
 <pre>
-    ssh-keygen -t rsa -C "your_email@example.com"
+java.lang.NoClassDefFoundError: javax/persistence/EntityListeners
 </pre>
 
 
+<h2>建立表格</h2>
+
 <ul>
-<li>輸入你想輸入的密碼 passphrase (有寫比較安全，但也可以留空)</li>
-<li>複製產生出來的 key，以下的語法我在 window 7 可以執行，但是 XP 不行。(所以直接去 C:\Documents and Settings\wildwindjen.ssh\id_rsa.pub 用編輯器開檔，全選、複製就可以了。)</li>
+<li>注意 id 要 auto_increment，不然晚點會報無法寫入的錯： <code>Field 'id' doesn't have a default value</code></li>
 </ul>
 
 
 <pre>
-    clip < ~/.ssh/id_rsa.pub
+    Exception in thread "main" org.hibernate.exception.GenericJDBCException: could not insert: [hbm.User]
+        at org.hibernate.exception.SQLStateConverter.handledNonSpecificException(SQLStateConverter.java:140)
+        at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:128)
+        at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:66)
+        at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:63)
+        at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2346)
+        at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2853)
+        at org.hibernate.action.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:71)
+        at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:273)
+        at org.hibernate.event.def.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:320)
+        at org.hibernate.event.def.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:203)
+        at org.hibernate.event.def.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:129)
+        at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.saveWithGeneratedOrRequestedId(DefaultSaveOrUpdateEventListener.java:210)
+        at org.hibernate.event.def.DefaultSaveEventListener.saveWithGeneratedOrRequestedId(DefaultSaveEventListener.java:56)
+        at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.entityIsTransient(DefaultSaveOrUpdateEventListener.java:195)
+        at org.hibernate.event.def.DefaultSaveEventListener.performSaveOrUpdate(DefaultSaveEventListener.java:50)
+        at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.onSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:93)
+        at org.hibernate.impl.SessionImpl.fireSave(SessionImpl.java:713)
+        at org.hibernate.impl.SessionImpl.save(SessionImpl.java:701)
+        at org.hibernate.impl.SessionImpl.save(SessionImpl.java:697)
+        at hbm.HibernateDemo.main(HibernateDemo.java:17)
+    Caused by: java.sql.SQLException: Field 'id' doesn't have a default value
+        at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1073)
+        at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3609)
+        at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3541)
+        at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2002)
+        at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2163)
+        at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2624)
+        at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2127)
+        at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2427)
+        at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2345)
+        at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2330)
+        at org.hibernate.id.IdentityGenerator$GetGeneratedKeysDelegate.executeAndExtract(IdentityGenerator.java:93)
+        at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:56)
+        ... 16 more
 </pre>
 
 
-<ul>
-<li>登入 GitHub > Account Setting > SSH Keys，點選 Add SSH Keys 按鈕，名字亂取，把剛剛複製的貼上就好。</li>
-</ul>
-
-
-<h2>安裝 Ruby</h2>
+<h2>開發</h2>
 
 <ul>
-<li>參考這篇 <a href="http://itspg.github.io/blog/2012/02/29/octopress-on-windows-tutorial/" title="在windows上安裝octopress 新手教學 / 初學者指南">在windows上安裝octopress 新手教學 / 初學者指南</a></li>
-<li>下載 Ruby 和 DevKit</li>
-<li>安裝 Ruby ，一路上都是預設值。</li>
-<li>新增一個 devkit 目錄，解壓縮 DevKit 到這個目錄 devkit 裡面</li>
-<li>打開命令提示字元，切換目錄到 devkit，執行以下目錄，安裝開發用的工具：</li>
+<li>新增 Java Project</li>
+<li>把剛剛 copy 出了 jar 加進 Build Path</li>
+<li>新增的兩個 xml 在 src/ 下。不然會報找不到這個錯： <code>/hibernate.cfg.xml not found</code></li>
 </ul>
 
 
 <pre>
-    ruby dk.rb init
-    ruby dk.rb install
+    Exception in thread "main" java.lang.ExceptionInInitializerError
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:13)
+        at hbm.HibernateDemo.main(HibernateDemo.java:13)
+    Caused by: org.hibernate.HibernateException: /hibernate.cfg.xml not found
+        at org.hibernate.util.ConfigHelper.getResourceAsStream(ConfigHelper.java:170)
+        at org.hibernate.cfg.Configuration.getConfigurationInputStream(Configuration.java:2176)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2157)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2137)
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:10)
+        ... 1 more
 </pre>
 
 
-<ul>
-<li>更新 gem。</li>
-</ul>
-
+<p>或者 <code>User.hbm.xml not found</code></p>
 
 <pre>
-    gem update --system
-</pre>
-
-
-<h2>安裝 octopress</h2>
-
-<ul>
-<li>切換到你想要放 octopress 的目錄</li>
-<li>執行以下命令，注意到我這邊是使用 https。</li>
-</ul>
-
-
-<pre>
-    git clone https://github.com/imathis/octopress.git octopress
-    cd octopress
-    gem install bundler
-    bundle install
-    rake install
-</pre>
-
-
-<h2>設定 octopress</h2>
-
-<ul>
-<li>先設定 octopress 要放上去的 Repository</li>
-</ul>
-
-
-<pre>
-    rake setup_github_pages
-</pre>
-
-
-<ul>
-<li>接著會問你要對應的 github 路徑是哪一個，輸入 your_github_id.github.com 路徑。例如我的是長這樣：</li>
-</ul>
-
-
-<pre>
-    git@github.com:wildwindjen/wildwindjen.github.io
-</pre>
-
-
-<ul>
-<li>接著就可以打開 octopress/_config.xml 作其他的個人化設定。</li>
-</ul>
-
-
-<h2>撰寫 octopress</h2>
-
-<ul>
-<li>先新增一篇文章：</li>
-</ul>
-
-
-<pre>
-    rake new_post["文章名稱"]
-</pre>
-
-
-<ul>
-<li>去 octopress/source/_posts 就可以看到副檔名 .markdown 的文章。</li>
-<li>使用慣用的編輯器打開，使用 markdown 語法開始寫文章吧。</li>
-<li>完成的話，要執行以下命令，讓 markdown 檔案轉換成 html：</li>
-</ul>
-
-
-<pre>
-    rake generate
-</pre>
-
-
-<ul>
-<li>想要在本機預覽:</li>
-</ul>
-
-
-<pre>
-    rake preview
-</pre>
-
-
-<ul>
-<li>打開瀏覽器，輸入 [http://127.0.0.1:4000/]，就可以預覽結果。(要結束預覽回到命令模式請 ctrl+c)</li>
-<li>如果你跟我一樣，有遇到亂碼問題(YAML Exception reading xxx.markdown: invalid byte sequence in CP950 &#8230;)，請：
-
-<ul>
-<li>確認檔案編碼是不是使用 UTF-8 存檔。</li>
-<li>輸入以下指令
-<pre>
-  set LC_ALL=zh_TW.UTF-8
-  set LANG=zh_TW.UTF-8
-</pre></li>
-<li>再重新 rake generate 一次</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>發佈 octopress</h2>
-
-<ul>
-<li>預覽都沒問題，就是該放到 github 上囉。直接發佈看看：</li>
-</ul>
-
-
-<pre>
-    rake deploy
-</pre>
-
-
-<ul>
-<li>假設你跟我一樣，因為某些緣故不能使用 SSH。先確認一下你的 origin，在 octopress/_deploy 目錄下輸入：</li>
-</ul>
-
-
-<pre>
-    git remote -v
-</pre>
-
-
-<ul>
-<li>應該是會看到以下格式</li>
-</ul>
-
-
-<pre>
-    origin  git@github.com:wildwindjen/wildwindjen.github.io (fetch)
-    origin  git@github.com:wildwindjen/wildwindjen.github.io (push)
-</pre>
-
-
-<ul>
-<li>請輸入以下指令作修改，改走 HTTPS 的方式 deploy：</li>
-</ul>
-
-
-<pre>
-git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.git
-</pre>
-
-
-<ul>
-<li>重新 rake deploy 就好囉。</li>
-<li>因為之後會上傳 source ，所以我也在 octopress/ 下確認一次 origin，這邊也是得改走 HTTPS。</li>
-</ul>
-
-
-<h2>未驗證</h2>
-
-<p>寫文章至此，我猜想在做「rake setup_github_pages」步驟時，直接填入 https 格式，應該就沒有後面的麻煩了。之後有時間再踹踹看。</p>
-
-<h2>其他經驗</h2>
-
-<h3>SSH 的 Debug 方式</h3>
-
-<p>過程中遇到一堆 SSH 的問題，直到遇見這個語法，才解除了我盲目的人生。</p>
-
-<pre>
-    ssh -vvv git@github.com
-</pre>
-
-
-<h3>SSH 的客製化設定檔</h3>
-
-<p>.ssh 目錄下面可以自己新增一個檔名 config 來做一些客製化的動作，例如：假設有需要把預設的 port 22 改換成 443，可以透過這一招。可惜這次沒機會表現。</p>
-
-<pre>
-    Host github.com
-    User wildwind.jen@gmail.com
-    Hostname ssh.github.com
-    Port 443
+    Exception in thread "main" java.lang.ExceptionInInitializerError
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:13)
+        at hbm.HibernateDemo.main(HibernateDemo.java:13)
+    Caused by: org.hibernate.MappingNotFoundException: resource: User.hbm.xml not found
+        at org.hibernate.cfg.Configuration.addResource(Configuration.java:799)
+        at org.hibernate.cfg.Configuration.parseMappingElement(Configuration.java:2344)
+        at org.hibernate.cfg.Configuration.parseSessionFactory(Configuration.java:2310)
+        at org.hibernate.cfg.Configuration.doConfigure(Configuration.java:2290)
+        at org.hibernate.cfg.Configuration.doConfigure(Configuration.java:2243)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2158)
+        at org.hibernate.cfg.Configuration.configure(Configuration.java:2137)
+        at hbm.HibernateUtil.<clinit>(HibernateUtil.java:10)
+        ... 1 more
 </pre>
 
 
@@ -395,11 +236,11 @@ git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.
   
 
 
-<time datetime="2013-04-25T12:30:00+08:00" pubdate data-updated="true">2013-04-25 12:30</time></div>
+<time datetime="2013-04-29T17:43:00+08:00" pubdate data-updated="true">2013-04-29 17:43</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+	<a class='category' href='/blog/categories/hibernate/'>Hibernate</a>, <a class='category' href='/blog/categories/orm/'>ORM</a>
 
 
 </div>
@@ -407,13 +248,18 @@ git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.
 	<br />
 	<b>== 所有分類 ==</b>
 	<li class='category'><a href='/blog/categories/build-tool/'>Build Tool (3)</a></li>
+<li class='category'><a href='/blog/categories/datatype/'>DataType (1)</a></li>
+<li class='category'><a href='/blog/categories/datetime/'>DateTime (1)</a></li>
 <li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
-<li class='category'><a href='/blog/categories/java/'>Java (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
+<li class='category'><a href='/blog/categories/javascript/'>JavaScript (2)</a></li>
 <li class='category'><a href='/blog/categories/life/'>Life (1)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (3)</a></li>
 <li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
 <li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/performance/'>Performance (1)</a></li>
+
 
 </div></article>
 
@@ -421,6 +267,8 @@ git remote set-url origin https://github.com/wildwindjen/wildwindjen.github.com.
     
         <a href="/blog/page/9/" class="prev">Prev</a>
     
+    
+        <a href="/blog/page/11/" class="next">Next</a>
     
     <div class="center"><a href="/archives">Blog Archives</a></div>
 </nav></div>

@@ -101,48 +101,60 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/04/28/customize-octopress-by-self/">
+		<a href="/blog/2013/07/30/migrate-tomcat-webapp-to-maven-qa/">
 		
-			Customize Octopress by Self</a>
+			Migrate Tomcat Webapp to Maven QA</a>
 	</h2>
 	<div class="entry-content">
 		<h2>總結</h2>
 
-<blockquote><p>士為悅己者死。</p></blockquote>
+<blockquote><p>我有預感，這只是個開始。&#8211; 毛利小五郎。</p></blockquote>
 
-<p>有些東西不是單純靠 config 就能弄出來的。偏偏自己又想要有這些東西。所以搞死自己也是算活該吧。</p>
+<p>工作上做了點嘗試，把剛接手的專案，試著導入 Maven 。因為想要針對一團亂的外部函式庫做管理。而馬糞，是我第一個想到的。倉促之下，只能先做問題集的整理。</p>
 
-<h2>留言討論 - 綁 Google 的留言</h2>
+<h2>原本的專案編碼是 UTF-8</h2>
 
-<p>因為我跟 Disqus 沒那麼熟。雖然 Google Plus 好像也沒熟去哪裡，可是我至少有帳號。一開始我是參考這一篇的: <a href="http://blog.justin.kelly.org.au/google-plus-octopress/" title="Google Plus Comments Link for Octopress">Google Plus Comments Link for Octopress</a>。但這個作法只是出現連結，而且每篇產生後還得自己 +1。所以最後我沒採用。以下是我的經驗整理：</p>
+<p>這個問題大概只有發生在開發平台是 windows 的吧。偏偏我就是其中一個受害者。目前已知有兩個作法，實際上是同一種解法，就是餵 <code>project.build.sourceEncoding</code> 系統屬性值給他。</p>
 
-<ul>
-<li>首先要設定 _config.xml 裡的 googleplus_user，這裡面的是 google plus id，純數字。這一關我有被騙到，一開始自以為聰明直接打 Google 帳號。不知道怎麼找自己 id 的人可以看 <a href="http://ansonalex.com/google-plus/how-do-i-find-my-google-plus-user-id-google/" title="How Do I Find My Google Plus User ID?">How Do I Find My Google Plus User ID?</a> 。</li>
-<li>因為會用到 Google API Key，所以先去 <a href="https://code.google.com/apis/console/" title="API Console - Google Code">API Console - Google Code</a>。然後參考 <a href="http://www.designchemical.com/blog/index.php/faq/create-your-own-google-api-key/" title="Create Your Own Google API Key">Create Your Own Google API Key</a> ，開啟你的 Google+ API 服務，讓他變成 ON 的狀態。</li>
-<li>切到 API Access，創建新的 Key(Create New Browser Key)，記住新的 key 值。</li>
-<li>接著就照著 <a href="http://blog.justin.kelly.org.au/google-plus-octopress/" title="Google Plus Comments Link for Octopress">Google Plus Comments Link for Octopress</a> 說的，修改 <code>source/_includes/custom/after_footer.html</code> 和 <code>source/_includes/custom/head.html</code> 兩個檔案。其中的 <code>{YOUR_GOOGLE_API_KEY}</code> 記得換成剛剛的 Google API Key。</li>
-<li>然後有個規則要特別注意的是，每發一篇新的文章，要自己先 +1 一下，而且得設定成<em>公開</em>，不然不會出現 comments 區塊。我被這一關卡超久的，因為我預設都是限定開放。後來發現 API 回傳的資料都是空，可是登入 Google Plus 又查得到，稍微發揮了點推理能力才解決。</li>
-<li>使用 preview 是看不到結果的，得 deploy 才行。除非&#8230;，跟我一樣，把 <code>after_footer.html</code> 做點修改：</li>
-</ul>
+<h3>作法一 Command Line</h3>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn -Dfile.encoding=UTF-8 -Dproject.build.sourceEncoding=UTF-8 package</span></code></pre></td></tr></table></div></figure>
 
 
-<pre>
-//$post_link = encodeURI(jQuery(location).attr('href'));
-$post_link = window.location.pathname;
-</pre>
+<h3>作法二 POM.xml</h3>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;project  xmlns=....>
+</span><span class='line'>      ...
+</span><span class='line'>      &lt;properties>
+</span><span class='line'>          &lt;project.build.sourceEncoding>UTF-8&lt;/project.build.sourceEncoding>
+</span><span class='line'>      &lt;/properties></span></code></pre></td></tr></table></div></figure>
 
 
-<h2>留言討論 - 綁 Google 的留言(終極版)</h2>
+<h2>去哪裡得知外部函式庫的 maven 設定</h2>
 
-<p>是的，這是最終我採取的做法。留言直接在下方出現，不用點連結，也不用每篇寫完後要自己先 +1。這個做法是踹上面那個解法過程中，發現的可能做法，然後自己在 octopress 上試出來的。請先看一下 <a href="http://dashburst.com/how-to-add-google-comments-to-any-webpage-or-blog-unofficially/" title="How to Add Google+ Comments to Any Webpage or Blog">How to Add Google+ Comments to Any Webpage or Blog</a>。以下是我自己的做法：</p>
+<p>假設我是要加進來 log4j ，請 google maven log4j。你會找到<a href="http://www.mvnrepository.com/artifact/log4j/log4j">這一頁</a>。請點選你想要找的版本，接著就是複製設定到 pom.xml 了。</p>
 
-<ul>
-<li>一樣要設定 _config.xml 裡的 googleplus_user 。</li>
-<li>修改 <code>source/_layouts/post.html</code> ，在 Disqus 後面補上一段程式碼：</li>
-</ul>
+<h2>自家的 jar ，怎麼兜進去</h2>
 
+<p>在專案目錄下新建一個 libs 子目錄(跟 pom.xml 同一層)。準備放自家的函式庫。</p>
 
-<figure class='code'><figcaption><span>google plus comments </span></figcaption>
+<p>依照 maven 的版控結構規則，重新建立子目錄 <code>{gourpId}/{artifactId}/{version}</code> 以及重新命名 jar 為 <code>{artifactId}-{version}.jar</code> 。</p>
+
+<p>舉例來說：原本叫做 wade.jar 的檔案，我就隨便給他個 groupId=wild 、 artifactId=wind 、 version=1.0。所以我就必須在 {PROJECT_DIR}/libs 下建立 wild/wind/1.0/wind-1.0.jar。</p>
+
+<p>然後記得新增 repository 和 dependency 設定，請參考下方。</p>
+
+<p>有個延伸題，我有兩個 jar 檔，都想要放在 wild/wind/1.0/ 下怎麼辦，請多設定個 <code>classifier</code> ，檔案的命名就變成要 <code>{artifactId}-{version}-{classifier}.jar</code>。</p>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -164,96 +176,86 @@ $post_link = window.location.pathname;
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{% if site.disqus_short_name and page.comments == true %}
-</span><span class='line'>    &lt;section>
-</span><span class='line'>      &lt;h1>Comments&lt;/h1>
-</span><span class='line'>      &lt;div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}&lt;/div>
-</span><span class='line'>    &lt;/section>
-</span><span class='line'>  {% endif %}
-</span><span class='line'>
-</span><span class='line'>  &lt;!-- Google Comments, by wildwindjen -->
-</span><span class='line'>  {% if site.googleplus_comments == true %}
-</span><span class='line'>    &lt;section>
-</span><span class='line'>      &lt;script src="https://apis.google.com/js/plusone.js">
-</span><span class='line'>      &lt;/script>
-</span><span class='line'>      &lt;div class="g-comments"
-</span><span class='line'>          data-href=window.location
-</span><span class='line'>          data-width="789"
-</span><span class='line'>          data-first_party_property="BLOGGER"
-</span><span class='line'>          data-view_type="FILTERED_POSTMOD">
-</span><span class='line'>      &lt;/div>
-</span><span class='line'>    &lt;/section>
-</span><span class='line'>  {% endif %}
-</span><span class='line'>  &lt;!-- Google Comments end --></span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;project  xmlns=....>
+</span><span class='line'>      ...
+</span><span class='line'>      &lt;repositories>
+</span><span class='line'>          &lt;repository>
+</span><span class='line'>              &lt;id>ProjectRepo&lt;/id>
+</span><span class='line'>              &lt;name>ProjectRepo&lt;/name>
+</span><span class='line'>              &lt;url>file:///${project.basedir}/libs&lt;/url>
+</span><span class='line'>          &lt;/repository>
+</span><span class='line'>      &lt;/repositories>
+</span><span class='line'>      ....
+</span><span class='line'>      &lt;dependencies>
+</span><span class='line'>          &lt;dependency>
+</span><span class='line'>              &lt;groupId>wild&lt;/groupId>
+</span><span class='line'>              &lt;artifactId>wind&lt;/artifactId>
+</span><span class='line'>              &lt;version>1.0&lt;/version>
+</span><span class='line'>              &lt;classifier>encode&lt;/classifier>
+</span><span class='line'>          &lt;/dependency>
+</span><span class='line'>          &lt;dependency>
+</span><span class='line'>              &lt;groupId>wild&lt;/groupId>
+</span><span class='line'>              &lt;artifactId>wind&lt;/artifactId>
+</span><span class='line'>              &lt;version>1.0&lt;/version>
+</span><span class='line'>              &lt;classifier>decode&lt;/classifier>
+</span><span class='line'>          &lt;/dependency>
+</span><span class='line'>      &lt;/dependencies></span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>接著在 <code>_config.xml</code> 中新增一個 <code>googleplus_comments</code> 參數。如果不想加這個參數，可以把上一段的 if 判斷拿掉，這樣就會一直都出現。維持橡皮人的彈性只是職業病而已。</li>
-</ul>
+<h2>The method getJspApplicationContext(ServletContext) is undefined for the type JspFactory</h2>
 
+<p>說穿了，就是原本 tomcat 就有 jsp-api.jar (servlet-api.jar 也一樣)，匯出來的專案又包含了 jsp-api.jar，所以造成用錯版本。</p>
 
-<pre>
-# Facebook Like
-facebook_like: false
-
-# google comments, by wildwindjen
-googleplus_comments: true
-</pre>
-
-
-<ul>
-<li>如果你留言送出時，遇到了 <code>Unsafe JavaScript attempt to access frame ...</code> 的訊息，可以改成跟我一樣的作法。我的作法可以讓本機的 <code>preview</code> 也正常。這個問題讓我弄了大半天。原因只是 URL 有誤。可是訊息提示很容易誤導。我最後是在<a href="http://browsingthenet.blogspot.tw/2013/04/google-plus-comments-on-any-website.html" title="這邊">唯一的線索</a>看到某篇回覆參透的。</li>
-</ul>
-
-
-<pre>
-    data-href = "http://wildwindjen.github.io" + window.location.pathname
-</pre>
-
-
-<p>這樣就好了，步驟比上個做法簡短，結果更漂亮。只是得改 code 而已。話說 octopress 有提供客製化 post 的機制嗎？實在不是很喜歡這樣直接改 source code。 我喜歡客製化部分跟原生部分切開來。</p>
-
-<h2>Syntax Highlight</h2>
-
-<p>想要使用程式碼美化功能，其實內建就有囉。參考<a href="http://octopress.org/" title="官網">官網</a>下方的 Plugins FTW 。有 <a href="http://octopress.org/docs/plugins/codeblock" title="Cold Block">Cold Block</a> 和 <a href="http://octopress.org/docs/plugins/include-code" title="Include Code">Include Code</a> 兩種。</p>
-
-<h3>Cold Block</h3>
-
-<p>將你的程式碼內嵌在 blog 裡。</p>
+<p>所以要達成一個目標：package 之後的動作都不要有 jsp-api.jar 。這時候就要靠這一味： scope 。
+至於值的意義請參考 <a href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope%20Dependency_Scope">Dependency Scope</a></p>
 
 <figure class='code'><figcaption><span>Cold Block </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{% codeblock [標題] [lang:language] [url] [link text] %}
-</span><span class='line'>  程式碼
-</span><span class='line'>{% endcodeblock %}</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;dependency>
+</span><span class='line'>      &lt;groupId>javax.servlet&lt;/groupId>
+</span><span class='line'>      &lt;artifactId>jsp-api&lt;/artifactId>
+</span><span class='line'>      &lt;version>2.0&lt;/version>
+</span><span class='line'>      &lt;scope>provided&lt;/scope>
+</span><span class='line'>  &lt;/dependency></span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Include Code</h3>
+<p>本來如果只是這樣就罷手，也就無事一身輕。偏偏想到目前開發都是使用 eclipse，就騷屁股(台語)地想要一氣呵成。所以又有下面的 m2eclipse 篇。</p>
 
-<p>挑選程式碼檔案出來呈現。預設情況下，程式碼檔案要放在 <code>source/downloads/code</code> 裡面。如果你想要修改預設路徑，可以透過 _config.xml 的 <code>code_dir</code>。所以 <code>path/to/file</code> 是相對於 source/downloads/code 的路徑。</p>
+<h2>m2eclipse 沒有 run on server</h2>
 
-<figure class='code'><figcaption><span>Include Code </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{% include_code [標題] [lang:language] path/to/file %}</span></code></pre></td></tr></table></div></figure>
+<p>專案 > 屬性 > Facets
+勾選 Dynamic Project Module，並且記得挑選版本。否則之後無法變更。</p>
 
+<h2>lib 不會跟著 deploy 到 tomcat plugin</h2>
 
-<h3>安裝 Python</h3>
+<p>參考 <a href="http://stackoverflow.com/questions/6356421/maven-tomcat-projects-in-eclipse-indigo-3-7">stackover</a> ，使用路徑定義的方式 Deployment Assemply。</p>
 
-<p>為了使用 Plugin 功能，需要使用 Python。如果你使用了上述兩個語法，但是在 rake generate 的時候，報了跟我一樣找不到 python 目錄的錯。請你安裝 Python 2.7.x。我是安裝 2.7.4。然後新增系統變數即可。</p>
+<ul>
+<li>maven 專案目錄上按右鍵，properties。</li>
+<li>新增對應(Folder)
 
-<h2>外部連結另開</h2>
+<ul>
+<li>Source: target/{your-project-name}/WEB-INF/lib</li>
+<li>Deploy Path: WEB-INF/lib</li>
+</ul>
+</li>
+<li>Run As：
 
-<p>Markdown 語法產生出來的連結，沒有支援另開頁面，所以只好自己處理。作法很多，我自己的作法是在 <code>/source/_includes/custom/after_footer.html</code> 動手腳。打開檔案，在最下面加上：</p>
-
-<figure class='code'><figcaption><span>Cold Block </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script type="text/javascript">
-</span><span class='line'>  $('a[href^="http://"]').attr("target", "_blank");
-</span><span class='line'>&lt;/script></span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>Maven Clean</li>
+<li>Maven Install</li>
+<li>Run on Server</li>
+</ul>
+</li>
+</ul>
 
 
 		
@@ -274,11 +276,11 @@ googleplus_comments: true
   
 
 
-<time datetime="2013-04-28T11:06:00+08:00" pubdate data-updated="true">2013-04-28 11:06</time></div>
+<time datetime="2013-07-30T09:22:00+08:00" pubdate data-updated="true">2013-07-30 09:22</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+	<a class='category' href='/blog/categories/build-tool/'>Build Tool</a>, <a class='category' href='/blog/categories/maven/'>Maven</a>
 
 
 </div>
@@ -286,13 +288,18 @@ googleplus_comments: true
 	<br />
 	<b>== 所有分類 ==</b>
 	<li class='category'><a href='/blog/categories/build-tool/'>Build Tool (3)</a></li>
+<li class='category'><a href='/blog/categories/datatype/'>DataType (1)</a></li>
+<li class='category'><a href='/blog/categories/datetime/'>DateTime (1)</a></li>
 <li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
-<li class='category'><a href='/blog/categories/java/'>Java (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
+<li class='category'><a href='/blog/categories/javascript/'>JavaScript (2)</a></li>
 <li class='category'><a href='/blog/categories/life/'>Life (1)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (3)</a></li>
 <li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
 <li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/performance/'>Performance (1)</a></li>
+
 
 </div></article>
 

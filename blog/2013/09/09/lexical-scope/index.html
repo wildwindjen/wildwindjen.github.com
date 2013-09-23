@@ -1,0 +1,299 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<!-- 
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	-->
+	<meta charset="utf-8">
+	<title>Lexical Scope  | Wild Wind</title>
+
+<meta name="author" content="Wildwind Jen"> 
+
+<meta name="description" content="Change Log in My Mind."> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Wild Wind" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+	<script src="/javascripts/libs/jquery.min.js"></script>
+	<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Wild Wind</a></h1>
+<h4>Look down, look down. Don't look 'em in the eye....</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">最新發表</a></li>
+	<li><a href="/archives">所有文章</a></li>
+	<li><a href="/about">關於阿丞</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">最新發表</a></li>
+	<li><a href="/archives">所有文章</a></li>
+	<li><a href="/about">關於阿丞</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:wildwindjen.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Lexical Scope</h2>
+	<div class="entry-content"><h2>Scope</h2>
+
+<pre><code>定義：可以用以尋找變數的範圍。
+</code></pre>
+
+<h2>Lexical Scope</h2>
+
+<p>用來決定「可以使用的 Scope 有哪些」的方式之一，相對的有 Dynamic Scope。</p>
+
+<p>特性：程式的語法結構，就決定了可以在哪些 Scope 尋找變數。</p>
+
+<p>看看以下的範例：</p>
+
+<figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){
+</span><span class='line'>  alert(foo);
+</span><span class='line'>}
+</span><span class='line'>function a(){
+</span><span class='line'>  var foo=1;
+</span><span class='line'>  b();
+</span><span class='line'>};
+</span><span class='line'>a();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這個範例在使用 Lexical Scope 的語言裡，是行不通的。例如 JavaScript 就會報 <code>ReferenceError: foo is not defined</code> 的錯。原因在於 b function 可以尋找變數的 Scope 只有 b function 和 global enviroment。並不包含 a function。 &#8211; 程式碼的樣子，決定了可以用的 Scope。</p>
+
+<p>Dynamic Scope 的語言會在執行時期，會依照呼叫堆疊(call stack)，來動態決定可以使用的 Scope。所以上述例子，因為可以使用的 Scope 有 b function 、 a function 和 global environment， 就會成功執行，印出 1 。 &#8211; 程式的執行順序，決定了可以用的 Scope。</p>
+
+<h2>Closure</h2>
+
+<p>為什麼要了解 Lexical Scope？ 因為這跟 JavaScript 的 Closure 有關。</p>
+
+<p>看看這個 Closure 的例子：</p>
+
+<figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function a(value){
+</span><span class='line'>  return function a(){
+</span><span class='line'>      alert(value);
+</span><span class='line'>  };
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var f = a(1);
+</span><span class='line'>var value = 3;
+</span><span class='line'>f();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果今天 JavaScript 不是 Lexical Scope 特性的語言。呼叫 f() 的結果，就不會是 1 ，而是 3。Closure 的運用，常見於拍下快照(snapshot)，捕捉當時的值。這是很久以前犯過的錯：</p>
+
+<figure class='code'><figcaption><span>HTML </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;input type="button" value="1">
+</span><span class='line'>&lt;input type="button" value="2">
+</span><span class='line'>&lt;input type="button" value="3"></span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>jQuery </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var s = $("input").size();
+</span><span class='line'>for(var i=0; i&lt;s; i++){
+</span><span class='line'>  $("#wade" + i).click(function(){
+</span><span class='line'>      alert(i);
+</span><span class='line'>  });
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>想要按下按鈕時，分別是 0 1 2 ，可是不管按哪一顆，都是 3 。因為大家抓到的 i ，都是「現在」的值。這時候就是要利用 Closure 製造快照的效果，記住「當時」的值。改成：</p>
+
+<figure class='code'><figcaption><span>jQuery </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var s = $("input").size();
+</span><span class='line'>for(var i=0; i&lt;s; i++){
+</span><span class='line'>  $("#wade" + i).click(function(n){
+</span><span class='line'>      return function(){
+</span><span class='line'>          alert(n);
+</span><span class='line'>      }
+</span><span class='line'>  }(i));
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這個例子把想要快照起來的值，當作參數傳遞進去。然後回傳一整個內部函式，代表「當時」的執行狀況。回傳內部函式的時候，會順便創造該時空下的執行環境。可以想像成複製當時 Scope 的樣子，所以當時 Scope 裡變數的值如果是 0 就是 0。</p>
+
+<p>關於 Closure 的細節 ，以後再說吧，畢竟這一篇的主角是 Lexical Scope。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-09T23:42:00+08:00" pubdate data-updated="true">2013-09-09 23:42</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+
+
+</div>
+	
+	<br />
+	<b>== 所有分類 ==</b>
+	<li class='category'><a href='/blog/categories/build-tool/'>Build Tool (3)</a></li>
+<li class='category'><a href='/blog/categories/datatype/'>DataType (1)</a></li>
+<li class='category'><a href='/blog/categories/datetime/'>DateTime (1)</a></li>
+<li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
+<li class='category'><a href='/blog/categories/javascript/'>JavaScript (2)</a></li>
+<li class='category'><a href='/blog/categories/life/'>Life (1)</a></li>
+<li class='category'><a href='/blog/categories/maven/'>Maven (3)</a></li>
+<li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
+<li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/performance/'>Performance (1)</a></li>
+
+
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<!-- Google Comments, by wildwindjen -->
+
+<!-- Google Comments end --></div>
+	<footer id="footer" class="inner">Copyright &copy; 2013
+
+    Wildwind Jen
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+<!-- wildwindjen octopress 新增 google comments, ref: http://blog.justin.kelly.org.au/google-plus-octopress/  -->
+
+</body>
+</html>

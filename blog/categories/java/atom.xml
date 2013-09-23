@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-08-06T10:06:07+08:00</updated>
+  <updated>2013-09-23T12:00:38+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -12,6 +12,112 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ISO 8601]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/09/14/iso-8601/"/>
+    <updated>2013-09-14T22:22:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/09/14/iso-8601</id>
+    <content type="html"><![CDATA[<h2>事出</h2>
+
+<p>前陣子，工作上遇到一個 Java 定義的 Web Service API，其中一個欄位對方是使用 Calendar 定義出來的日期格式欄位。結果使用 Soup UI 怎麼餵常見的日期格式都不對。直到使用了 ISO 8601 日期格式：
+<code>2013-09-14T21:32:08.000+0800</code>。代表的是當地時間 2013-09-14 21:32:08，當地位處於時區 +08:00。</p>
+
+<p>直接去查詢 <a href="http://www.w3.org/TR/xmlschema-2/#dateTime" title="XML DataType">XML 使用的 DataType</a>，其實就會看見「使用 ISO 8601 表示日期時間」的字樣。接著再去看看維基上 <a href="http://zh.wikipedia.org/wiki/ISO_8601" title="ISO 8601">ISO 8601</a>的介紹，其實就不用花太多時間走冤枉路了。</p>
+
+<p>當初則是直接 Java gen code，然後去看底層才知道要餵這個格式。雖然有試著查這個格式叫什麼名字，只是未果。反而是今天研究 JavaScript 才直到這個格式叫 ISO 8601。只能說冥冥之中，老天待我不薄。</p>
+
+<h2>ISO 8601</h2>
+
+<p><code>2013-09-14T00:00:00.000+0800</code> (當地時間) 或者 <code>2013-09-14T00:00:00.000Z</code> (UTC 時間)</p>
+
+<p>這個格式唯一好奇的是 T 和 Z。原來在 ISO 8601 裡， T 叫做 <code>time designator</code>，用來指明要開始表示時間了，所以 T 後面就是接時間。</p>
+
+<p>Z 叫做 <code>zone designator</code>，代表使用 <a href="http://zh.wikipedia.org/zh-hant/%E5%8D%8F%E8%B0%83%E4%B8%96%E7%95%8C%E6%97%B6" title="UTC">UTC(Coordinated Universal Time)</a> 表示。UTC 時間 <code>2013-09-14T00:00:00.000Z</code> 意義等同 <code>2013-09-14T00:00:00.000+0000</code>。因為軍事上使用 Z 表示 UTC，發音 zulu ，所以又稱為 zulu time。當地時間裡的 +hhmm 代表時間快 UTC hh時mm分，如果是 -hhmm，就是慢 UTC hh時mm分。意謂著 <code>2013-09-14T00:00:00.000Z</code> 和 <code>2013-09-14T00:08:00.000+0800</code> 實際上才是同一個時間點。</p>
+
+<p>ISO 8601 規格裡提到，使用 local time 表示時，zone designator 應該留白。有一個謎，就是爲什麼 UTC 縮寫跟原本單字順序不合？</p>
+
+<h2>ISO 8601 format String with Java</h2>
+
+<p>以下嘗試使用 Java 取得 ISO 8601 格式的字串，第一個從網路抄過來的。我自己是比較喜歡第三個和第四個。沒辦法，用 DateFormat 用習慣了。不過 JDK 6 (含)以前要完美地轉換大概沒辦法達成，因為底層其實支援的是 RFC 822 ，而不是 ISO 8601，要到 JDK 7 才開始支援。所以網路有人推薦使用 Joda 這個函式庫來處理，因為日期議題比想像中得複雜許多。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>google plus comments </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import java.text.DateFormat;
+</span><span class='line'>import java.text.SimpleDateFormat;
+</span><span class='line'>import java.util.Date;
+</span><span class='line'>import java.util.TimeZone;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>public class ISO8601Demo {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>public static Date d = new Date();
+</span><span class='line'>public static String getISO8601Format1() { return String.format("%tFT%&lt;tRZ", d); }
+</span><span class='line'>public static String getISO8601Format2() { return String.format("%tFT%&lt;tH:%&lt;tM:%&lt;tS.%&lt;tLZ", d); }
+</span><span class='line'>public static String getISO8601Format3() { 
+</span><span class='line'>    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'");
+</span><span class='line'>    return df.format(d);
+</span><span class='line'>}
+</span><span class='line'>public static String getISO8601Format4() { 
+</span><span class='line'>    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SZ");
+</span><span class='line'>    return df.format(d);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>/**
+</span><span class='line'> * @param args
+</span><span class='line'> */
+</span><span class='line'>public static void main(String[] args) {
+</span><span class='line'>    System.out.println(d);
+</span><span class='line'>    System.out.println(ISO8601Demo.getISO8601Format1());
+</span><span class='line'>    System.out.println(ISO8601Demo.getISO8601Format2());
+</span><span class='line'>    System.out.println(ISO8601Demo.getISO8601Format3());
+</span><span class='line'>    System.out.println(ISO8601Demo.getISO8601Format4());
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>其他參考</h2>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax">Java String Format</a></li>
+<li><a href="http://jay-fva.blogspot.tw/2010/02/24gmtutc.html">Java-Two 2013 Joda Slide</a></li>
+<li><a href="http://jay-fva.blogspot.tw/2010/02/24gmtutc.html">時區的概念</a></li>
+<li><a href="http://stackoverflow.com/questions/2201925/converting-iso8601-compliant-string-to-java-util-date">Java ISO 8601 的複雜</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[物件導向]]></title>

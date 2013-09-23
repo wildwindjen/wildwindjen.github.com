@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: JavaScript | Wild Wind]]></title>
+  <link href="http://wildwindjen.github.io/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://wildwindjen.github.io/"/>
+  <updated>2013-09-23T12:00:38+08:00</updated>
+  <id>http://wildwindjen.github.io/</id>
+  <author>
+    <name><![CDATA[Wildwind Jen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Lexical Scope]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/09/09/lexical-scope/"/>
+    <updated>2013-09-09T23:42:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/09/09/lexical-scope</id>
+    <content type="html"><![CDATA[<h2>Scope</h2>
+
+<pre><code>定義：可以用以尋找變數的範圍。
+</code></pre>
+
+<h2>Lexical Scope</h2>
+
+<p>用來決定「可以使用的 Scope 有哪些」的方式之一，相對的有 Dynamic Scope。</p>
+
+<p>特性：程式的語法結構，就決定了可以在哪些 Scope 尋找變數。</p>
+
+<p>看看以下的範例：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>alert(foo);
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}
+</span><span class='line'>function a(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>var foo=1;
+</span><span class='line'>b();
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>};
+</span><span class='line'>a();</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>這個範例在使用 Lexical Scope 的語言裡，是行不通的。例如 JavaScript 就會報 <code>ReferenceError: foo is not defined</code> 的錯。原因在於 b function 可以尋找變數的 Scope 只有 b function 和 global enviroment。並不包含 a function。 -- 程式碼的樣子，決定了可以用的 Scope。</p>
+
+<p>Dynamic Scope 的語言會在執行時期，會依照呼叫堆疊(call stack)，來動態決定可以使用的 Scope。所以上述例子，因為可以使用的 Scope 有 b function 、 a function 和 global environment， 就會成功執行，印出 1 。 -- 程式的執行順序，決定了可以用的 Scope。</p>
+
+<h2>Closure</h2>
+
+<p>為什麼要了解 Lexical Scope？ 因為這跟 JavaScript 的 Closure 有關。</p>
+
+<p>看看這個 Closure 的例子：
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function a(value){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>return function a(){
+</span><span class='line'>    alert(value);
+</span><span class='line'>};
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>var f = a(1);
+</span><span class='line'>var value = 3;
+</span><span class='line'>f();</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>如果今天 JavaScript 不是 Lexical Scope 特性的語言。呼叫 f() 的結果，就不會是 1 ，而是 3。Closure 的運用，常見於拍下快照(snapshot)，捕捉當時的值。這是很久以前犯過的錯：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>HTML </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;input type="button" value="1">
+</span><span class='line'>&lt;input type="button" value="2">
+</span><span class='line'>&lt;input type="button" value="3"></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>jQuery </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var s = $("input").size();
+</span><span class='line'>for(var i=0; i&lt;s; i++){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>$("#wade" + i).click(function(){
+</span><span class='line'>    alert(i);
+</span><span class='line'>});
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>想要按下按鈕時，分別是 0 1 2 ，可是不管按哪一顆，都是 3 。因為大家抓到的 i ，都是「現在」的值。這時候就是要利用 Closure 製造快照的效果，記住「當時」的值。改成：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>jQuery </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var s = $("input").size();
+</span><span class='line'>for(var i=0; i&lt;s; i++){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>$("#wade" + i).click(function(n){
+</span><span class='line'>    return function(){
+</span><span class='line'>        alert(n);
+</span><span class='line'>    }
+</span><span class='line'>}(i));
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>這個例子把想要快照起來的值，當作參數傳遞進去。然後回傳一整個內部函式，代表「當時」的執行狀況。回傳內部函式的時候，會順便創造該時空下的執行環境。可以想像成複製當時 Scope 的樣子，所以當時 Scope 裡變數的值如果是 0 就是 0。</p>
+
+<p>關於 Closure 的細節 ，以後再說吧，畢竟這一篇的主角是 Lexical Scope。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[what is hoisted declaration]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/09/08/what-is-hoisted-declaration/"/>
+    <updated>2013-09-08T22:13:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/09/08/what-is-hoisted-declaration</id>
+    <content type="html"><![CDATA[<h2>Variable Hoisted</h2>
+
+<p>猜猜看以下的程式，答案是什麼？
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>variable hoisted sample 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var a = 1;
+</span><span class='line'>function t(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>console.log(a);
+</span><span class='line'>var a = 2;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>t();</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>事實上他等同以下程式，JavaScript 底層把宣告的動作自動往上提(hoisted)了。
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>variable hoisted sample 2 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var a = 1;
+</span><span class='line'>function t(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>var a;          // declaration hoisted!!
+</span><span class='line'>console.log(a);
+</span><span class='line'>var a = 2;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>t();</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Function Hoisted</h2>
+
+<h3>兩種函式定義</h3>
+
+<p>要說明 Function Hoisted 之前，我們拿兩種定義方式來比較： function definition 和 function declaration。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var f = function(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>return 1;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>};</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>以及</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function declaration </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function f(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>return 1;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>};</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>兩種函式的 Hoist 比較</h3>
+
+<p>以下結果是 <code>TypeError: undefined is not a function</code>。確實 var b 往上提了，可是函式主體沒有，所以呼叫了 undefined 當函式。
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function hoisted sample 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>    console.log('w1');
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>function a(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>b();
+</span><span class='line'>var b = function(){
+</span><span class='line'>    console.log('w2');
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>a();</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>如果是使用 function declaration，則結果可以正常執行，執行的 b() 會是 w2。因為除了內部的 function b 宣告以外，連函式主體，都往上提了。
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function hoisted sample 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>    console.log('w1');
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>function a(){&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>b();
+</span><span class='line'>function b(){
+</span><span class='line'>    console.log('w2');
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>a();</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>

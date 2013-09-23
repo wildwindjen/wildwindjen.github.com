@@ -101,62 +101,126 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/08/03/do-the-right-thing/">
+		<a href="/blog/2013/09/09/lexical-scope/">
 		
-			Do the Right Thing</a>
+			Lexical Scope</a>
 	</h2>
 	<div class="entry-content">
-		<h2>我對洪案的看法</h2>
+		<h2>Scope</h2>
 
-<p>沒有真相。是的，質疑很多、爆料很多，但是沒人可以打包票說這些就是事實。這段期間多多少少會關注一下這方面的消息，從媒體、社群，甚至是軍旅版的爆掛。</p>
+<pre><code>定義：可以用以尋找變數的範圍。
+</code></pre>
 
-<p>這些八卦消息，其實大多數根本未經證實，其中很多訊息只是單純揣測，甚至有不少負面消息與本案無關，但是從社群網路、BBS 討論回文，會發現人群已經有人未審先判，幫部分人士定罪了。</p>
+<h2>Lexical Scope</h2>
 
-<blockquote><p>你腦中只出現一個解釋，卻不知還有另一個解釋的可能性存在。</p></blockquote>
+<p>用來決定「可以使用的 Scope 有哪些」的方式之一，相對的有 Dynamic Scope。</p>
 
-<p>在【快思慢想】的【驟下結論的機制】這個章節，有這幾段文字：</p>
+<p>特性：程式的語法結構，就決定了可以在哪些 Scope 尋找變數。</p>
 
-<blockquote><p>人們依已知的訊息建構出合理故事的連貫性，增強了他們的信心。這跟故事的一致性有關，跟完整性無關。</p></blockquote>
+<p>看看以下的範例：</p>
 
-<p>也跟這些訊息是否為事實無關。</p>
+<figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){
+</span><span class='line'>  alert(foo);
+</span><span class='line'>}
+</span><span class='line'>function a(){
+</span><span class='line'>  var foo=1;
+</span><span class='line'>  b();
+</span><span class='line'>};
+</span><span class='line'>a();</span></code></pre></td></tr></table></div></figure>
 
-<p>有著相同情緒的人，各自提出自己但是雷同的推理版本，加強了情節的一致性。所以部分的人相信了，這個推斷但是未經證實的版本。「魔頭」、「幫兇」、「冷血」，是真的嗎？有沒有可能是每個人犯一堆小錯，所以堆疊出這個大錯？</p>
 
-<p>你可能會說，雖然是推斷，但是很有可能。</p>
+<p>這個範例在使用 Lexical Scope 的語言裡，是行不通的。例如 JavaScript 就會報 <code>ReferenceError: foo is not defined</code> 的錯。原因在於 b function 可以尋找變數的 Scope 只有 b function 和 global enviroment。並不包含 a function。 &#8211; 程式碼的樣子，決定了可以用的 Scope。</p>
 
-<p>我從不否認可能性，但是再多的可能都是未經證實。只是如果這些推測版本，真的不是事實，當有一天，真相真的出現在眼前的時候，你的心，還有空間容得下嗎？</p>
+<p>Dynamic Scope 的語言會在執行時期，會依照呼叫堆疊(call stack)，來動態決定可以使用的 Scope。所以上述例子，因為可以使用的 Scope 有 b function 、 a function 和 global environment， 就會成功執行，印出 1 。 &#8211; 程式的執行順序，決定了可以用的 Scope。</p>
 
-<p>無論如何，心中必須畫下一條線，清楚哪些是確定的、哪些未確定的，才能冷靜思考，不被情緒左右，不被大腦操弄。</p>
+<h2>Closure</h2>
 
-<p>勿枉。勿縱。這不只是軍方該持有的標準，也是你我該追求的目標。</p>
+<p>為什麼要了解 Lexical Scope？ 因為這跟 JavaScript 的 Closure 有關。</p>
 
-<h2>上街頭的理由</h2>
+<p>看看這個 Closure 的例子：</p>
 
-<p>那為什麼我今天要上街頭？因為我覺得這個過度封閉的系統，真的需要改革。</p>
+<figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function a(value){
+</span><span class='line'>  return function a(){
+</span><span class='line'>      alert(value);
+</span><span class='line'>  };
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var f = a(1);
+</span><span class='line'>var value = 3;
+</span><span class='line'>f();</span></code></pre></td></tr></table></div></figure>
 
-<blockquote><p>只看到一方證據的受試者，比看到兩造證據的受試者，對自己的判斷更具信心。</p></blockquote>
 
-<p>今天我看到的，就是這樣的情境。為什麼這麼多人相信自己的推測？因為沒有對等、對立的訊息量，來證實或推翻這些揣測。為什麼沒有該出現的訊息？今晚的貼紙很中肯：</p>
+<p>如果今天 JavaScript 不是 Lexical Scope 特性的語言。呼叫 f() 的結果，就不會是 1 ，而是 3。Closure 的運用，常見於拍下快照(snapshot)，捕捉當時的值。這是很久以前犯過的錯：</p>
 
-<p><img class="center" src="/images/wildwind/do_the_right_thing/reason.jpg" width="600" height="350" title="reason" alt="reason"></p>
+<figure class='code'><figcaption><span>HTML </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;input type="button" value="1">
+</span><span class='line'>&lt;input type="button" value="2">
+</span><span class='line'>&lt;input type="button" value="3"></span></code></pre></td></tr></table></div></figure>
 
-<p>為什麼要積極追查真相這麼難？為什麼一個受害者家屬服喪期間，可以作的事比一個組織還多？為什麼一個受害者家屬展現出來的，還比較頭腦清醒且理智？</p>
 
-<p>這麼龐大的組織，擁有這麼大的權力、這麼多的資源，卻如此鈍化，幾乎沒有什麼作為。如果不是推理版本所謂的「黑暗」，那除了「疏懶」，真的找不出其他的解釋。造成今日這種局面，我只能說國防部活該。</p>
 
-<p>以我所知道的事實，我所看到的部分，我上街頭的理由，是針對這個扭曲的制度、不透明的組織文化，而不是那群人。</p>
 
-<p>這次活動的訴求很中肯，而且真的冷靜理性和平：</p>
+<figure class='code'><figcaption><span>jQuery </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var s = $("input").size();
+</span><span class='line'>for(var i=0; i&lt;s; i++){
+</span><span class='line'>  $("#wade" + i).click(function(){
+</span><span class='line'>      alert(i);
+</span><span class='line'>  });
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
-<p><img class="center" src="/images/wildwind/do_the_right_thing/ask.jpg" width="600" height="350" title="ask" alt="ask"></p>
 
-<h2>其實我不熱血</h2>
+<p>想要按下按鈕時，分別是 0 1 2 ，可是不管按哪一顆，都是 3 。因為大家抓到的 i ，都是「現在」的值。這時候就是要利用 Closure 製造快照的效果，記住「當時」的值。改成：</p>
 
-<p>這次出去，身邊的人說我熱血。其實我不認為我熱血，既沒衝勁，也很平和。</p>
+<figure class='code'><figcaption><span>jQuery </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var s = $("input").size();
+</span><span class='line'>for(var i=0; i&lt;s; i++){
+</span><span class='line'>  $("#wade" + i).click(function(n){
+</span><span class='line'>      return function(){
+</span><span class='line'>          alert(n);
+</span><span class='line'>      }
+</span><span class='line'>  }(i));
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
-<p>我只是認知到不能漠視這個土地的事情，這個年紀了，要有這個國家當家世代的自覺。那群老的陸陸續續會退下來，我們這個世代的早就該學著接棒。其實早就不是個小孩子，之前都渾渾噩噩的，但是 30 歲了，不能再對這塊土地漠不關心。如果我們這個世代還是像小孩一樣對這個社會冷淡、對這個國家一無所知，只會人云亦云，未來會如何？</p>
 
-<p>我不是熱血，我只是在學習承擔責任而已。</p>
+<p>這個例子把想要快照起來的值，當作參數傳遞進去。然後回傳一整個內部函式，代表「當時」的執行狀況。回傳內部函式的時候，會順便創造該時空下的執行環境。可以想像成複製當時 Scope 的樣子，所以當時 Scope 裡變數的值如果是 0 就是 0。</p>
+
+<p>關於 Closure 的細節 ，以後再說吧，畢竟這一篇的主角是 Lexical Scope。</p>
 
 		
 		
@@ -176,11 +240,11 @@ $(document).ready(
   
 
 
-<time datetime="2013-08-03T22:10:00+08:00" pubdate data-updated="true">2013-08-03 22:10</time></div>
+<time datetime="2013-09-09T23:42:00+08:00" pubdate data-updated="true">2013-09-09 23:42</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/life/'>Life</a>
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
 
 
 </div>
@@ -188,13 +252,18 @@ $(document).ready(
 	<br />
 	<b>== 所有分類 ==</b>
 	<li class='category'><a href='/blog/categories/build-tool/'>Build Tool (3)</a></li>
+<li class='category'><a href='/blog/categories/datatype/'>DataType (1)</a></li>
+<li class='category'><a href='/blog/categories/datetime/'>DateTime (1)</a></li>
 <li class='category'><a href='/blog/categories/hibernate/'>Hibernate (1)</a></li>
-<li class='category'><a href='/blog/categories/java/'>Java (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
+<li class='category'><a href='/blog/categories/javascript/'>JavaScript (2)</a></li>
 <li class='category'><a href='/blog/categories/life/'>Life (1)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (3)</a></li>
 <li class='category'><a href='/blog/categories/orm/'>ORM (1)</a></li>
 <li class='category'><a href='/blog/categories/object-oriented/'>Object-Oriented (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (4)</a></li>
+<li class='category'><a href='/blog/categories/performance/'>Performance (1)</a></li>
+
 
 </div></article>
 

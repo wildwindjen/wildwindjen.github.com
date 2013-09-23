@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Performance | Wild Wind]]></title>
+  <link href="http://wildwindjen.github.io/blog/categories/performance/atom.xml" rel="self"/>
+  <link href="http://wildwindjen.github.io/"/>
+  <updated>2013-09-23T12:00:38+08:00</updated>
+  <id>http://wildwindjen.github.io/</id>
+  <author>
+    <name><![CDATA[Wildwind Jen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Windows Performance Monitor]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/09/05/windows-performance-monitor/"/>
+    <updated>2013-09-05T21:55:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/09/05/windows-performance-monitor</id>
+    <content type="html"><![CDATA[<h2>總結</h2>
+
+<blockquote><p>I'm Watching You。</p></blockquote>
+
+<p>當想要監控系統的效能時，總是需要一些工具。目前使用的主要還是 Windows。針對 Windows 的資源監控工具作點紀錄。</p>
+
+<h2>Windows Performance Monitor</h2>
+
+<ol>
+<li>啟動 perfmon (或 perfmon.msc)</li>
+<li>點選效能監視器</li>
+<li>右鍵【新增計數器】</li>
+</ol>
+
+
+<h2>typeperf</h2>
+
+<p>perfmon 對應到 typeperf 的指令</p>
+
+<p>我把他分兩類：有例項和沒有例項。</p>
+
+<p>有例項：
+typeperf "\物件(例項)\計數器"
+例如：</p>
+
+<pre>
+typeperf "\Processor Information(_Total)\% Idle Time"
+</pre>
+
+
+<p>沒有例項：
+typeperf "\物件\計數器"
+例如：</p>
+
+<pre>
+typeperf "\TCPv6\Connection Failures"
+</pre>
+
+
+<h3>typeperf 相關參數</h3>
+
+<p>typeperf -h 可以看到還有一個完整路徑的寫法：
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>typeperf </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>計數器是效能計數器的完整名稱，格式為
+</span><span class='line'>"\&lt;Computer>&lt;Object>(&lt;Instance>)&lt;Counter>"  ，
+</span><span class='line'>例如 "\Server1\Processor(0)\% User Time"。</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>用來查詢所有的計數器：</p>
+
+<pre>
+typeperf -q
+</pre>
+
+
+<p></p>
+
+<p>用來查詢該物件所有的計數器：</p>
+
+<pre>
+typeperf -q 物件
+</pre>
+
+
+<p>用來查詢該物件所有的例項與計數器組合：</p>
+
+<pre>
+typeperf -qx 物件
+</pre>
+
+
+<p>例項使用星號(*)，代表監控全部例項：</p>
+
+<pre>
+typeperf "\Processor Information(*)\% Idle Time"
+</pre>
+
+]]></content>
+  </entry>
+  
+</feed>

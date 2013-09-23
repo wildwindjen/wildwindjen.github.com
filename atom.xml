@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-08-06T10:06:07+08:00</updated>
+  <updated>2013-09-23T12:00:38+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -12,6 +12,456 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ISO 8601]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/09/14/iso-8601/"/>
+    <updated>2013-09-14T22:22:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/09/14/iso-8601</id>
+    <content type="html"><![CDATA[<h2>事出</h2>
+
+<p>前陣子，工作上遇到一個 Java 定義的 Web Service API，其中一個欄位對方是使用 Calendar 定義出來的日期格式欄位。結果使用 Soup UI 怎麼餵常見的日期格式都不對。直到使用了 ISO 8601 日期格式：
+<code>2013-09-14T21:32:08.000+0800</code>。代表的是當地時間 2013-09-14 21:32:08，當地位處於時區 +08:00。</p>
+
+<p>直接去查詢 <a href="http://www.w3.org/TR/xmlschema-2/#dateTime" title="XML DataType">XML 使用的 DataType</a>，其實就會看見「使用 ISO 8601 表示日期時間」的字樣。接著再去看看維基上 <a href="http://zh.wikipedia.org/wiki/ISO_8601" title="ISO 8601">ISO 8601</a>的介紹，其實就不用花太多時間走冤枉路了。</p>
+
+<p>當初則是直接 Java gen code，然後去看底層才知道要餵這個格式。雖然有試著查這個格式叫什麼名字，只是未果。反而是今天研究 JavaScript 才直到這個格式叫 ISO 8601。只能說冥冥之中，老天待我不薄。</p>
+
+<h2>ISO 8601</h2>
+
+<p><code>2013-09-14T00:00:00.000+0800</code> (當地時間) 或者 <code>2013-09-14T00:00:00.000Z</code> (UTC 時間)</p>
+
+<p>這個格式唯一好奇的是 T 和 Z。原來在 ISO 8601 裡， T 叫做 <code>time designator</code>，用來指明要開始表示時間了，所以 T 後面就是接時間。</p>
+
+<p>Z 叫做 <code>zone designator</code>，代表使用 <a href="http://zh.wikipedia.org/zh-hant/%E5%8D%8F%E8%B0%83%E4%B8%96%E7%95%8C%E6%97%B6" title="UTC">UTC(Coordinated Universal Time)</a> 表示。UTC 時間 <code>2013-09-14T00:00:00.000Z</code> 意義等同 <code>2013-09-14T00:00:00.000+0000</code>。因為軍事上使用 Z 表示 UTC，發音 zulu ，所以又稱為 zulu time。當地時間裡的 +hhmm 代表時間快 UTC hh時mm分，如果是 -hhmm，就是慢 UTC hh時mm分。意謂著 <code>2013-09-14T00:00:00.000Z</code> 和 <code>2013-09-14T00:08:00.000+0800</code> 實際上才是同一個時間點。</p>
+
+<p>ISO 8601 規格裡提到，使用 local time 表示時，zone designator 應該留白。有一個謎，就是爲什麼 UTC 縮寫跟原本單字順序不合？</p>
+
+<h2>ISO 8601 format String with Java</h2>
+
+<p>以下嘗試使用 Java 取得 ISO 8601 格式的字串，第一個從網路抄過來的。我自己是比較喜歡第三個和第四個。沒辦法，用 DateFormat 用習慣了。不過 JDK 6 (含)以前要完美地轉換大概沒辦法達成，因為底層其實支援的是 RFC 822 ，而不是 ISO 8601，要到 JDK 7 才開始支援。所以網路有人推薦使用 Joda 這個函式庫來處理，因為日期議題比想像中得複雜許多。</p>
+
+<figure class='code'><figcaption><span>google plus comments </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import java.text.DateFormat;
+</span><span class='line'>import java.text.SimpleDateFormat;
+</span><span class='line'>import java.util.Date;
+</span><span class='line'>import java.util.TimeZone;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>public class ISO8601Demo {
+</span><span class='line'>  public static Date d = new Date();
+</span><span class='line'>  public static String getISO8601Format1() { return String.format("%tFT%&lt;tRZ", d); }
+</span><span class='line'>  public static String getISO8601Format2() { return String.format("%tFT%&lt;tH:%&lt;tM:%&lt;tS.%&lt;tLZ", d); }
+</span><span class='line'>  public static String getISO8601Format3() { 
+</span><span class='line'>      DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'");
+</span><span class='line'>      return df.format(d);
+</span><span class='line'>  }
+</span><span class='line'>  public static String getISO8601Format4() { 
+</span><span class='line'>      DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SZ");
+</span><span class='line'>      return df.format(d);
+</span><span class='line'>  }
+</span><span class='line'>  
+</span><span class='line'>  /**
+</span><span class='line'>   * @param args
+</span><span class='line'>   */
+</span><span class='line'>  public static void main(String[] args) {
+</span><span class='line'>      System.out.println(d);
+</span><span class='line'>      System.out.println(ISO8601Demo.getISO8601Format1());
+</span><span class='line'>      System.out.println(ISO8601Demo.getISO8601Format2());
+</span><span class='line'>      System.out.println(ISO8601Demo.getISO8601Format3());
+</span><span class='line'>      System.out.println(ISO8601Demo.getISO8601Format4());
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>其他參考</h2>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax">Java String Format</a></li>
+<li><a href="http://jay-fva.blogspot.tw/2010/02/24gmtutc.html">Java-Two 2013 Joda Slide</a></li>
+<li><a href="http://jay-fva.blogspot.tw/2010/02/24gmtutc.html">時區的概念</a></li>
+<li><a href="http://stackoverflow.com/questions/2201925/converting-iso8601-compliant-string-to-java-util-date">Java ISO 8601 的複雜</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lexical Scope]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/09/09/lexical-scope/"/>
+    <updated>2013-09-09T23:42:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/09/09/lexical-scope</id>
+    <content type="html"><![CDATA[<h2>Scope</h2>
+
+<pre><code>定義：可以用以尋找變數的範圍。
+</code></pre>
+
+<h2>Lexical Scope</h2>
+
+<p>用來決定「可以使用的 Scope 有哪些」的方式之一，相對的有 Dynamic Scope。</p>
+
+<p>特性：程式的語法結構，就決定了可以在哪些 Scope 尋找變數。</p>
+
+<p>看看以下的範例：</p>
+
+<figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){
+</span><span class='line'>  alert(foo);
+</span><span class='line'>}
+</span><span class='line'>function a(){
+</span><span class='line'>  var foo=1;
+</span><span class='line'>  b();
+</span><span class='line'>};
+</span><span class='line'>a();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這個範例在使用 Lexical Scope 的語言裡，是行不通的。例如 JavaScript 就會報 <code>ReferenceError: foo is not defined</code> 的錯。原因在於 b function 可以尋找變數的 Scope 只有 b function 和 global enviroment。並不包含 a function。 &#8211; 程式碼的樣子，決定了可以用的 Scope。</p>
+
+<p>Dynamic Scope 的語言會在執行時期，會依照呼叫堆疊(call stack)，來動態決定可以使用的 Scope。所以上述例子，因為可以使用的 Scope 有 b function 、 a function 和 global environment， 就會成功執行，印出 1 。 &#8211; 程式的執行順序，決定了可以用的 Scope。</p>
+
+<h2>Closure</h2>
+
+<p>為什麼要了解 Lexical Scope？ 因為這跟 JavaScript 的 Closure 有關。</p>
+
+<p>看看這個 Closure 的例子：</p>
+
+<figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function a(value){
+</span><span class='line'>  return function a(){
+</span><span class='line'>      alert(value);
+</span><span class='line'>  };
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var f = a(1);
+</span><span class='line'>var value = 3;
+</span><span class='line'>f();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果今天 JavaScript 不是 Lexical Scope 特性的語言。呼叫 f() 的結果，就不會是 1 ，而是 3。Closure 的運用，常見於拍下快照(snapshot)，捕捉當時的值。這是很久以前犯過的錯：</p>
+
+<figure class='code'><figcaption><span>HTML </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;input type="button" value="1">
+</span><span class='line'>&lt;input type="button" value="2">
+</span><span class='line'>&lt;input type="button" value="3"></span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>jQuery </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var s = $("input").size();
+</span><span class='line'>for(var i=0; i&lt;s; i++){
+</span><span class='line'>  $("#wade" + i).click(function(){
+</span><span class='line'>      alert(i);
+</span><span class='line'>  });
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>想要按下按鈕時，分別是 0 1 2 ，可是不管按哪一顆，都是 3 。因為大家抓到的 i ，都是「現在」的值。這時候就是要利用 Closure 製造快照的效果，記住「當時」的值。改成：</p>
+
+<figure class='code'><figcaption><span>jQuery </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var s = $("input").size();
+</span><span class='line'>for(var i=0; i&lt;s; i++){
+</span><span class='line'>  $("#wade" + i).click(function(n){
+</span><span class='line'>      return function(){
+</span><span class='line'>          alert(n);
+</span><span class='line'>      }
+</span><span class='line'>  }(i));
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這個例子把想要快照起來的值，當作參數傳遞進去。然後回傳一整個內部函式，代表「當時」的執行狀況。回傳內部函式的時候，會順便創造該時空下的執行環境。可以想像成複製當時 Scope 的樣子，所以當時 Scope 裡變數的值如果是 0 就是 0。</p>
+
+<p>關於 Closure 的細節 ，以後再說吧，畢竟這一篇的主角是 Lexical Scope。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[what is hoisted declaration]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/09/08/what-is-hoisted-declaration/"/>
+    <updated>2013-09-08T22:13:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/09/08/what-is-hoisted-declaration</id>
+    <content type="html"><![CDATA[<h2>Variable Hoisted</h2>
+
+<p>猜猜看以下的程式，答案是什麼？</p>
+
+<figure class='code'><figcaption><span>variable hoisted sample 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var a = 1;
+</span><span class='line'>function t(){
+</span><span class='line'>  console.log(a);
+</span><span class='line'>  var a = 2;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>t();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>事實上他等同以下程式，JavaScript 底層把宣告的動作自動往上提(hoisted)了。</p>
+
+<figure class='code'><figcaption><span>variable hoisted sample 2 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var a = 1;
+</span><span class='line'>function t(){
+</span><span class='line'>  var a;          // declaration hoisted!!
+</span><span class='line'>  console.log(a);
+</span><span class='line'>  var a = 2;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>t();</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Function Hoisted</h2>
+
+<h3>兩種函式定義</h3>
+
+<p>要說明 Function Hoisted 之前，我們拿兩種定義方式來比較： function definition 和 function declaration。</p>
+
+<figure class='code'><figcaption><span>function definition </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var f = function(){ 
+</span><span class='line'>  return 1;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以及</p>
+
+<figure class='code'><figcaption><span>function declaration </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function f(){ 
+</span><span class='line'>  return 1;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>兩種函式的 Hoist 比較</h3>
+
+<p>以下結果是 <code>TypeError: undefined is not a function</code>。確實 var b 往上提了，可是函式主體沒有，所以呼叫了 undefined 當函式。</p>
+
+<figure class='code'><figcaption><span>function hoisted sample 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){
+</span><span class='line'>      console.log('w1');
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>function a(){
+</span><span class='line'>  b();
+</span><span class='line'>  var b = function(){
+</span><span class='line'>      console.log('w2');
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>a();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果是使用 function declaration，則結果可以正常執行，執行的 b() 會是 w2。因為除了內部的 function b 宣告以外，連函式主體，都往上提了。</p>
+
+<figure class='code'><figcaption><span>function hoisted sample 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function b(){
+</span><span class='line'>      console.log('w1');
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>function a(){
+</span><span class='line'>  b();
+</span><span class='line'>  function b(){
+</span><span class='line'>      console.log('w2');
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>a();</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Windows Performance Monitor]]></title>
+    <link href="http://wildwindjen.github.io/blog/2013/09/05/windows-performance-monitor/"/>
+    <updated>2013-09-05T21:55:00+08:00</updated>
+    <id>http://wildwindjen.github.io/blog/2013/09/05/windows-performance-monitor</id>
+    <content type="html"><![CDATA[<h2>總結</h2>
+
+<blockquote><p>I&#8217;m Watching You。</p></blockquote>
+
+<p>當想要監控系統的效能時，總是需要一些工具。目前使用的主要還是 Windows。針對 Windows 的資源監控工具作點紀錄。</p>
+
+<h2>Windows Performance Monitor</h2>
+
+<ol>
+<li>啟動 perfmon (或 perfmon.msc)</li>
+<li>點選效能監視器</li>
+<li>右鍵【新增計數器】</li>
+</ol>
+
+
+<h2>typeperf</h2>
+
+<p>perfmon 對應到 typeperf 的指令</p>
+
+<p>我把他分兩類：有例項和沒有例項。</p>
+
+<p>有例項：
+typeperf &#8220;\物件(例項)\計數器&#8221;
+例如：</p>
+
+<pre>
+typeperf "\Processor Information(_Total)\% Idle Time"
+</pre>
+
+
+<p>沒有例項：
+typeperf &#8220;\物件\計數器&#8221;
+例如：</p>
+
+<pre>
+typeperf "\TCPv6\Connection Failures"
+</pre>
+
+
+<h3>typeperf 相關參數</h3>
+
+<p>typeperf -h 可以看到還有一個完整路徑的寫法：</p>
+
+<figure class='code'><figcaption><span>typeperf </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>計數器是效能計數器的完整名稱，格式為
+</span><span class='line'>"\\&lt;Computer>\&lt;Object>(&lt;Instance>)\&lt;Counter>"  ，
+</span><span class='line'>例如 "\\Server1\Processor(0)\% User Time"。</span></code></pre></td></tr></table></div></figure>
+
+
+<p>用來查詢所有的計數器：</p>
+
+<pre>
+typeperf -q
+</pre>
+
+
+<p></p>
+
+<p>用來查詢該物件所有的計數器：</p>
+
+<pre>
+typeperf -q 物件
+</pre>
+
+
+<p>用來查詢該物件所有的例項與計數器組合：</p>
+
+<pre>
+typeperf -qx 物件
+</pre>
+
+
+<p>例項使用星號(*)，代表監控全部例項：</p>
+
+<pre>
+typeperf "\Processor Information(*)\% Idle Time"
+</pre>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[馬糞處女作]]></title>

@@ -4,7 +4,7 @@
   <title><![CDATA[Wild Wind]]></title>
   <link href="http://wildwindjen.github.io/atom.xml" rel="self"/>
   <link href="http://wildwindjen.github.io/"/>
-  <updated>2013-09-23T15:03:05+08:00</updated>
+  <updated>2013-09-24T17:58:24+08:00</updated>
   <id>http://wildwindjen.github.io/</id>
   <author>
     <name><![CDATA[Wildwind Jen]]></name>
@@ -1053,6 +1053,145 @@ typeperf "\Processor Information(*)\% Idle Time"
 </li>
 </ul>
 
+
+<h2>不同環境，不同的設定</h2>
+
+<p>我在我的主程式多了一層子目錄 <code>webconf</code>，裡面放置各種環境的設定檔。下面我模擬了 dev 和 online 兩個情境，<code>src/main/webconf/dev</code> 和 <code>src/main/webconf/online</code>，分別放置開發環境跟線上環境的設定檔。</p>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>... ...
+</span><span class='line'>  &lt;/dependencies>
+</span><span class='line'>  &lt;!-- -->
+</span><span class='line'>  &lt;profiles>
+</span><span class='line'>      &lt;profile>
+</span><span class='line'>          &lt;id>dev&lt;/id>
+</span><span class='line'>          &lt;activation>
+</span><span class='line'>              &lt;activeByDefault>true&lt;/activeByDefault>
+</span><span class='line'>          &lt;/activation>
+</span><span class='line'>          &lt;build>
+</span><span class='line'>              &lt;plugins>
+</span><span class='line'>                  &lt;plugin>
+</span><span class='line'>                      &lt;groupId>org.apache.maven.plugins&lt;/groupId>
+</span><span class='line'>                      &lt;artifactId>maven-war-plugin&lt;/artifactId>
+</span><span class='line'>                      &lt;version>2.2&lt;/version>
+</span><span class='line'>                      &lt;configuration>
+</span><span class='line'>                          &lt;webResources>
+</span><span class='line'>                              &lt;resource>
+</span><span class='line'>                                  &lt;directory>src/main/webconf/dev&lt;/directory>
+</span><span class='line'>                                  &lt;targetPath>WEB-INF&lt;/targetPath>
+</span><span class='line'>                              &lt;/resource>
+</span><span class='line'>                          &lt;/webResources>
+</span><span class='line'>                      &lt;/configuration>
+</span><span class='line'>                  &lt;/plugin>
+</span><span class='line'>              &lt;/plugins>
+</span><span class='line'>          &lt;/build>
+</span><span class='line'>      &lt;/profile>
+</span><span class='line'>      &lt;profile>
+</span><span class='line'>          &lt;id>online&lt;/id>
+</span><span class='line'>          &lt;build>
+</span><span class='line'>              &lt;plugins>
+</span><span class='line'>                  &lt;plugin>
+</span><span class='line'>                      &lt;groupId>org.apache.maven.plugins&lt;/groupId>
+</span><span class='line'>                      &lt;artifactId>maven-war-plugin&lt;/artifactId>
+</span><span class='line'>                      &lt;version>2.4&lt;/version>
+</span><span class='line'>                      &lt;configuration>
+</span><span class='line'>                          &lt;webResources>
+</span><span class='line'>                              &lt;resource>
+</span><span class='line'>                                  &lt;directory>src/main/webconf/online&lt;/directory>
+</span><span class='line'>                                  &lt;targetPath>WEB-INF&lt;/targetPath>
+</span><span class='line'>                              &lt;/resource>
+</span><span class='line'>                          &lt;/webResources>
+</span><span class='line'>                      &lt;/configuration>
+</span><span class='line'>                  &lt;/plugin>
+</span><span class='line'>              &lt;/plugins>
+</span><span class='line'>          &lt;/build>
+</span><span class='line'>      &lt;/profile>
+</span><span class='line'>  &lt;/profiles>
+</span><span class='line'>  &lt;build>
+</span><span class='line'>      ... ...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接著，輸入</p>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn package -P dev</span></code></pre></td></tr></table></div></figure>
+
+
+<p>或者</p>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn package -P online</span></code></pre></td></tr></table></div></figure>
+
+
+<p>即可輸出不同情境的佈署檔案。是不是很方便啊？</p>
+
+<p><code>activeByDefault</code> 則是用來設定哪一個為預設的情境。所以</p>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn package -P dev</span></code></pre></td></tr></table></div></figure>
+
+
+<p>跟</p>
+
+<figure class='code'><figcaption><span>Cold Block </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn package</span></code></pre></td></tr></table></div></figure>
+
+
+<p>是一樣的。</p>
 ]]></content>
   </entry>
   

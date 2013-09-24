@@ -106,3 +106,78 @@ mvn -Dfile.encoding=UTF-8 -Dproject.build.sourceEncoding=UTF-8 package
 	* Maven Install
 	* Run on Server
 			
+## 不同環境，不同的設定
+我在我的主程式多了一層子目錄 `webconf`，裡面放置各種環境的設定檔。下面我模擬了 dev 和 online 兩個情境，`src/main/webconf/dev` 和 `src/main/webconf/online`，分別放置開發環境跟線上環境的設定檔。
+
+{% codeblock Cold Block %}
+		... ...
+	</dependencies>
+	<!-- -->
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.2</version>
+						<configuration>
+							<webResources>
+								<resource>
+									<directory>src/main/webconf/dev</directory>
+									<targetPath>WEB-INF</targetPath>
+								</resource>
+							</webResources>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>online</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.4</version>
+						<configuration>
+							<webResources>
+								<resource>
+									<directory>src/main/webconf/online</directory>
+									<targetPath>WEB-INF</targetPath>
+								</resource>
+							</webResources>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<build>
+		... ...
+{% endcodeblock %}
+
+接著，輸入 
+{% codeblock Cold Block %}
+mvn package -P dev
+{% endcodeblock %} 
+或者 
+{% codeblock Cold Block %}
+mvn package -P online
+{% endcodeblock %}
+即可輸出不同情境的佈署檔案。是不是很方便啊？
+
+`activeByDefault` 則是用來設定哪一個為預設的情境。所以 
+{% codeblock Cold Block %}
+mvn package -P dev
+{% endcodeblock %}
+跟 
+{% codeblock Cold Block %}
+mvn package
+{% endcodeblock %}
+是一樣的。
